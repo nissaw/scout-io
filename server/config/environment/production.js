@@ -13,15 +13,15 @@ module.exports = {
           process.env.PORT ||
           8080,
 
+  // Sequelize connection options
   sequelize: {
-    uri:  process.env.SEQUELIZE_URI ||
-          'sqlite://',
-    options: {
-      logging: false,
-      storage: 'dist.sqlite',
-      define: {
-        timestamps: false
-      }
-    }
-  }
+    uri: 'scoutio.ckptibf82gdw.us-west-2.rds.amazonaws.com',
+    dialect: "mysql",
+    username: process.env.MYSQL_DATABASE,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
+  },
+
+  // Seed database on startup
+  seedDB: true
 };

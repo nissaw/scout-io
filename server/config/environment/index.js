@@ -22,7 +22,7 @@ var all = {
   port: process.env.PORT || 9000,
 
   // Server IP
-  ip: process.env.IP || '0.0.0.0',
+  ip: process.env.IP || 'localhost',
 
   // Should we populate the DB with sample data?
   seedDB: false,
@@ -30,15 +30,6 @@ var all = {
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
     session: 'sql-test2-secret'
-  },
-
-  // MongoDB connection options
-  mongo: {
-    options: {
-      db: {
-        safe: true
-      }
-    }
   },
 
   facebook: {
@@ -56,6 +47,9 @@ var all = {
 
 // Export the config object based on the NODE_ENV
 // ==============================================
+
+console.log("process.env.NODE_ENV", process.env.NODE_ENV)
+
 module.exports = _.merge(
   all,
   require('./shared'),
