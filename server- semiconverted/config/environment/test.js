@@ -1,17 +1,16 @@
 'use strict';
 
-// Production specific configuration
-// =================================
+// Test specific configuration
+// ===========================
 module.exports = {
-  // Server IP
   ip:     process.env.OPENSHIFT_NODEJS_IP ||
-          process.env.IP ||
-          undefined,
+  process.env.IP ||
+  undefined,
 
   // Server port
   port:   process.env.OPENSHIFT_NODEJS_PORT ||
-          process.env.PORT ||
-          8080,
+  process.env.PORT ||
+  8080,
 
   // Sequelize connection options
   sequelize: {
@@ -23,5 +22,5 @@ module.exports = {
   },
 
   // Seed database on startup
-  seedDB: false
+  seedDB: true
 };
