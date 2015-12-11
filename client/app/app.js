@@ -9,7 +9,8 @@ angular.module('sqlTest2App', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'validation.match'
+  'validation.match',
+  'ngMaterial'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
