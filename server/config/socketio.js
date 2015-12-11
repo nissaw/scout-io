@@ -17,9 +17,15 @@ function onConnect(socket) {
     socket.log(JSON.stringify(data, null, 2));
   });
 
-  // Insert sockets below
-  require('../api/thing/thing.socket').register(socket);
+  socket.setMaxListeners(0);
 
+  // Insert sockets below
+  require('../api/asset/asset.socket').register(socket);
+  require('../api/link/link.socket').register(socket);
+  require('../api/comment/comment.socket').register(socket);
+  require('../api/folder/folder.socket').register(socket);
+  require('../api/project/project.socket').register(socket);
+  //require('../api/user/user.socket').register(socket); //paul - wasn't here originally - wondering why
 }
 
 module.exports = function(socketio) {

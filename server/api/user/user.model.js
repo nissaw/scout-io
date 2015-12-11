@@ -1,6 +1,7 @@
 'use strict';
 
 import crypto from 'crypto';
+
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var validatePresenceOf = function(value) {
@@ -233,3 +234,5 @@ module.exports = function(sequelize, DataTypes) {
 
   return User;
 };
+
+

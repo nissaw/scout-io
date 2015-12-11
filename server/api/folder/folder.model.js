@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     name: DataTypes.STRING,
-    info: DataTypes.STRING,
+    info: DataTypes.STRING(8000),
     active: DataTypes.BOOLEAN
   });
 };
