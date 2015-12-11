@@ -22,6 +22,7 @@ var db = {
 // Insert models below
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
+db.Asset = db.sequelize.import('../api/asset/asset.model');
 db.Comment = db.sequelize.import('../api/comment/comment.model');
 db.Folder = db.sequelize.import('../api/folder/folder.model');
 db.Link = db.sequelize.import('../api/link/link.model');
