@@ -9,8 +9,8 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     name: DataTypes.CHAR(255),
-    data: DataTypes.BLOG(),
-    publicComments: DataTypes.String(8000),
+    data: DataTypes.BLOB(),
+    publicComments: DataTypes.STRING(8000),
     active: DataTypes.BOOLEAN()
   });
 };
