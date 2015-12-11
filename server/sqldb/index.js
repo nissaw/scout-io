@@ -22,5 +22,10 @@ var db = {
 // Insert models below
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
+db.Folder = db.sequelize.import('../api/folder/folder.model');
+db.Project = db.sequelize.import('../api/project/project.model');
+
+db.Folder.belongsTo(db.Project);
+db.Folder.belongsTo(db.Folder);
 
 export default db;
