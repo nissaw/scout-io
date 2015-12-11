@@ -22,10 +22,19 @@ var db = {
 // Insert models below
 db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
+db.Comment = db.sequelize.import('../api/comment/comment.model');
 db.Folder = db.sequelize.import('../api/folder/folder.model');
+db.Link = db.sequelize.import('../api/link/link.model');
 db.Project = db.sequelize.import('../api/project/project.model');
 
+//Foreign Keys
+// db.Comment.belongsTo(db.Asset);
+db.Comment.belongsTo(db.Link);
+db.Comment.belongsTo(db.User);
 db.Folder.belongsTo(db.Project);
 db.Folder.belongsTo(db.Folder);
+db.Link.belongsTo(db.Folder);
+
+
 
 export default db;
