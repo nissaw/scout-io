@@ -26,7 +26,7 @@ db.Comment = db.sequelize.import('../api/comment/comment.model');
 db.Folder = db.sequelize.import('../api/folder/folder.model');
 db.Link = db.sequelize.import('../api/link/link.model');
 db.Project = db.sequelize.import('../api/project/project.model');
-db.UserProject = db.sequelize.import('../api/user/user_project.model');
+db.UserProject = db.sequelize.import('../api/user/user_project/user_project.model');
 
 //Foreign Keys
 // db.Comment.belongsTo(db.Asset);
@@ -43,11 +43,11 @@ db.Folder.hasMany(db.Folder, {
 });
 
 db.User.belongsToMany(db.Project, {
-  through: db.UserProjects,
+  through: db.UserProject,
   constraints: false
 });
 db.Project.belongsToMany(db.User, {
-  through: db.UserProjects,
+  through: db.UserProject,
   constraints: false
 });
 

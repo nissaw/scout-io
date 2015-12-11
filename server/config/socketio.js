@@ -18,7 +18,12 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-  require('../api/thing/thing.socket').register(socket);
+  //require('../api/asset/asset.socket').register(socket);
+  require('../api/folder/folder.socket').register(socket);
+  require('../api/link/link.socket').register(socket);
+  require('../api/comment/comment.socket').register(socket);
+  require('../api/project/project.socket').register(socket);
+  //require('../api/user/user.socket').register(socket);
 
 }
 
