@@ -1,17 +1,17 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/links              ->  index
- * POST    /api/links              ->  create
- * GET     /api/links/:id          ->  show
- * PUT     /api/links/:id          ->  update
- * DELETE  /api/links/:id          ->  destroy
+ * GET     /api/comments              ->  index
+ * POST    /api/comments              ->  create
+ * GET     /api/comments/:id          ->  show
+ * PUT     /api/comments/:id          ->  update
+ * DELETE  /api/comments/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
-var Link = sqldb.Link;
+var Comment = sqldb.Comment;
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -59,16 +59,16 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Links
+// Gets a list of Comments
 exports.index = function(req, res) {
-  Link.findAll()
+  Comment.findAll()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Gets a single Link from the DB
+// Gets a single Comment from the DB
 exports.show = function(req, res) {
-  Link.find({
+  Comment.find({
     where: {
       _id: req.params.id
     }
@@ -78,19 +78,19 @@ exports.show = function(req, res) {
     .catch(handleError(res));
 };
 
-// Creates a new Link in the DB
+// Creates a new Comment in the DB
 exports.create = function(req, res) {
-  Link.create(req.body)
+  Comment.create(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 };
 
-// Updates an existing Link in the DB
+// Updates an existing Comment in the DB
 exports.update = function(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Link.find({
+  Comment.find({
     where: {
       _id: req.params.id
     }
@@ -101,9 +101,9 @@ exports.update = function(req, res) {
     .catch(handleError(res));
 };
 
-// Deletes a Link from the DB
+// Deletes a Comment from the DB
 exports.destroy = function(req, res) {
-  Link.find({
+  Comment.find({
     where: {
       _id: req.params.id
     }

@@ -1,15 +1,15 @@
 /**
- * Link model events
+ * Comment model events
  */
 
 'use strict';
 
 var EventEmitter = require('events').EventEmitter;
-var Link = require('../../sqldb').Link;
-var LinkEvents = new EventEmitter();
+var Comment = require('../../sqldb').Comment;
+var CommentEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-LinkEvents.setMaxListeners(0);
+CommentEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -21,15 +21,15 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Link.hook(e, emitEvent(event));
+  Comment.hook(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc, options, done) {
-    LinkEvents.emit(event + ':' + doc._id, doc);
-    LinkEvents.emit(event, doc);
+    CommentEvents.emit(event + ':' + doc._id, doc);
+    CommentEvents.emit(event, doc);
     done(null);
   }
 }
 
-module.exports = LinkEvents;
+module.exports = CommentEvents;

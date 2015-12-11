@@ -3,40 +3,40 @@
 var app = require('../..');
 var request = require('supertest');
 
-var newLink;
+var newComment;
 
-describe('Link API:', function() {
+describe('Comment API:', function() {
 
-  describe('GET /api/links', function() {
-    var links;
+  describe('GET /api/comments', function() {
+    var comments;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/links')
+        .get('/api/comments')
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
           if (err) {
             return done(err);
           }
-          links = res.body;
+          comments = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      expect(links).to.be.instanceOf(Array);
+      expect(comments).to.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/links', function() {
+  describe('POST /api/comments', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/links')
+        .post('/api/comments')
         .send({
-          name: 'New Link',
-          info: 'This is the brand new link!!!'
+          name: 'New Comment',
+          info: 'This is the brand new comment!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Link API:', function() {
           if (err) {
             return done(err);
           }
-          newLink = res.body;
+          newComment = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created link', function() {
-      expect(newLink.name).to.equal('New Link');
-      expect(newLink.info).to.equal('This is the brand new link!!!');
+    it('should respond with the newly created comment', function() {
+      expect(newComment.name).to.equal('New Comment');
+      expect(newComment.info).to.equal('This is the brand new comment!!!');
     });
 
   });
 
-  describe('GET /api/links/:id', function() {
-    var link;
+  describe('GET /api/comments/:id', function() {
+    var comment;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/links/' + newLink._id)
+        .get('/api/comments/' + newComment._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
           if (err) {
             return done(err);
           }
-          link = res.body;
+          comment = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      link = {};
+      comment = {};
     });
 
-    it('should respond with the requested link', function() {
-      expect(link.name).to.equal('New Link');
-      expect(link.info).to.equal('This is the brand new link!!!');
+    it('should respond with the requested comment', function() {
+      expect(comment.name).to.equal('New Comment');
+      expect(comment.info).to.equal('This is the brand new comment!!!');
     });
 
   });
 
-  describe('PUT /api/links/:id', function() {
-    var updatedLink
+  describe('PUT /api/comments/:id', function() {
+    var updatedComment
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/links/' + newLink._id)
+        .put('/api/comments/' + newComment._id)
         .send({
-          name: 'Updated Link',
-          info: 'This is the updated link!!!'
+          name: 'Updated Comment',
+          info: 'This is the updated comment!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Link API:', function() {
           if (err) {
             return done(err);
           }
-          updatedLink = res.body;
+          updatedComment = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedLink = {};
+      updatedComment = {};
     });
 
-    it('should respond with the updated link', function() {
-      expect(updatedLink.name).to.equal('Updated Link');
-      expect(updatedLink.info).to.equal('This is the updated link!!!');
+    it('should respond with the updated comment', function() {
+      expect(updatedComment.name).to.equal('Updated Comment');
+      expect(updatedComment.info).to.equal('This is the updated comment!!!');
     });
 
   });
 
-  describe('DELETE /api/links/:id', function() {
+  describe('DELETE /api/comments/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/links/' + newLink._id)
+        .delete('/api/comments/' + newComment._id)
         .expect(204)
         .end(function(err, res) {
           if (err) {
@@ -130,9 +130,9 @@ describe('Link API:', function() {
         });
     });
 
-    it('should respond with 404 when link does not exist', function(done) {
+    it('should respond with 404 when comment does not exist', function(done) {
       request(app)
-        .delete('/api/links/' + newLink._id)
+        .delete('/api/comments/' + newComment._id)
         .expect(404)
         .end(function(err, res) {
           if (err) {

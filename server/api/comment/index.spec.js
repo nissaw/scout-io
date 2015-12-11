@@ -2,12 +2,12 @@
 
 var proxyquire = require('proxyquire').noPreserveCache();
 
-var linkCtrlStub = {
-  index: 'linkCtrl.index',
-  show: 'linkCtrl.show',
-  create: 'linkCtrl.create',
-  update: 'linkCtrl.update',
-  destroy: 'linkCtrl.destroy'
+var commentCtrlStub = {
+  index: 'commentCtrl.index',
+  show: 'commentCtrl.show',
+  create: 'commentCtrl.create',
+  update: 'commentCtrl.update',
+  destroy: 'commentCtrl.destroy'
 };
 
 var routerStub = {
@@ -19,76 +19,76 @@ var routerStub = {
 };
 
 // require the index with our stubbed out modules
-var linkIndex = proxyquire('./index.js', {
+var commentIndex = proxyquire('./index.js', {
   'express': {
     Router: function() {
       return routerStub;
     }
   },
-  './link.controller': linkCtrlStub
+  './comment.controller': commentCtrlStub
 });
 
-describe('Link API Router:', function() {
+describe('Comment API Router:', function() {
 
   it('should return an express router instance', function() {
-    expect(linkIndex).to.equal(routerStub);
+    expect(commentIndex).to.equal(routerStub);
   });
 
-  describe('GET /api/links', function() {
+  describe('GET /api/comments', function() {
 
-    it('should route to link.controller.index', function() {
+    it('should route to comment.controller.index', function() {
       expect(routerStub.get
-        .withArgs('/', 'linkCtrl.index')
+        .withArgs('/', 'commentCtrl.index')
         ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('GET /api/links/:id', function() {
+  describe('GET /api/comments/:id', function() {
 
-    it('should route to link.controller.show', function() {
+    it('should route to comment.controller.show', function() {
       expect(routerStub.get
-        .withArgs('/:id', 'linkCtrl.show')
+        .withArgs('/:id', 'commentCtrl.show')
         ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('POST /api/links', function() {
+  describe('POST /api/comments', function() {
 
-    it('should route to link.controller.create', function() {
+    it('should route to comment.controller.create', function() {
       expect(routerStub.post
-        .withArgs('/', 'linkCtrl.create')
+        .withArgs('/', 'commentCtrl.create')
         ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('PUT /api/links/:id', function() {
+  describe('PUT /api/comments/:id', function() {
 
-    it('should route to link.controller.update', function() {
+    it('should route to comment.controller.update', function() {
       expect(routerStub.put
-        .withArgs('/:id', 'linkCtrl.update')
+        .withArgs('/:id', 'commentCtrl.update')
         ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('PATCH /api/links/:id', function() {
+  describe('PATCH /api/comments/:id', function() {
 
-    it('should route to link.controller.update', function() {
+    it('should route to comment.controller.update', function() {
       expect(routerStub.patch
-        .withArgs('/:id', 'linkCtrl.update')
+        .withArgs('/:id', 'commentCtrl.update')
         ).to.have.been.calledOnce;
     });
 
   });
 
-  describe('DELETE /api/links/:id', function() {
+  describe('DELETE /api/comments/:id', function() {
 
-    it('should route to link.controller.destroy', function() {
+    it('should route to comment.controller.destroy', function() {
       expect(routerStub.delete
-        .withArgs('/:id', 'linkCtrl.destroy')
+        .withArgs('/:id', 'commentCtrl.destroy')
         ).to.have.been.calledOnce;
     });
 
