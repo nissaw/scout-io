@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
   app.use('/api/folders', require('./api/folder'));
   app.use('/api/projects', require('./api/project'));
-  //app.use('/api/assets', require('./api/asset'));
+  app.use('/api/assets', require('./api/asset'));
   app.use('/api/links', require('./api/link'));
   app.use('/api/comments', require('./api/comment'));
 

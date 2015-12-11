@@ -29,26 +29,30 @@ db.Project = db.sequelize.import('../api/project/project.model');
 db.UserProject = db.sequelize.import('../api/user/user_project/user_project.model');
 
 //Foreign Keys
-// db.Comment.belongsTo(db.Asset);
-db.Comment.belongsTo(db.Link);
+db.User.hasMany(db.Comment);
+db.User.belongsToMany(db.Project, {
+  through: db.UserProject
+});
+
+db.Comment.belongsTo(db.Asset, {
+  constraints: false
+});
+db.Comment.belongsTo(db.Link, {
+  constraints: false
+});
 db.Comment.belongsTo(db.User);
+
+db.Folder.hasMany(db.Folder);
 db.Folder.belongsTo(db.Project);
-db.Link.belongsTo(db.Folder);
-db.Project.hasMany(db.Folder);
 db.Folder.belongsTo(db.Folder, {
   constraints: false
 });
-db.Folder.hasMany(db.Folder, {
-  constraints: false
+
+db.Project.hasMany(db.Folder);
+db.Project.belongsToMany(db.User, {
+  through: db.UserProject
 });
 
-db.User.belongsToMany(db.Project, {
-  through: db.UserProject,
-  constraints: false
-});
-db.Project.belongsToMany(db.User, {
-  through: db.UserProject,
-  constraints: false
-});
+db.Link.belongsTo(db.Folder);
 
 export default db;
