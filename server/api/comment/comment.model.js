@@ -8,10 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    text: DataTypes.Char(8000),
-    userId: DataTypes.INTEGER(11),
-    linkId: DataTypes.INTEGER(11),
-    assetId: DataTypes.INTEGER(11),
+    text: DataTypes.STRING(8000),
     active: DataTypes.BOOLEAN()
   });
 };

@@ -16,9 +16,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     },//Unique?
     apiID: DataTypes.INTEGER(11),
-    apiName: DataTypes.CHAR(45), //Char?
-    publicComments: DataTypes.Char(8000),
-    folderID: DataTypes.INTEGER(11),
+    apiName: DataTypes.CHAR(45), 
+    publicComments: DataTypes.STRING(8000),
     active: DataTypes.BOOLEAN()
   });
 };
