@@ -1,29 +1,22 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">ScoutIQ</a>
-    </div>
-    <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in nav.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}">{{item.title}}</a>
-        </li>
-        <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
-      </ul>
+<md-toolbar layout="row" layout-align="space-between center" id="toolbar">
+    <!--The left side-->
+  <i class="fa fa-camera-retro fa-2x"></i>
+  <h2 class="md-toolbar-tools"><a href="/" class="navbar-brand">Scout.io</a></h2>
+  <!--The right side-->
+  <span flex></span>
+    <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" ui-sref="signup">Sign up</md-button>
+    <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" ui-sref="login">Login</md-button>
+    <md-button class="md-icon-button" aria-label="Profile" ng-show="nav.isLoggedIn()" ui-sref-active="active" ui-sref="settings">
+      <i class="fa fa-user fa-2x"></i>
+    </md-button>
+    <span ng-show="nav.isLoggedIn()" class="navbar-text">{{ nav.getCurrentUser().name }}</span>
+    <md-button class="md-icon-button" aria-label="Settings" ng-show="nav.isLoggedIn()" ui-sref-active="active" ui-sref="settings">
+      <i class="fa fa-cog fa-2x"></i>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="Signout" ng-show="nav.isLoggedIn()" ui-sref="logout">
+      <i class="fa fa-sign-out fa-2x"></i>
+    </md-icon></md-button>
+</md-toolbar>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
-        <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+
+
