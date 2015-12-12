@@ -112,3 +112,50 @@ exports.destroy = function(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 };
+
+
+/**
+ * Get folder assets
+ */
+
+exports.assets = function(req, res) {
+  Folder.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(folder) {
+      if (!folder) {
+        return res.status(401).end();
+      }
+      folder.getAssets().then(function (assets) {
+        res.json(assets);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+/**
+ * Get folder links
+ */
+
+exports.links = function(req, res) {
+  Folder.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(folder) {
+      if (!folder) {
+        return res.status(401).end();
+      }
+      folder.getLinks().then(function (links) {
+        res.json(links);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};

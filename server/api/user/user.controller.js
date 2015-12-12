@@ -106,10 +106,10 @@ exports.changePassword = function(req, res, next) {
   var newPass = String(req.body.newPassword);
 
   User.find({
-    where: {
-      _id: userId
-    }
-  })
+      where: {
+        _id: userId
+      }
+    })
     .then(function(user) {
       if (user.authenticate(oldPass)) {
         user.password = newPass;
@@ -147,6 +147,33 @@ exports.me = function(req, res, next) {
         return res.status(401).end();
       }
       res.json(user);
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+/**
+ * Get my projects
+ */
+exports.projects = function(req, res, next) {
+  var userId = req.user._id;
+
+  User.find({
+      where: {
+        _id: userId
+      },
+      attributes: [
+        '_id'
+      ]
+    })
+    .then(function(user) {
+      if (!user) {
+        return res.status(401).end();
+      }
+      user.getProjects().then(function (projects) {
+        res.json(projects);
+      });
     })
     .catch(function(err) {
       return next(err);

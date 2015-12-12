@@ -34,12 +34,14 @@ db.User.belongsToMany(db.Project, {
   through: db.UserProject
 });
 
-db.Comment.belongsTo(db.Asset, {
-  constraints: false
-});
-db.Comment.belongsTo(db.Link, {
-  constraints: false
-});
+//db.Comment.belongsTo(db.Asset, {
+//  constraints: false
+//});
+db.Comment.belongsTo(db.Asset);
+//db.Comment.belongsTo(db.Link, {
+//  constraints: false
+//});
+db.Comment.belongsTo(db.Link);
 db.Comment.belongsTo(db.User);
 
 db.Folder.hasMany(db.Folder);
@@ -47,6 +49,8 @@ db.Folder.belongsTo(db.Project);
 db.Folder.belongsTo(db.Folder, {
   constraints: false
 });
+db.Folder.hasMany(db.Asset);
+db.Folder.hasMany(db.Link);
 
 db.Project.hasMany(db.Folder);
 db.Project.belongsToMany(db.User, {
@@ -54,5 +58,11 @@ db.Project.belongsToMany(db.User, {
 });
 
 db.Link.belongsTo(db.Folder);
+db.Link.belongsTo(db.User);
+db.Link.hasMany(db.Comment);
+
+db.Asset.belongsTo(db.Folder);
+db.Asset.belongsTo(db.User);
+db.Asset.hasMany(db.Comment);
 
 export default db;
