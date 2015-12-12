@@ -64,11 +64,18 @@ section {
 	height: 350px;
 	text-align: center;
 }
-
-.splash-search {
-
+.splash-input {
+	height: auto;
+	margin-top: 250px;
+	color: #FFA000;
 }
 
-.splash-search-text {
+.splash-search {
+	color: #FFA000;
+}
+
+#splash-search-text {
+	height: auto;
 	font-size: 3em;
+	color: #FFA000;
 }

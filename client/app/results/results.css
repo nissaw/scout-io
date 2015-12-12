@@ -2,3 +2,9 @@
   font-size: 3em;
   color: salmon;
 }
+
+#map {
+  /* Set a size for our map container, the Google Map will take up 100% of this container */
+    width: 750px;
+    height: 500px;
+}

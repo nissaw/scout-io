@@ -1,10 +1,11 @@
 <div id="imgContainer">
   <navbar></navbar>
-
-  <md-input-container class="splash-search">
-    <label>Start Searching Here</label>
-    <input type="text" ng-model="results.search.text" id="splash-search-text">
-  </md-input-container>
+  <div class="splash-input" layout="row">
+    <md-input-container flex="40" flex-offset="50" class="splash-search">
+      <label style="color:#FFA000">Start Your Search Here</label>
+      <input type="text" ng-model="results.search.text" placeholder="aspen, wyoming" id="splash-search-text" ng-submit="">
+    </md-input-container>
+  </div>
 </div>
 
 <section>
