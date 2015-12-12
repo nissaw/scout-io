@@ -1,4 +1,10 @@
 angular.module('ScoutIOApp')
-  .controller('ResultsController', function(){
-    this.name = 'Scout IQ';
-  });
+.controller('ResultsController', ResultsController);
+
+function ResultsController(){
+  this.name = "Scout IQ";
+  this.search = {
+    text: "Wisconsin, campfire, canoe"
+  }
+};
+
