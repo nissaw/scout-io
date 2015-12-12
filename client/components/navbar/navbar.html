@@ -10,7 +10,6 @@
       <i class="fa fa-user fa-2x"></i>
     </md-button>
     <span ng-show="nav.isLoggedIn()" class="navbar-text">{{ nav.getCurrentUser().name }}</span>
-
     <md-button class="md-icon-button" aria-label="Settings" ng-show="nav.isLoggedIn() && nav.isAdmin()" ui-sref-active="active" ui-sref="settings">
       <i class="fa fa-cog fa-2x"></i>
     </md-button>
