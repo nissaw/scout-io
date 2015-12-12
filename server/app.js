@@ -25,9 +25,9 @@ require('./routes')(app);
 
 // Start server
 function startServer() {
-  server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-  });
+  console.log('here');
+  console.log(config.port);
+  server.listen(config.port);
 }
 
 sqldb.sequelize.sync()

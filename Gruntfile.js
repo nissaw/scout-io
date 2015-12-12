@@ -330,7 +330,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       options: {
         // This should be the name of your apps angular module
-        module: 'sqlTest2App',
+        module: 'ScoutIOApp',
         htmlmin: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
