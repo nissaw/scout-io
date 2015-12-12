@@ -12,6 +12,14 @@ try {
 
 module.exports = {
 
+  facebook: {
+    clientID:     localConfig.FACEBOOK_ID,
+    clientSecret: localConfig.FACEBOOK_SECRET
+  },
+  google: {
+    clientID:     localConfig.GOOGLE_ID,
+    clientSecret: localConfig.GOOGLE_SECRET
+  },
   // Sequelize connection options
   sequelize: {
     uri: 'scoutio.ckptibf82gdw.us-west-2.rds.amazonaws.com',
