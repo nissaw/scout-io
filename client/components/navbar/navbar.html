@@ -10,13 +10,16 @@
       <i class="fa fa-user fa-2x"></i>
     </md-button>
     <span ng-show="nav.isLoggedIn()" class="navbar-text">{{ nav.getCurrentUser().name }}</span>
-    <md-button class="md-icon-button" aria-label="Settings" ng-show="nav.isLoggedIn()" ui-sref-active="active" ui-sref="settings">
+
+    <md-button class="md-icon-button" aria-label="Settings" ng-show="nav.isLoggedIn() && nav.isAdmin()" ui-sref-active="active" ui-sref="settings">
       <i class="fa fa-cog fa-2x"></i>
     </md-button>
+    <!-- project icon button TODO add ui-sref -->
+    <md-button class="md-icon-button" aria-label="Projects" ng-show="nav.isLoggedIn()" ui-sref-active="active">
+      <i class="fa fa-archive fa-2x"></i>
+    </md-button>
+    <!-- end project icon button -->
     <md-button class="md-icon-button" aria-label="Signout" ng-show="nav.isLoggedIn()" ui-sref="logout">
       <i class="fa fa-sign-out fa-2x"></i>
     </md-icon></md-button>
 </md-toolbar>
-
-
-
