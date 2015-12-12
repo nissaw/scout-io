@@ -25,8 +25,6 @@ require('./routes')(app);
 
 // Start server
 function startServer() {
-  console.log('here');
-  console.log(config.port);
   server.listen(config.port);
 }
 
