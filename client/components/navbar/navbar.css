@@ -1,0 +1,29 @@
+#toolbar {
+	background-color: transparent;
+}
+
+.md-button {
+	color: rgba(89, 89, 89, 1);
+	background-color: rgba(89, 89, 89, 0.45);
+}
+
+.md-icon-button {
+	background-color: transparent;
+}
+
+.navbar-brand {
+	font-family: 'Limelight', cursive;
+	font-size: 52px;
+	color: rgb(0, 0, 0);
+	text-shadow: 1px 0px 1px #787878;
+}
+
+.navbar-text {
+	font-size: 16px;
+	margin-left: 0px;
+}
+
+.fa-camera-retro {
+	margin-left: 40px;
+	color: rgba(255, 255, 255, 0.95);
+}
