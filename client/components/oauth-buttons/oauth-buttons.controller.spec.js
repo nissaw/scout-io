@@ -3,7 +3,7 @@
 describe('Controller: OauthButtonsCtrl', function() {
 
   // load the controller's module
-  beforeEach(module('sqlTest2App'));
+  beforeEach(module('ScoutIOApp'));
 
   var OauthButtonsCtrl, $window;
 

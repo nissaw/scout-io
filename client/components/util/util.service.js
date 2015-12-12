@@ -56,7 +56,7 @@ function UtilService($window) {
   return Util;
 }
 
-angular.module('sqlTest2App.util')
+angular.module('ScoutIOApp.util')
   .factory('Util', UtilService);
 
 })();

@@ -30,7 +30,7 @@ class MainController {
   }
 }
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .controller('MainController', MainController);
 
 })();

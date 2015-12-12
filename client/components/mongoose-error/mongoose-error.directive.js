@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

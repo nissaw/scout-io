@@ -1,7 +1,7 @@
 (function(angular, undefined) {
 'use strict';
 
-angular.module('sqlTest2App.constants', [])
+angular.module('ScoutIOApp.constants', [])
 
 .constant('appConfig', {userRoles:['guest','user','admin']})
 

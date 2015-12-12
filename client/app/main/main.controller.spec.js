@@ -3,7 +3,7 @@
 describe('Controller: MainController', function() {
 
   // load the controller's module
-  beforeEach(module('sqlTest2App'));
+  beforeEach(module('ScoutIOApp'));
   beforeEach(module('stateMock'));
   beforeEach(module('socketMock'));
 

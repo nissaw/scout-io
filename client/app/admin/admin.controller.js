@@ -15,7 +15,7 @@ class AdminController {
   }
 }
 
-angular.module('sqlTest2App.admin')
+angular.module('ScoutIOApp.admin')
   .controller('AdminController', AdminController);
 
 })();

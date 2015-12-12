@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .directive('navbar', () => ({
     templateUrl: 'components/navbar/navbar.html',
     restrict: 'E',

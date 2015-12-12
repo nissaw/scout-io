@@ -31,5 +31,5 @@ class LoginController {
   }
 }
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .controller('LoginController', LoginController);
