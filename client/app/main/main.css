@@ -1,0 +1,66 @@
+#imgContainer {
+	width:auto;
+	height:600px;
+	background-image: url("/../assets/fallforest.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#imgContainer1 {
+	width:auto;
+	height:600px;
+	background-image: url("/../assets/camera-keys.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#imgContainer2 {
+	width:auto;
+	height:600px;
+	background-image: url("/../assets/lake.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#imgContainer3 {
+	width:auto;
+	height:600px;
+	background-image: url("/../assets/organized2.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+span.img-text {
+	font-size: 60px;
+	color: rgba(255,255,255,0.9);
+	font-family: 'Anton', sans-serif;
+	text-shadow: 1px 0px 1px #787878;
+	margin-left: 40px;
+}
+
+span.img-subtext {
+	font-size: 35px;
+	color: rgba(255,255,255,0.9);
+	font-family: 'Anton', sans-serif;
+	text-shadow: 1px 0px 1px #787878;
+	margin-left: 43px;
+}
+
+span.title {
+	font-size: 40px;
+	align: center;
+}
+
+section {
+	width: auto;
+	height: 350px;
+	text-align: center;
+}
