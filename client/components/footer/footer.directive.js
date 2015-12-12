@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .directive('footer', function () {
     return {
       templateUrl: 'components/footer/footer.html',

@@ -1,7 +1,7 @@
 /* global io */
 'use strict';
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .factory('socket', function(socketFactory) {
 
     // socket.io now auto-configures its connection when we ommit a connection url

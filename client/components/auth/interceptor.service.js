@@ -26,7 +26,7 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
   };
 }
 
-angular.module('sqlTest2App.auth')
+angular.module('ScoutIOApp.auth')
   .factory('authInterceptor', authInterceptor);
 
 })();

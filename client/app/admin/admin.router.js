@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sqlTest2App.admin')
+angular.module('ScoutIOApp.admin')
   .config(function($stateProvider) {
     $stateProvider
       .state('admin', {

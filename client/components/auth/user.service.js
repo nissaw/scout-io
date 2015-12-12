@@ -22,7 +22,7 @@ function UserResource($resource) {
   });
 }
 
-angular.module('sqlTest2App.auth')
+angular.module('ScoutIOApp.auth')
   .factory('User', UserResource);
 
 })();

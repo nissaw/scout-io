@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sqlTest2App.admin', [
-  'sqlTest2App.auth',
+angular.module('ScoutIOApp.admin', [
+  'ScoutIOApp.auth',
   'ui.router'
 ]);

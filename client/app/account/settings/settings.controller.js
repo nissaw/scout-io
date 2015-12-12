@@ -120,5 +120,5 @@ class SettingsController {
   }
 }
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .controller('SettingsController', SettingsController);

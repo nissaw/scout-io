@@ -35,7 +35,7 @@ db.User.belongsToMany(db.Project, {
 });
 
 //db.Comment.belongsTo(db.Asset, {
-//  constraints: false
+//  constraints: falsesudo
 //});
 db.Comment.belongsTo(db.Asset);
 //db.Comment.belongsTo(db.Link, {

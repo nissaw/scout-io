@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .directive('oauthButtons', function() {
     return {
       templateUrl: 'components/oauth-buttons/oauth-buttons.html',

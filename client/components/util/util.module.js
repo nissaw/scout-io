@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('sqlTest2App.util', []);
+angular.module('ScoutIOApp.util', []);

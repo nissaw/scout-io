@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sqlTest2App')
+angular.module('ScoutIOApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('results', {

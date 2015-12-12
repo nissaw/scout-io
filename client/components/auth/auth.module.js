@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('sqlTest2App.auth', [
-    'sqlTest2App.constants',
-    'sqlTest2App.util',
+angular.module('ScoutIOApp.auth', [
+    'ScoutIOApp.constants',
+    'ScoutIOApp.util',
     'ngCookies',
     'ui.router'
   ])

@@ -183,7 +183,7 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
   return Auth;
 }
 
-angular.module('sqlTest2App.auth')
+angular.module('ScoutIOApp.auth')
   .factory('Auth', AuthService);
 
 })();
