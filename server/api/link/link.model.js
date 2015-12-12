@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Link', {
-     __id: {
+     _id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },//Unique?
     apiID: DataTypes.INTEGER(11),
-    apiName: DataTypes.CHAR(45), 
+    apiName: DataTypes.CHAR(45),
     publicComments: DataTypes.STRING(8000),
     active: DataTypes.BOOLEAN()
   });

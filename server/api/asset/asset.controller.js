@@ -112,3 +112,49 @@ exports.destroy = function(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 };
+
+/**
+ * Get asset commnets
+ */
+
+exports.comments = function(req, res) {
+  Asset.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(asset) {
+      if (!asset) {
+        return res.status(401).end();
+      }
+      asset.getComments().then(function (comments) {
+        res.json(comments);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+/**
+ * Get asset user
+ */
+
+exports.user = function(req, res) {
+  Asset.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(asset) {
+      if (!asset) {
+        return res.status(401).end();
+      }
+      asset.getUser().then(function (user) {
+        res.json(user);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};

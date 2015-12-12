@@ -12,6 +12,7 @@
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
 var Project = sqldb.Project;
+var Folder = sqldb.Folder;
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -112,3 +113,27 @@ exports.destroy = function(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 };
+
+/**
+ * Get project folders
+ */
+
+exports.folders = function(req, res) {
+  Project.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(project) {
+      if (!project) {
+        return res.status(401).end();
+      }
+      project.getFolders().then(function (folders) {
+        res.json(folders);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+

@@ -112,3 +112,49 @@ exports.destroy = function(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 };
+
+/**
+ * Get link commnets
+ */
+
+exports.comments = function(req, res) {
+  Link.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(link) {
+      if (!link) {
+        return res.status(401).end();
+      }
+      link.getComments().then(function (comments) {
+        res.json(comments);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+/**
+ * Get link user
+ */
+
+exports.user = function(req, res) {
+  Link.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(link) {
+      if (!link) {
+        return res.status(401).end();
+      }
+      link.getUser().then(function (user) {
+        res.json(user);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};

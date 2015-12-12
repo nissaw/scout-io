@@ -112,3 +112,26 @@ exports.destroy = function(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 };
+
+/**
+ * Get comment user
+ */
+
+exports.user = function(req, res) {
+  Comment.find({
+      where: {
+        _id: req.params.id
+      }
+    })
+    .then(function(comment) {
+      if (!comment) {
+        return res.status(401).end();
+      }
+      comment.getUser().then(function (user) {
+        res.json(user);
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
