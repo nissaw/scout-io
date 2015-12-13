@@ -7,7 +7,7 @@ function ResultsController(Flickr){
     text: "Wisconsin, campfire, canoe"
   }
 // photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array
-// the host url is not on this object but can be created by following this convention https://www.flickr.com/photos/{photo.pathalias}/{photo.id} 
+// the host url is not on this object but can be created by following this convention https://www.flickr.com/photos/{photo.pathalias}/{photo.id}/
   this.samplePhoto = { 
     "id": "10500976616", 
     "owner": "35213698@N08", 
@@ -46,7 +46,7 @@ function ResultsController(Flickr){
     "url": "https://www.flickr.com/photos/davetoussaint/10500976616/"
   },
 
-// 10 photo objects to use as dummy data (but they are real flickr photos)
+// 10 photo objects to use as dummy data (but they are real flickr photos) //tag search was Eastern Sierra + snow
   this.photos = [
       { "id": "22374118427", "owner": "66558193@N06", "secret": "722e53ef30", "server": "5711", "farm": 6, "title": "Fall Colors Trip - Gull Lake - 0266", "ispublic": 1, "isfriend": 0, "isfamily": 0, "datetaken": "2015-10-22 06:38:14", "datetakengranularity": 0, "datetakenunknown": 0, "tags": "longexposure autumn sky mountain lake inspiration snow reflection fall nature water beautiful clouds landscape outdoors morninglight still lowlight solitude shadows fallcolors exploring details relaxing earlymorning peaceful calm adventure autumncolors invigorating naturephotography newday gulllake easternsierra 2015 upearly landscapephotography junelakeloop mountainpeak smoothwater verticalimage newbeginings fallcolorstrip karltonhuber nikond750", "latitude": 37.778109, "longitude": -119.079365, "accuracy": 13, "context": 0, "place_id": "KIW949xQUL.Wj4hEhw", "woeid": "12587695", "geo_is_family": 0, "geo_is_friend": 0, "geo_is_contact": 0, "geo_is_public": 1, "url_sq": "https:\/\/farm6.staticflickr.com\/5711\/22374118427_722e53ef30_s.jpg", "height_sq": 75, "width_sq": 75, "url_q": "https:\/\/farm6.staticflickr.com\/5711\/22374118427_722e53ef30_q.jpg", "height_q": "150", "width_q": "150", "pathalias": "karltonhuber" },
      
