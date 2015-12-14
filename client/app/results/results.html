@@ -1,21 +1,99 @@
 <navbar></navbar>
 
-<div flex layout="row">
+<div id="img-map" class="mapContainer">
+<!-- SIDE NAVIGATION -->
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" layout="column">
 
-    <!-- Container #3 -->
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left">
-      <input type="text" placeholder="Search">
-      <div>
-      <img ng-click="" src="">
-      <title></title>
+  <div class="search-components">
+  <!-- SEARCH -->
+    <md-input-container md-no-float class="md-block">
+      <label>Search</label>
+      <input type="text">
+    </md-input-container>
+
+  <!-- ADVANCED SEARCH -->
+    <!-- LAT/LON/RADIUS current position in lat/lon and radius-->
+    <div layout="row">
+      <div class="location" flex>
+        <md-input-container md-no-float class="md-block">
+          <label>Latitude</label>
+          <input id="latitude" type="number" step=".001">
+        </md-input-container>
       </div>
-    </md-sidenav>
 
-    <!-- Container #4 -->
-    <md-content flex="75" id="content">
-    <img id="map" src="../../assets/gmap-grey-standin.png">
-    </md-content>
+      <div clase="location" flex>
+        <md-input-container md-no-float class="md-block">
+          <label>Longtitude</label>
+          <input id="longtitude" type="number" step=".001">
+        </md-input-container>
+      </div>
+
+      <div class="location" flex>
+        <md-input-container md-no-float class="md-block">
+          <label>Radius</label>
+          <input id="radius" type="number">
+        </md-input-container>
+      </div>
+    </div>
+
+    <!-- DATE RANGE to search for season-->
+    <div layout="row">
+      <div class="datepicker" flex>
+        <label>Start Date</label>
+        <md-datepicker class="datepickerBtn" ng-model="startDate"></md-datepicker>
+      </div>
+      <div class="datepicker" flex>
+        <label>End Date</label>
+        <md-datepicker class="datepickerBtn" ng-model="endDate"></md-datepicker>  
+      </div>
+    </div> 
+  </div>
+
+    <div layout="column" layout-align="center">
+      <div class="thumbnail" flex>
+        <p>Title of Photo Thumbnail</p>
+        <i class="fa fa-picture-o fa-5x"></i>
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+      </div>
+      <div class="thumbnail" flex>
+        <p>Title of Photo Thumbnail</p>
+        <i class="fa fa-picture-o fa-5x"></i>
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+      </div>
+      <div class="thumbnail" flex>
+        <p>Title of Photo Thumbnail</p>
+        <i class="fa fa-picture-o fa-5x"></i>
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+      </div>
+      <div class="thumbnail" flex>
+        <p>Title of Photo Thumbnail</p>
+        <i class="fa fa-picture-o fa-5x"></i>
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+      </div>
+      <div class="thumbnail" flex>
+        <p>Title of Photo Thumbnail</p>
+        <i class="fa fa-picture-o fa-5x"></i>
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+      </div>
+    </div>
+
+  </md-sidenav>
 
 </div>
 
-</body>
+<!-- <div flex layout="row"> -->
+
+    <!-- Container #3 -->
+<!--       <input type="text" placeholder="Search">
+      <div>
+      <img ng-click="" src="">
+      <title></title>
+      </div> -->
+
+    <!-- Container #4 -->
+<!--     <md-content flex="75" id="content">
+    <img id="map" src="../../assets/gmap-grey-standin.png">
+    </md-content> -->
+
+<!-- </div>
+ -->

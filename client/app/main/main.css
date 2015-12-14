@@ -1,69 +1,48 @@
-#imgContainer {
-	width:auto;
-	height:600px;
+/*=========================================
+                IMAGES
+=========================================*/
+
+#img0 {
 	background-image: url("/../assets/fallforest.jpeg");
-	background-size: cover;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
 }
 
-#imgContainer1 {
-	width:auto;
-	height:600px;
+#img1 {
 	background-image: url("/../assets/camera-keys.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
 }
 
-#imgContainer2 {
-	width:auto;
-	height:600px;
+#img2 {
 	background-image: url("/../assets/lake.jpeg");
-	background-size: cover;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
 }
 
-#imgContainer3 {
+#img3 {
+	background-image: url("/../assets/organized2.jpeg");
+}
+
+.imgContainer {
 	width:auto;
 	height:600px;
-	background-image: url("/../assets/organized2.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
 }
 
-span.img-text {
-	font-size: 60px;
-	color: rgba(255,255,255,0.9);
-	font-family: 'Anton', sans-serif;
-	text-shadow: 1px 0px 1px #787878;
-	margin-left: 40px;
-}
+/*=========================================
+            	SEARCH BAR
+=========================================*/
 
-span.img-subtext {
-	font-size: 35px;
-	color: rgba(255,255,255,0.9);
-	font-family: 'Anton', sans-serif;
-	text-shadow: 1px 0px 1px #787878;
-	margin-left: 43px;
-}
-
-span.title {
-	font-size: 40px;
-	align: center;
-}
-
-section {
-	width: auto;
-	height: 350px;
+#splash-search-text {
+	height: auto;
+	font-size: 3em;
+	color: #FFA000;
 	text-align: center;
 }
+
+#search-label {
+	vertical-align: middle;
+	text-align: center;
+}
+
 .splash-input {
 	height: auto;
 	margin-top: 250px;
@@ -74,8 +53,24 @@ section {
 	color: #FFA000;
 }
 
-#splash-search-text {
-	height: auto;
-	font-size: 3em;
-	color: #FFA000;
+
+/*=========================================
+            	CONTENT AREA
+=========================================*/
+
+span.title {
+	font-size: 40px;
+	align: center;
+}
+
+section {
+	width: auto;
+	height: 350px;
+	text-align: center;
+	background-color: white;
+}
+
+/*TEMPORARY BACKGROUND COLOR FOR NOW*/
+body {
+	background-color: grey;
 }
