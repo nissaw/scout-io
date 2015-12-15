@@ -17,18 +17,13 @@
             BACKGROUND MAP
 =========================================*/
 
-#img-map {
+#map {
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  background-image: url("../../assets/gmap-grey-standin.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
 }
 
 #results-sidebar-left {
-  height: 100vh;
+  height: calc(100vh - 64px);
   background-color: rgba(89, 89, 89, 0.4);
 }
 
@@ -38,6 +33,11 @@
 
 div.search-components {
 }
+
+#places-textbox::-webkit-input-placeholder { color:transparent; }
+#places-textbox:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+#places-textbox:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+#places-textbox:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 /*=========================================
             LAT/LON/RADIUS

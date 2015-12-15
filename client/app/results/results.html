@@ -1,82 +1,132 @@
 <navbar></navbar>
 
-<div id="img-map" class="mapContainer">
-<!-- SIDE NAVIGATION -->
-  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" layout="column">
+<div class="mapContainer" layout="row" ng-controller="ResultsController as vm">
+  <!-- SIDE NAVIGATION -->
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
-  <div class="search-components">
-  <!-- SEARCH -->
-    <md-input-container md-no-float class="md-block">
-      <label>Search</label>
-      <input type="text">
-    </md-input-container>
+    <div class="search-components">
+      <!-- SEARCH -->
+      <md-input-container md-no-float class="md-block">
+        <label>Search</label>
+        <input
+          id="places-textbox"
+          places-auto-complete
+          ng-model="vm.address"
+          on-place-changed="vm.placeChanged()"/>
+      </md-input-container>
 
-  <!-- ADVANCED SEARCH -->
-    <!-- LAT/LON/RADIUS current position in lat/lon and radius-->
-    <div layout="row">
-      <div class="location" flex>
-        <md-input-container md-no-float class="md-block">
-          <label>Latitude</label>
-          <input id="latitude" type="number" step=".001">
-        </md-input-container>
+      <!--<div ng-show="vm.place">  -->
+        <!--Address = {{vm.place.formatted_address}} <br/>  -->
+        <!--Location: {{vm.place.geometry.location}}<br/> -->
+      <!--</div>-->
+      <!--   address : {{vm.address}}-->
+
+      <!-- ADVANCED SEARCH -->
+      <div layout="row">
+        <md-checkbox ng-model="setting.indoor">
+          Indoor
+        </md-checkbox>
+        <md-checkbox ng-model="setting.outdoor">
+          Outdoor
+        </md-checkbox>
       </div>
 
-      <div clase="location" flex>
-        <md-input-container md-no-float class="md-block">
-          <label>Longtitude</label>
-          <input id="longtitude" type="number" step=".001">
-        </md-input-container>
+      <div layout="row">
+        <div class="location" flex>
+          <md-input-container md-no-float class="md-block">
+            <label>Radius</label>
+            <md-select ng-model="radius">
+              <md-option>1</md-option>
+              <md-option>2</md-option>
+              <md-option>3</md-option>
+              <md-option>5</md-option>
+              <md-option>10</md-option>
+              <md-option>15</md-option>
+              <md-option>20</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
       </div>
 
-      <div class="location" flex>
-        <md-input-container md-no-float class="md-block">
-          <label>Radius</label>
-          <input id="radius" type="number">
-        </md-input-container>
+      <!-- DATE RANGE to search for season-->
+      <div layout="row">
+        <div class="datepicker" flex>
+          <label>Start Date</label>
+          <md-datepicker class="datepickerBtn" ng-model="startDate"></md-datepicker>
+        </div>
+        <div class="datepicker" flex>
+          <label>End Date</label>
+          <md-datepicker class="datepickerBtn" ng-model="endDate"></md-datepicker>
+        </div>
       </div>
     </div>
 
-    <!-- DATE RANGE to search for season-->
-    <div layout="row">
-      <div class="datepicker" flex>
-        <label>Start Date</label>
-        <md-datepicker class="datepickerBtn" ng-model="startDate"></md-datepicker>
-      </div>
-      <div class="datepicker" flex>
-        <label>End Date</label>
-        <md-datepicker class="datepickerBtn" ng-model="endDate"></md-datepicker>
-      </div>
-    </div>
-  </div>
 
+
+    <!--RESULTS-->
     <div layout="column" layout-align="center">
       <div class="thumbnail" flex>
         <p>Title of Photo Thumbnail</p>
         <i class="fa fa-picture-o fa-5x"></i>
-        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu.
+          Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu
+          an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus.
+          Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
       </div>
       <div class="thumbnail" flex>
         <p>Title of Photo Thumbnail</p>
         <i class="fa fa-picture-o fa-5x"></i>
-        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu.
+          Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu
+          an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus.
+          Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
       </div>
       <div class="thumbnail" flex>
         <p>Title of Photo Thumbnail</p>
         <i class="fa fa-picture-o fa-5x"></i>
-        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu.
+          Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu
+          an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus.
+          Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
       </div>
       <div class="thumbnail" flex>
         <p>Title of Photo Thumbnail</p>
         <i class="fa fa-picture-o fa-5x"></i>
-        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu.
+          Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu
+          an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus.
+          Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
       </div>
       <div class="thumbnail" flex>
         <p>Title of Photo Thumbnail</p>
         <i class="fa fa-picture-o fa-5x"></i>
-        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu. Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus. Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
+
+        <p class="thumbnail-description">Lorem ipsum dolor sit amet, esse commodo insolens te duo, nobis dolores eum cu.
+          Populo dolores liberavisse nec ex. Usu ne agam similique, odio nihil libris at nec, imperdiet torquatos usu
+          an. Dolor ceteros ocurreret ad qui, ea eum solum ludus prodesset. Vis at mazim ponderum vituperatoribus.
+          Facete liberavisse cum te. Eu aliquip virtute signiferumque vel, iusto facilis intellegebat ius at.</p>
       </div>
     </div>
 
   </md-sidenav>
+
+  <md-content flex id="map">
+
+    <ng-map
+      style="display:block;height:calc(100vh - 64px)"
+      styles="{{vm.mapStyle}}"
+      scrollwheel="true"
+      zoom-to-include-markers="true">
+      <marker ng-repeat="p in vm.positions"
+              position="{{p.pos}}" title="pos: {{p.pos}}">
+
+      </marker>
+    </ng-map>
+
+  </md-content>
 
 </div>
