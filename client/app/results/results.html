@@ -1,6 +1,6 @@
 <navbar></navbar>
 
-<div class="mapContainer" layout="row">
+<div class="mapContainer" layout="row" ng-controller="ResultsController as results">
   <!-- SIDE NAVIGATION -->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
@@ -11,16 +11,16 @@
         <input
           id="places-textbox"
           places-auto-complete
-          ng-model="vm.address"
-          on-place-changed="vm.placeChanged()"/>
+          ng-model="results.address"
+          on-place-changed="results.placeChanged()"/>
       </md-input-container>
 
       <!-- ADVANCED SEARCH -->
-      <div layout="row" layout-align="start">
-        <md-checkbox ng-model="setting.indoor">
+      <div layout="row">
+        <md-checkbox ng-model="results.setting.indoor">
           Indoor
         </md-checkbox>
-        <md-checkbox ng-model="setting.outdoor">
+        <md-checkbox ng-model="results.setting.outdoor">
           Outdoor
         </md-checkbox>
         <md-input-container md-no-float class="md-block">
@@ -37,15 +37,32 @@
         </md-input-container>
       </div>
 
+      <div layout="row">
+        <div class="location" flex>
+          <md-input-container md-no-float class="md-block">
+            <label>Radius</label>
+            <md-select ng-model="results.radius">
+              <md-option>1</md-option>
+              <md-option>2</md-option>
+              <md-option>3</md-option>
+              <md-option>5</md-option>
+              <md-option>10</md-option>
+              <md-option>15</md-option>
+              <md-option>20</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
+
       <!-- DATE RANGE to search for season-->
       <div layout="row">
         <div class="datepicker" flex>
           <label>Start Date</label>
-          <md-datepicker class="datepickerBtn" ng-model="startDate"></md-datepicker>
+          <md-datepicker class="datepickerBtn" ng-model="results.startDate"></md-datepicker>
         </div>
         <div class="datepicker" flex>
           <label>End Date</label>
-          <md-datepicker class="datepickerBtn" ng-model="endDate"></md-datepicker>
+          <md-datepicker class="datepickerBtn" ng-model="results.endDate"></md-datepicker>
         </div>
       </div>
     </div>

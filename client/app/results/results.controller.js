@@ -1,5 +1,5 @@
 
-angular.module('ScoutIOApp')
+angular.module('ScoutIOApp') //, ['ngMap'], ['uiGmapgoogle-maps']
   .controller('ResultsController', ResultsController);
 
 function ResultsController($state, $http, NgMap, Search) {
@@ -21,7 +21,7 @@ function ResultsController($state, $http, NgMap, Search) {
 
 
   /*Triggers SearchFactory method sets response to ... redirects to results
-  @param {string} query [comma deliniated word string]*/
+   @param {string} query [comma deliniated word string]*/
   results.getByTagOnly = function(query){
     Search.getByTagOnly(query)
       .then(function(response){
