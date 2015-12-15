@@ -10,7 +10,7 @@ angular.module('ScoutIOApp') //, ['ngMap'], ['uiGmapgoogle-maps']
 angular.module('ScoutIOApp')
 .controller('ResultsController', ResultsController);
 
-function ResultsController(){
+function ResultsController(Search){
   this.name = "Scout IQ";
   this.search = {
     text: "Wisconsin, campfire, canoe"
