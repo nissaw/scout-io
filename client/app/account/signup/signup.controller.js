@@ -21,39 +21,7 @@ class SignupController {
         email: this.user.email,
         password: this.user.password
       })
-      //Set equal to a variable? 
       .then(() => {
-        //Create project
-        this.Http.post('/api/users/projects', { name: this.newThing });
-        //Set name
-        this.newThing = 'My First Project';
-        //Create the folder
-        this.Http.post('/api/folders', { name: this.newThing });
-        //Set the Folder's Name
-         this.newThing = 'My First Folder';
-        //Join the Folder & Project
-        //Join the Project and User
-        
-        //Option B
-           this.Http.post('/api/users/projects')
-           .then((projects) => {
-               //Set name
-               console.log(projects.data);
-               //Join projectId and userId
-               projects.UserId = user;
-           })
-           .catch(() => {
-               console.log('in catch');
-           });
-        
-        //Create a Folder
-       this.Http.post('/api/users/projects')
-           .then((projects) => {
-               console.log(projects.data);
-           })
-           .catch(() => {
-               console.log('in catch');
-           });
         // Account created, redirect to home
         this.$state.go('main');
       })
