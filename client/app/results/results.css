@@ -1,41 +1,16 @@
-/*#resultlogo {
-  font-size: 3em;
-  color: salmon;
-}
 
-#map {
-   Set a size for our map container, the Google Map will take up 100% of this container
-/*    width: 750px;
-    height: 500px;
-}
-
-#results-sidebar-left {
-  color: transparent;
-}
-*/
 /*=========================================
             BACKGROUND MAP
 =========================================*/
 
-<<<<<<< fda456942c4e452ade4707b1cc5dc5ed4ec8b15c
 #map {
   height: 100%;
   width: 100%;
-=======
-#img-map {
-	width: 100%;
-	height: 100vmin;
-	background-image: url("../../assets/gmap-grey-standin.png");
-    background-size: cover;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
->>>>>>> Removed lat/long from results.html and fixed transparent calendar styling
 }
 
 #results-sidebar-left {
   height: calc(100vh - 64px);
-  background-color: rgba(89, 89, 89, 0.4);
+  background-color: rgb(255, 255, 255);
 }
 
 /*=========================================
@@ -47,34 +22,30 @@ input#radius {
 	margin-left: 15px;
 }
 
-<<<<<<< fda456942c4e452ade4707b1cc5dc5ed4ec8b15c
 #places-textbox::-webkit-input-placeholder { color:transparent; }
 #places-textbox:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
 #places-textbox:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
 #places-textbox:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
-/*=========================================
-            LAT/LON/RADIUS
-=========================================*/
-md-input-container #latitude.md-input,
-md-input-container #longtitude.md-input,
-md-input-container #radius.md-input {
-  width: 90px;
-=======
-label#results-search-label,
-label#radius-label {
-	margin-left: 15px;
-}
-
-span.md-body-1 {
-	font-size: 17px;
-	margin-left: 15px;
-}
-
-md-slider {
-	margin-left: 23px;
-	margin-right: 23px;
->>>>>>> Removed lat/long from results.html and fixed transparent calendar styling
+md-checkbox {
+    box-sizing: border-box;
+    display: block;
+    margin: 8px;
+    margin-left: 15px;
+    margin-right: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-left: 18px;
+    padding-right: 0;
+    position: relative;
+    line-height: 26px;
+    min-width: 18px;
+    min-height: 18px;
 }
 
 /*=========================================
@@ -120,11 +91,11 @@ input.md-datepicker-input {
   min-width: 80px;
   max-width: 80px;
   margin-left: 3px;
-  margin-right: 4px;
+  margin-right: 5px;
 }
 
 div.datepicker {
-  margin-left: 20px;
+  margin-left: 15px;
   margin-bottom: 20px;
 }
 
@@ -158,7 +129,8 @@ md-datepicker {
 }
 
 
-.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
+.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, 
+.md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
     background: rgb(33,150,243);
     color: rgb(255,255,255);
     border-color: transparent;
