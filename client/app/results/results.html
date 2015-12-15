@@ -1,6 +1,6 @@
 <navbar></navbar>
 
-<div class="mapContainer" layout="row" ng-controller="ResultsController as vm">
+<div class="mapContainer" layout="row">
   <!-- SIDE NAVIGATION -->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
@@ -15,11 +15,7 @@
           on-place-changed="vm.placeChanged()"/>
       </md-input-container>
 
-      <!--<div ng-show="vm.place">  -->
-        <!--Address = {{vm.place.formatted_address}} <br/>  -->
-        <!--Location: {{vm.place.geometry.location}}<br/> -->
-      <!--</div>-->
-      <!--   address : {{vm.address}}-->
+
 
       <!-- ADVANCED SEARCH -->
       <div layout="row">
@@ -118,10 +114,10 @@
 
     <ng-map
       style="display:block;height:calc(100vh - 64px)"
-      styles="{{vm.mapStyle}}"
+      styles="{{results.mapStyle}}"
       scrollwheel="true"
       zoom-to-include-markers="true">
-      <marker ng-repeat="p in vm.positions"
+      <marker ng-repeat="p in results.positions"
               position="{{p.pos}}" title="pos: {{p.pos}}">
 
       </marker>

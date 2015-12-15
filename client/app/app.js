@@ -11,7 +11,8 @@ angular.module('ScoutIOApp', [
   'ui.router',
   'validation.match',
   'ngMaterial',
-  'ngMap'
+  'ngMap',
+  'SearchFactory'
 ])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')

@@ -16,6 +16,8 @@ module.exports = function(app) {
   app.use('/api/assets', require('./api/asset'));
   app.use('/api/links', require('./api/link'));
   app.use('/api/comments', require('./api/comment'));
+// for Flickr API search
+  app.use('/api/search', require('./api/search'));
 
   app.use('/auth', require('./auth'));
 
