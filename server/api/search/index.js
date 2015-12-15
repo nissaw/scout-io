@@ -2,14 +2,12 @@
 
 var express = require('express');
 var controller = require('./search.controller');
-var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
-
-// TODO WRITE THESE OUT FOR 
 // base route is '/api/search/',
-router.get('/tags', controller.tags);
+// router.get('/', controller.tags);
+router.get('/:query', controller.tags);
 router.get('/geo', controller.geo);
 router.get('/searchCriteria', controller.searchCriteria);
 
