@@ -60,6 +60,6 @@ Gets photos regardless of tag that were taken within a given or default 2mile ra
     getByTagOnly: getByTagOnly,
     getNearby: getNearby,
     getAdvanced: getAdvanced
-  }
+  };
 
-})};
+});
