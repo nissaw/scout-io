@@ -2,7 +2,7 @@
 routes to Flickr API through server
 all GET requests will include @params has_geo=1 and extras=[geo, tags, date_taken, path_alias, url_m, url_s]
 */
-angular.module('SearchFactory', [])
+angular.module('ScoutIOApp')
   .factory('Search', function($http){
 
 
@@ -11,10 +11,11 @@ Gets photos that match all tags supplied
 @param {string} tags  [user supplied comma deliniated tags] +tag_mode = all
 @return {array}       [array of photo objects]
 */
-    var getByTagOnly = function(tags){ // alter string var tagArray = tags.split(" ")? how should it get passed to server?
+    var getByTagOnly = function(query){ // alter string var tagArray = tags.split(" ")? how should it get passed to server?
+      console.log(query, "searchFactory");
       return $http({
         method: 'GET', 
-        url: '/api/search/' + tags,
+        url: 'api/search/' + query,
       })
       .then(function(data){
         return data;
