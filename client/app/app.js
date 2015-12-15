@@ -11,11 +11,8 @@ angular.module('ScoutIOApp', [
   'ui.router',
   'validation.match',
   'ngMaterial',
-<<<<<<< 39fe4784924250ea62db0b0192d54992a5758618
-  'ngMap'
-=======
+  'ngMap',
   'SearchFactory'
->>>>>>> added Search Factory
 ])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
