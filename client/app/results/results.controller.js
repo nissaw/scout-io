@@ -3,44 +3,40 @@ angular.module('ScoutIOApp') //, ['ngMap'], ['uiGmapgoogle-maps']
   .controller('ResultsController', ResultsController);
 
 
-function ResultsController($scope, $state, $http, NgMap, Search) {
+function ResultsController($state, $http, NgMap, Search) {
 
-  // var vm = this;
+  var results = this;
 
-  $scope.setting = {};
-  $scope.setting.indoor = true;
-  $scope.setting.outdoor = true;
+  results.setting = {};
+  results.setting.indoor = true;
+  results.setting.outdoor = true;
 
-  $scope.radius = 5;
+  results.radius = 5;
 
-  this.name = "Scout IQ";
-  this.search = {
-    text: "hello"
-  };
+  results.name = "Scout IQ";
 
-  this.vm = {};
-  this.$http = $http;
-  this.$state = $state;
+  results.$http = $http;
+  results.$state = $state;
+
 
   /*Triggers SearchFactory method sets response to ... redirects to results 
   @param {string} query [comma deliniated word string]*/
-  this.getByTagOnly = function(query){
-    alert("I've been queried with " + query);
+  results.getByTagOnly = function(query){
     console.log(query);
-    this.$state.go('results');
+
+    results.$state.go('results');
     // Search.getByTagOnly(query)
     //   .then(function(response){
-    //     console.log(response);
-    //     this.$state.go('results');
-        //assign results to an object that is used by resultsController...
-        // results.photos = results
+    //      console.log(response);
+            // this.photos = response
+    //      this.$state.go('results');
       // })
   };
 
 
 // photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array
 // the host url is not on this object but can be created by following this convention https://www.flickr.com/photos/{photo.pathalias}/{photo.id}/
-  this.samplePhoto = {
+  results.samplePhoto = {
     "id": "10500976616",
     "owner": "35213698@N08",
     "secret": "1a65b05014",
@@ -81,7 +77,7 @@ function ResultsController($scope, $state, $http, NgMap, Search) {
 
 // 10 photo objects to use as dummy data (but they are real flickr photos) //tag search was Eastern Sierra + snow
 // updated to retrieve url for small 240 on longest side and medium 500 on longest side
-this.photos2 = [
+results.photos2 = [
      { "id": "22317291440", "owner": "66558193@N06", "secret": "b51cda1f08", "server": "744", "farm": 1, "title": "Fall Colors Trip - The Splendor Of Fall - 0102", "ispublic": 1, "isfriend": 0, "isfamily": 0, "datetaken": "2015-10-21 12:43:00", "datetakengranularity": 0, "datetakenunknown": 0, "tags": "autumn trees snow mountains fall nature beautiful clouds landscape freshair outdoors fallcolors exploring adventure autumncolors stunning rollinghills naturephotography splendor easternsierra naturescape 2015 snowcappedpeaks grandvista mountainpeaks landscapephotography wideopenspaces horizontalimage fallcolorstrip karltonhuber", "latitude": 38.099847, "longitude": -119.249118, "accuracy": 11, "context": 0, "place_id": "1e.gphhTUbNhexDO", "woeid": "2394399", "geo_is_family": 0, "geo_is_friend": 0, "geo_is_contact": 0, "geo_is_public": 1, "url_m": "https:\/\/farm1.staticflickr.com\/744\/22317291440_b51cda1f08.jpg", "height_m": "334", "width_m": "500", "url_s": "https:\/\/farm1.staticflickr.com\/744\/22317291440_b51cda1f08_m.jpg", "height_s": "160", "width_s": "240", "pathalias": "karltonhuber" },
      { "id": "22149875345", "owner": "66926252@N07", "secret": "336a2fae9d", "server": "5808", "farm": 6, "title": "Parker Mountain", "ispublic": 1, "isfriend": 0, "isfamily": 0, "datetaken": "2015-10-06 11:21:03", "datetakengranularity": 0, "datetakenunknown": 0, "tags": "california autumn usa mountain snow plant tree fall pine landscape unitedstates outdoor aspen sagebrush anseladamswilderness easternsierra inyonationalforest parkermountain parkerlaketrail", "latitude": 37.843991, "longitude": -119.145880, "accuracy": 16, "context": 0, "place_id": "KIW949xQUL.Wj4hEhw", "woeid": "12587695", "geo_is_family": 0, "geo_is_friend": 0, "geo_is_contact": 0, "geo_is_public": 1, "url_m": "https:\/\/farm6.staticflickr.com\/5808\/22149875345_336a2fae9d.jpg", "height_m": "500", "width_m": "500", "url_s": "https:\/\/farm6.staticflickr.com\/5808\/22149875345_336a2fae9d_m.jpg", "height_s": "240", "width_s": "240", "pathalias": "kirklougheed" },
      { "id": "22030555586", "owner": "96297516@N04", "secret": "cec0bddb0d", "server": "5836", "farm": 6, "title": "Lundy Canyon Trail", "ispublic": 1, "isfriend": 0, "isfamily": 0, "datetaken": "2015-10-05 09:19:54", "datetakengranularity": 0, "datetakenunknown": 0, "tags": "california mountain snow clouds landscape sierranevada lundy easternsierra lundycanyon lundylake", "latitude": 38.023855, "longitude": -119.255776, "accuracy": 14, "context": 0, "place_id": "JQlNJKJTVr6T3uXA", "woeid": "2443104", "geo_is_family": 0, "geo_is_friend": 0, "geo_is_contact": 0, "geo_is_public": 1, "url_m": "https:\/\/farm6.staticflickr.com\/5836\/22030555586_cec0bddb0d.jpg", "height_m": "333", "width_m": "500", "url_s": "https:\/\/farm6.staticflickr.com\/5836\/22030555586_cec0bddb0d_m.jpg", "height_s": "160", "width_s": "240", "pathalias": "jonetling" },
@@ -98,7 +94,7 @@ this.photos2 = [
   ];
 
 // 10 photo objects to use as dummy data (but they are real flickr photos) //tag search was Eastern Sierra + snow
-  this.photos = [
+  results.photos = [
     {
       "id": "22374118427",
       "owner": "66558193@N06",
@@ -430,33 +426,33 @@ this.photos2 = [
     }
   ];
 
-  // NgMap.getMap().then(function(map) {
-  //   vm.map = map;
-  // });
+  NgMap.getMap().then(function(map) {
+    results.map = map;
+  });
 
-  // vm.positions = [];
-  // for (var i = 0; i < vm.photos.length; i++) {
-  //   //console.log(vm.photos[i]);
-  //   vm.positions.push({
-  //     pos: [vm.photos[i].latitude, vm.photos[i].longitude],
-  //     src: vm.photos[i].url_sq
-  //   })
-  // }
-  // console.log(vm.positions);
+  results.positions = [];
+  for (var i = 0; i < results.photos.length; i++) {
+    //console.log(results.photos[i]);
+    results.positions.push({
+      pos: [results.photos[i].latitude, results.photos[i].longitude],
+      src: results.photos[i].url_sq
+    })
+  }
+  console.log(results.positions);
 
-  // vm.showPhotoPin = function(evt, photoId) {
-  //   vm.photo = vm.photos[id];
-  //   vm.map.showInfoWindow('photoInfo', this);
-  // };
+  results.showPhotoPin = function(evt, photoId) {
+    results.photo = results.photos[id];
+    results.map.showInfoWindow('photoInfo', this);
+  };
 
-  // //https://snazzymaps.com/
-  // vm.mapStyle = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}];
+  //https://snazzymaps.com/
+  results.mapStyle = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}];
 
-  // vm.placeChanged = function() {
-  //   vm.place = this.getPlace();
-  //   console.log('location', vm.place.geometry.location);
-  //   vm.map.setCenter(vm.place.geometry.location);
-  // };
+  results.placeChanged = function() {
+    results.place = this.getPlace();
+    console.log('location', results.place.geometry.location);
+    results.map.setCenter(results.place.geometry.location);
+  };
 
 // generated by this flickr api call (api_key is flickr default not ours)
   var apiDEMO = {

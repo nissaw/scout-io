@@ -12,6 +12,7 @@ var router = express.Router();
 router.get('/tags', controller.tags);
 router.get('/geo', controller.geo);
 router.get('/searchCriteria', controller.searchCriteria);
+
 // router.get('/', controller.index);
 // router.get('/:id', controller.show);
 // router.get('/:id/user', controller.user);

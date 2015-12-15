@@ -55,6 +55,7 @@ function handleEntityNotFound(res) {
 
 // Gets photos by tagSearch only
 exports.tags = function(req, res) {
+  //  %27 = ''  //  %2C = , // + = space
   // do req.params.tags = " 'eastern sierra', snow " need to be parsed into "%27eastern+sierra%27%2C+snow"
   var query = flickrURL + "&tags=" + req.params.tags + flickrEnd;
   var options = {
@@ -77,7 +78,7 @@ exports.tags = function(req, res) {
 
 // Gets photos within a radius without filtering by tag
 exports.geo = function(req, res) {
-  var query = flickrURL + 
+  var query = flickrURL;
   // Link.find({
   //   where: {
   //     _id: req.params.id
