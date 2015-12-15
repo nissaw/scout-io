@@ -11,17 +11,16 @@ Gets photos that match all tags supplied
 @param {string} tags  [user supplied comma deliniated tags] +tag_mode = all
 @return {array}       [array of photo objects]
 */
-    var getByTagOnly = function(tags){
-      // alter string var tagArray = tags.split(" ")?
-      // how should it get passed to server?
+    var getByTagOnly = function(tags){ // alter string var tagArray = tags.split(" ")? how should it get passed to server?
       return $http({
         method: 'GET', 
-        url: '/api/locations/search/tags' + tags,
+        url: '/api/search/' + tags,
       })
       .then(function(data){
         return data;
       })
     };
+
 
 /*This is for a search done from the photo-page by lat/lon only 
 Gets photos regardless of tag that were taken within a given or default 2mile radius)
@@ -32,7 +31,7 @@ Gets photos regardless of tag that were taken within a given or default 2mile ra
     radius = radius || 2;
     return $http({
       method: 'GET',
-      url: '/api/locations/search/location' + geo,
+      url: '/api/search/' + geo,
     })
     .then(function(data){
       return data;
@@ -50,9 +49,10 @@ Gets photos regardless of tag that were taken within a given or default 2mile ra
 @return {array} [array of matching photo objects]
 */
   var getAdvanced = function(searchCriteria){
+    console.log(searchCriteria);
     return $http({
       method: 'GET',
-      url: '/api/locations/search/advanced' + searchCriteria
+      url: '/api/search/' + searchCriteria
     })
     .then(function(data){
       return data;
