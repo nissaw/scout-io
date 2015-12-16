@@ -1,0 +1,45 @@
+<md-dialog aria-label="Photo Details dialog" flex="80">
+
+  <!-- TOP OF DIALOG WITH EXIT ICON-->
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Close" ng-click="cancel()">
+          <i class="fa fa-times fa-2x"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  <!-- CONTENT HERE -->
+  <md-dialog-content layout="row" layout-align="center center">
+
+    <!-- TITLE/PHOTO -->
+    <div layout="column" layout-align="center center" flex="60" >
+      <p>{{dialog.photo.title}}</p>
+      <img src={{dialog.photo.url_m}}>
+      <p>Date Taken: {{dialog.photo.datetaken}}</p>
+      <div id="comments-container">
+        
+      </div>
+    </div>
+
+    <!-- MINI MAP/ELEVATION/STARTING POINT INPUT FIELD/SAVE BUTTON -->
+    <div flex="40">
+    <form>
+      <h3>Paul's space</h3>
+      <div>For Mini Map</div>
+      <div>For Elevation</div>
+      <md-input-container>
+        <input type="text" placeholder="Enter Address" ng-model="address"></input>
+      </md-input-container>
+      <md-button id="save-btn">
+        Save
+      </md-button>
+    </div>
+      
+    </form>
+
+  </md-dialog-content>
+
+
+</md-dialog>
