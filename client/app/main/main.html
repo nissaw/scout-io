@@ -1,10 +1,10 @@
 <div id="img0" class="imgContainer">
   <navbar></navbar>
   <div class="splash-input" layout="column" layout-align="center center">
-    <form ng-submit="results.getByTagOnly(tagQuery)">
+    <form ng-submit="results.getByTagOnly(results.search.keywords)">
       <md-input-container class="splash-search" layout="column" layout-align="center center">
         <label style="color:#FFA000;">Start Searching Here</label>
-        <input type="text" ng-model="tagQuery" placeholder="aspen sierras" onblur="if (this.value=='') { this.placeholder='aspen sierras' }" onfocus="this.placeholder=''" id="splash-search-text" autocomplete="off">
+        <input type="text" ng-model="results.search.keywords" placeholder="aspen sierras" onblur="if (this.value=='') { this.placeholder='aspen sierras' }" onfocus="this.placeholder=''" id="splash-search-text" autocomplete="off">
       </md-input-container>
     </form>
   </div>

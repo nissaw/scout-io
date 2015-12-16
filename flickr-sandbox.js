@@ -1,3 +1,6 @@
+//   https://www.flickr.com/photo.gne?id=2293005459 url for photo based on id only
+
+
 // add dummy photo data - for testing ng-repeat
 
 // map is 100% of page and sidebar is transparent - map visible underneath

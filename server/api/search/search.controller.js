@@ -3,6 +3,7 @@
 
 var _ = require('lodash');
 var request = require('request');
+var querystring = require("querystring");
 var config = require('../../config/environment');
 
 var flickrSearch = "flickr.photos.search";
@@ -59,12 +60,16 @@ function handleEntityNotFound(res) {
 }
 
 // Gets photos by tagSearch only
+//'eastern sierra', snow   needs to equal:
+// tags=%27eastern+sierra%27%2C+snow
+//single tag = &tags=washington
 
 exports.tags = function(req, res) {
-  console.log('in the tags func');
-  console.log(req.params.data.tags);  
-
-  var query = flickrURL + "&tags=" + req.params.query + flickrEnd;
+  console.log("in the tags func");
+  // console.log(req.params.data.tags);  
+  var input = encodeURIComponent(req.params.query).replace(/'/g, "%27").replace(/%20/g, "+");
+  console.log('stringified', input);
+  var query = flickrURL + "&tags=" + input + flickrEnd;
   var options = {
     url: query
   };

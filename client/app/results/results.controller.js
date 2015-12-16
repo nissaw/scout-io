@@ -7,7 +7,7 @@ function ResultsController($state, $http, NgMap, Search) {
   results.place;
   results.search = {};
   results.search.placeName;
-  results.search.keywords = '';
+  results.search.keywords;
   results.search.setting = {};
   results.search.setting.indoor = false;
   results.search.setting.outdoor = false;
@@ -25,11 +25,11 @@ function ResultsController($state, $http, NgMap, Search) {
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
-
+    results.search.keywords = query;
     Search.getByTagOnly(query)
       .then(function (response) {
         results.photos = response.data.photos.photo;
-        results.search.keywords = query;  //TODO: not setting form element text for some reason
+        // results.search.keywords = query;  //TODO: not setting form element text for some reason
 
         setMarkers();
       })
