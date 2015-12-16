@@ -8,16 +8,19 @@
   <!--The right side-->
   <span flex></span>
   <!-- Add signup Directives -->
-     <ul ng-hide="nav.isLoggedIn()" class="nav navbar-nav navbar-right">
+     <!-- <ul ng-hide="nav.isLoggedIn()" class="nav navbar-nav navbar-right"> -->
                         <!-- ==================== Login/Logout Directive ======================= -->
-                        <li login></li>
+<!--                         <li login></li>
               
-        </ul>
+        </ul> -->
    <!--  <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" login >Sign up</md-button>
     <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" logout>Login</md-button> -->
    <!--  <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" ui-sref="signup" >Sign up</md-button>
     <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" ui-sref="login">Login</md-button> -->
-    
+    <md-button class="md-icon-button" aria-label="Login" ng-hide="nav.isLoggedIn()" ui-sref-active="active">
+      <i class="fa fa-key fa-2x" ng-click="openLogin()"></i>
+    </md-button>
+
     <md-button class="md-icon-button" aria-label="Profile" ng-show="nav.isLoggedIn()" ui-sref-active="active" ui-sref="settings">
       <i class="fa fa-user fa-2x"></i>
     </md-button>
