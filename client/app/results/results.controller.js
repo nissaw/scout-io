@@ -29,8 +29,7 @@ function ResultsController($state, $http, NgMap, Search) {
     Search.getByTagOnly(query)
       .then(function (response) {
         results.photos = response.data.photos.photo;
-        // results.search.keywords = query;  //TODO: not setting form element text for some reason
-
+        results.search.keywords = query;  //TODO: not setting form element text for some reason
         setMarkers();
       })
   };
