@@ -5,18 +5,6 @@
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
     <div class="search-components">
-      <!-- SEARCH -->
-      <md-input-container md-no-float class="md-block">
-        <label>Search Location</label>
-        <input id="places-textbox"
-          places-auto-complete
-          ng-model="results.search.placeName"
-          on-place-changed="results.placeChanged()"
-        />
-      </md-input-container>
-
-      <!-- ADVANCED SEARCH -->
-
       <md-input-container md-no-float class="md-block">
         <label>Keywords</label>
         <input ng-model="results.search.keywords"/>
@@ -29,19 +17,17 @@
         <md-checkbox ng-model="results.search.setting.outdoor">
           Outdoor
         </md-checkbox>
-        <md-input-container md-no-float class="md-block">
-          <label>Radius</label>
-          <md-select ng-model="radius">
-            <md-option>1</md-option>
-            <md-option>2</md-option>
-            <md-option>3</md-option>
-            <md-option>5</md-option>
-            <md-option>10</md-option>
-            <md-option>15</md-option>
-            <md-option>20</md-option>
-          </md-select>
-        </md-input-container>
       </div>
+
+
+      <md-input-container md-no-float class="md-block">
+        <label>Search Location</label>
+        <input id="places-textbox"
+               places-auto-complete
+               ng-model="results.search.placeName"
+               on-place-changed="results.placeChanged()"
+        />
+      </md-input-container>
 
       <div layout="row">
         <div class="location" flex>
@@ -83,7 +69,6 @@
   </md-sidenav>
 
   <md-content flex id="map">
-    <!--results positions: {{results.positions}} <br>-->
     <ng-map
       style="display:block;height:calc(100vh - 64px)"
       styles="{{results.mapStyle}}"
