@@ -3,7 +3,7 @@
  all GET requests will include @params has_geo=1 and extras=[geo, tags, date_taken, path_alias, url_m, url_s]
  */
 angular.module('ScoutIOApp')
-  .factory('Search', function($http){
+  .factory('Search', function ($http) {
 
 
     /*This is for a search done from the splash page or results page with tag input only
@@ -11,13 +11,12 @@ angular.module('ScoutIOApp')
      @param {string} tags  [user supplied comma deliniated tags] +tag_mode = all
      @return {array}       [array of photo objects]
      */
-    var getByTagOnly = function(query){ // alter string var tagArray = tags.split(" ")? how should it get passed to server?
-      console.log(query, "searchFactory");
+    var getByTagOnly = function (query) { // alter string var tagArray = tags.split(" ")? how should it get passed to server?
       return $http({
         method: 'GET',
-        url: 'api/search/' + query,
+        url: 'api/search/' + query
       })
-        .then(function(data){
+        .then(function (data) {
           return data;
         })
     };
@@ -28,13 +27,13 @@ angular.module('ScoutIOApp')
      @param {array}  geo   [lat, lon, radius] + radius_units=mi
      @return {array}       [array of matching photo objects]
      */
-    var getNearby = function(geo){
+    var getNearby = function (geo) {
       radius = radius || 2;
       return $http({
         method: 'GET',
-        url: '/api/search/geo' + geo,
+        url: '/api/search/geo' + geo
       })
-        .then(function(data){
+        .then(function (data) {
           return data;
         })
     };
@@ -53,13 +52,13 @@ angular.module('ScoutIOApp')
 
      @return {array} [array of matching photo objects]
      */
-    var getAdvanced = function(searchCriteria){
+    var getAdvanced = function (searchCriteria) {
       console.log(searchCriteria);
       return $http({
         method: 'GET',
         url: '/api/search/advancedSearch' + searchCriteria
       })
-        .then(function(data){
+        .then(function (data) {
           return data;
         })
     };
