@@ -59,7 +59,11 @@ function handleEntityNotFound(res) {
 }
 
 // Gets photos by tagSearch only
-exports.tags = function (req, res) {
+
+exports.tags = function(req, res) {
+  console.log('in the tags func');
+  console.log(req.params.data.tags);  
+
   var query = flickrURL + "&tags=" + req.params.query + flickrEnd;
   var options = {
     url: query

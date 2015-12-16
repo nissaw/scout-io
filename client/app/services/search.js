@@ -15,6 +15,11 @@ angular.module('ScoutIOApp')
       return $http({
         method: 'GET',
         url: 'api/search/' + query
+
+        // method: 'GET', 
+        // data: {tags: query},
+        // url: 'api/search/',
+
       })
         .then(function (data) {
           return data;
