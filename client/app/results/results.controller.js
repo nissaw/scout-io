@@ -104,7 +104,7 @@ function ResultsController($state, $http, NgMap, Search) {
     //});
   };
 
-}
+};
 
 
 // photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array
