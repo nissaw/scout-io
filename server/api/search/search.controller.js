@@ -62,6 +62,7 @@ exports.tags = function(req, res) {
   var flickrURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + flickrAPIKey;
   var flickrEnd = "&tag_mode=all&has_geo=1&extras=geo%2Ctags%2C+date_taken%2Cpath_alias%2C+url_s%2C+url_m&format=json&nojsoncallback=1";
 
+  console.log(req.params.query);  
   var query = flickrURL + "&tags=" + req.params.query + flickrEnd;
 
   var options = {
