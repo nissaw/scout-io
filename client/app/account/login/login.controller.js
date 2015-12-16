@@ -8,7 +8,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
   .directive('login', [function() {
     return {
       restrict: 'EA',
-      template: '<a ng-hide="isLoggedIn" href="#" ng-click="openLogin()"></a>',
+      template: '<a ng-hide="isLoggedIn" href="#" ng-click="openLogin()"><i class="fa fa-key fa-2x" style="color:white"></i></a>',
       controller: 'LoginDirectiveCtrl'
     };
   }])
@@ -34,6 +34,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
         controller: 'LoginInstanceCtrl',
         targetEvent: ev,
         clickOutsideToClose:true,
+        escapeToClose:true,
       });
     };
 
@@ -45,7 +46,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
 
 
   }])
-  .controller('LoginInstanceCtrl', ['$scope', '$rootScope', '$window', 'Auth', function($scope, $rootScope, $window, Auth) {
+  .controller('LoginInstanceCtrl', ['$scope', '$rootScope', '$window', '$mdUtil', '$mdBottomSheet', 'Auth', function($scope, $rootScope, $window, $mdUtil, $mdBottomSheet, Auth) {
 
     $scope.user = {};
     $scope.showLogin = true;
@@ -56,18 +57,20 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
 
 
     $scope.login = function() {
-      Auth.login($scope.user);
-        // .then(function(resp) {
-        //   if (resp.data.token) {
-        //     $window.localStorage.setItem('spartanShield', resp.data.token);
-        //     $rootScope.$broadcast('userAction');
-        //     $scope.close();
-        //   } else {
-        //     if (resp.data.err) {
-        //       $scope.message = resp.data.err;
-        //     }
-        //   }
-        // });
+      console.log($scope.user);
+      Auth.login({
+        email: $scope.user.email,
+        password: $scope.user.password
+      })
+        .then(function(resp) {
+          if (resp) {
+            $mdUtil.nextTick($mdBottomSheet.cancel,true);
+          } else {
+            if (resp) {
+              $scope.message = resp;
+            }
+          }
+        });
     };
 
     $scope.signup = function() {
