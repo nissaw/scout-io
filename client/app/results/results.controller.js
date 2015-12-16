@@ -17,18 +17,18 @@ function ResultsController($state, $http, NgMap, Search) {
 
   results.$http = $http;
   results.$state = $state;
+  
   results.photos = [];
 
 
   /*Triggers SearchFactory method sets response to ... redirects to results 
   @param {string} query [comma deliniated word string]*/
   results.getByTagOnly = function(query){
-    console.log(query);
     Search.getByTagOnly(query)
       .then(function(response){
         // console.log(response.data, "ResultsController");
         results.photos = response.data.photos.photo;
-        // console.log(results.photos);
+        console.log(results.photos);
    
         results.$state.go('results');
       })
@@ -37,79 +37,43 @@ function ResultsController($state, $http, NgMap, Search) {
 
 // photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array
 // the host url is not on this object but can be created by following this convention https://www.flickr.com/photos/{photo.pathalias}/{photo.id}/
-  // results = newSample = {
-  //   accuracy: "13"
-  //   context: 0
-  //   datetaken: "2015-10-22 10:07:04"
-  //   datetakengranularity: "0"
-  //   datetakenunknown: "0"
-  //   farm: 6
-  //   geo_is_contact: 0
-  //   geo_is_family: 0
-  //   geo_is_friend: 0
-  //   geo_is_public: 1
-  //   height_m: "227"
-  //   height_s: "109"
-  //   id: "23518490325"
-  //   isfamily: 0
-  //   isfriend: 0
-  //   ispublic: 1
-  //   latitude: "39.568844"
-  //   longitude: "8.469686"
-  //   owner: "99574551@N04"
-  //   pathalias: null
-  //   place_id: "7ERDc6dQULzMxGSF0A"
-  //   secret: "da0a76c8f7"
-  //   server: "5763"
-  //   tags: "pictures sardegna italien blue light red sea italy orange sun white color colour green art beach nature water beautiful beauty contrast landscape landscapes photo amazing sand rocks whitewater mediterranean surf waves mood sardinia waterfront heart quality natur dream picture wave colored lands landschaft sardinien suspense mittelmeer sardegnia saariysqualitypictures sardinien2014"
-  //   title: "Adrift on the Sea"
-  //   url_m: "https://farm6.staticflickr.com/5763/23518490325_da0a76c8f7.jpg"
-  //   url_s: "https://farm6.staticflickr.com/5763/23518490325_da0a76c8f7_m.jpg"
-  //   width_m: "500"
-  //   width_s: "240"
-  //   woeid: "12676181"
+  // results.samplePhoto = {
+  // accuracy: "16"
+  // context: 0
+  // datetaken: "2014-07-27 16:29:48"
+  // datetakengranularity: "0"
+  // datetakenunknown: "0"
+  // farm: 1
+  // geo_is_contact: 0
+  // geo_is_family: 0
+  // geo_is_friend: 0
+  // geo_is_public: 1
+  // height_m: "414"
+  // height_s: "199"
+  // id: "22416075689"
+  // isfamily: 0
+  // isfriend: 0
+  // ispublic: 1
+  // latitude: "44.077861"
+  // longitude: "-116.935203"
+  // owner: "8599745@N08"
+  // pathalias: "kevystew"
+  // place_id: "WZREzB1TVry9hify"
+  // secret: "bcac6035d5"
+  // server: "751"
+  // tags: "cityhall idaho courthouse courthouses us95 countycourthouse nationalregister nationalregisterofhistoricplaces payette usccidpayette payettecounty"
+  // title: "City Hall and Courthouse- Payette ID (1)"
+  // url_m: "https://farm1.staticflickr.com/751/22416075689_bcac6035d5.jpg"
+  // url_s: "https://farm1.staticflickr.com/751/22416075689_bcac6035d5_m.jpg"
+  // width_m: "500"
+  // width_s: "240"
+  // woeid: "2469449"
+
+
+  // generated url for this photo
+  //"url": "https://www.flickr.com/photos/kevystew/22416075689/"
 
   // };
-
-
-
-  results.samplePhoto = {
-    "id": "10500976616",
-    "owner": "35213698@N08",
-    "secret": "1a65b05014",
-    "server": "7380",
-    "farm": 8,
-    "title": "The Old Fishing Boats at Little Virginia Lakes",
-    "ispublic": 1,
-    "isfriend": 0,
-    "isfamily": 0,
-    "datetaken": "2013-10-13 08:25:30",
-    "datetakengranularity": 0,
-    "datetakenunknown": 0,
-    "tags": "california ca travel autumn usa lake snow color fall nature water northerncalifornia photoshop canon vintage landscape boat photo interestingness google interesting fishing october aluminum day photographer little picture clarity resort explore adobe getty norcal adjust infocus highway395 easternsierra leevining virginialakes monocounty cs6 2013 denoise 60d topazlabs photographersnaturecom davetoussaint",
-    "latitude": 38.048217,
-    "longitude": -119.258952,
-    "accuracy": 16,
-    "context": 0,
-    "place_id": "NsbUWfBTUb4mbyVu",
-    "woeid": "2347563",
-    "geo_is_family": 0,
-    "geo_is_friend": 0,
-    "geo_is_contact": 0,
-    "geo_is_public": 1,
-
-    "url_sq": "https:\/\/farm8.staticflickr.com\/7380\/10500976616_1a65b05014_s.jpg",
-    "height_sq": 75,
-    "width_sq": 75,
-
-    "url_q": "https:\/\/farm8.staticflickr.com\/7380\/10500976616_1a65b05014_q.jpg",
-    "height_q": "150",
-    "width_q": "150",
-    "pathalias": "davetoussaint",
-
-    // generated url for this photo
-    "url": "https://www.flickr.com/photos/davetoussaint/10500976616/"
-  };
 
 
 // 10 photo objects to use as dummy data (but they are real flickr photos) //tag search was Eastern Sierra + snow
