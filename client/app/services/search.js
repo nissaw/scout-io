@@ -32,7 +32,7 @@ Gets photos regardless of tag that were taken within a given or default 2mile ra
     radius = radius || 2;
     return $http({
       method: 'GET',
-      url: '/api/search/' + geo,
+      url: '/api/search/geo' + geo,
     })
     .then(function(data){
       return data;
@@ -57,7 +57,7 @@ Gets photos regardless of tag that were taken within a given or default 2mile ra
     console.log(searchCriteria);
     return $http({
       method: 'GET',
-      url: '/api/search/' + searchCriteria
+      url: '/api/search/advancedSearch' + searchCriteria
     })
     .then(function(data){
       return data;
