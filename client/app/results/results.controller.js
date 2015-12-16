@@ -40,7 +40,7 @@ function ResultsController($state, $http, NgMap, Search) {
       results.search.geoCoordinates = results.place.geometry;
     }
 
-    if (!results.search.placenName) {
+    if (!results.search.placeName) {
       results.search.geoCoordinates = null;
     }
 
