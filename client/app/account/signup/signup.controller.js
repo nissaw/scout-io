@@ -17,9 +17,9 @@
 
 //     if (form.$valid) {
 //       this.Auth.createUser({
-//         name: this.user.name,
-//         email: this.user.email,
-//         password: this.user.password
+//         name: user.name,
+//         email: user.email,
+//         password: user.password
 //       })
 //       .then(() => {
 //         // Account created, redirect to home

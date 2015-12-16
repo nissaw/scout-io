@@ -88,32 +88,30 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
 
 
     $scope.login = function() {
-      Auth.login($scope.user)
-        .then(function(resp) {
-          if (resp.data.token) {
-            $window.localStorage.setItem('spartanShield', resp.data.token);
-            $rootScope.$broadcast('userAction');
-            $scope.close();
-          } else {
-            if (resp.data.err) {
-              $scope.message = resp.data.err;
-            }
-          }
-        });
+      Auth.login($scope.user);
+        // .then(function(resp) {
+        //   if (resp.data.token) {
+        //     $window.localStorage.setItem('spartanShield', resp.data.token);
+        //     $rootScope.$broadcast('userAction');
+        //     $scope.close();
+        //   } else {
+        //     if (resp.data.err) {
+        //       $scope.message = resp.data.err;
+        //     }
+        //   }
+        // });
     };
 
     $scope.signup = function() {
-      Auth.createUser($scope.user)
-        .then(function(resp) {
-          if (resp.data.token) {
-            $window.localStorage.setItem('spartanShield', resp.data.token);
-            $rootScope.$broadcast('userAction');
-            $scope.close();
-          } else {
-            if (resp.data.err) {
-              $scope.message = resp.data.err;
-            }
-          }
-        });
+      Auth.createUser($scope.user);
+        // .then(function(resp) {
+        //   if (resp.data) {
+        //     $scope.close();
+        //   } else {
+        //     if (resp.data.err) {
+        //       $scope.message = resp.data.err;
+        //     }
+        //   }
+        // });
     };
   }]);
