@@ -51,28 +51,20 @@
         </md-whiteframe>
       </div>
 
-      <!-- EDIT/DELETE COMMENT FORM -->
-
-
-      <!-- MINI MAP/ELEVATION/STARTING POINT INPUT FIELD/SAVE BUTTON -->
-      <div flex="40">
-        <form>
-          <h3>Paul's space</h3>
-
-          <div>For Mini Map</div>
-          <div>For Elevation</div>
-          <md-input-container>
-
-            <input type="text" placeholder="Enter Address" ng-model="address"></input>
-          </md-input-container>
-          <md-button id="save-btn">
-            Save
-          </md-button>
-
-        </form>
-      </div>
+    <!-- MINI MAP/ELEVATION/STARTING POINT INPUT FIELD/SAVE BUTTON -->
+    <div flex="40">
+      <form>
+        <div id="smallmap" style="height:500px"></div>
+        <div>For Elevation</div>
+        <md-input-container>
+          <input type="text" placeholder="Enter Address" ng-model="address"></input>
+        </md-input-container>
+        <md-button id="save-btn">
+          Save
+        </md-button>
+      </form>
+    </div>
 
   </md-dialog-content>
-
 
 </md-dialog>
