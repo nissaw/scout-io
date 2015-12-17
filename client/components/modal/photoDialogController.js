@@ -1,5 +1,5 @@
 angular.module('ScoutIOApp')
-.controller('PhotoDialogCtrl', ['$mdDialog', '$scope', function ($mdDialog, $scope) {
+.controller('PhotoDialogCtrl', ['$mdDialog', '$scope', '$state', function ($mdDialog, $scope, $state) {
 	$scope.showDialog = function (e, photo) {
 		$scope.photo = photo;
     $mdDialog.show({
@@ -12,7 +12,7 @@ angular.module('ScoutIOApp')
     	parent: angular.element(document.body),
     	clickOutsideToClose: true
     });
-    console.log($scope.photo);
+
 	};
 
   function DialogController($scope, $mdDialog) {
