@@ -32,6 +32,9 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getByTagOnly(query)
       .then(function (response) {
+
+          // $rootScope.photos = [];
+          // results.photos = [];
           $rootScope.photos = response.data.photos.photo;
           results.photos = response.data.photos.photo;
           results.search.keywords = query;  //TODO: not setting form element text for some reason
@@ -88,7 +91,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getAdvanced(searchCriteria)
      .then(function (response) {
-       $scope.photos = response.data.photos.photo;
+       results.photos = response.data.photos.photo;
     
        setMarkers();
      })

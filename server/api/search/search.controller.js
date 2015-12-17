@@ -94,6 +94,13 @@ exports.geo = function (req, res) {
 // Gets photos that match all passed params / all params optional
 exports.searchCriteria = function (req, res) {
   console.log('here in searchCriteria');
+  console.log(req.params.searchCriteria);
+  // var searchCriteria = JSON.parse(req.params.searchCriteria);
+   // var bodyOBJ = JSON.parse(req.body);
+  console.log(searchCriteria, 'searchCriteria');
+  // console.log(bodyOBJ, 'bodyOBJ');
+  console.log(searchCriteria.lat);
+  console.log(searchCriteria.keywords);
 
 
 };

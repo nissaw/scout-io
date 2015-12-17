@@ -14,7 +14,7 @@ angular.module('ScoutIOApp')
     var getByTagOnly = function (query) { 
       return $http({
         method: 'GET',
-        url: 'api/search/' + query
+        url: 'api/search/tag/' + query
       })
         .then(function (data) {
           tagResults = data.data.photos.photo;
@@ -56,13 +56,15 @@ angular.module('ScoutIOApp')
      */
     var getAdvanced = function (searchCriteria) {
       console.log(searchCriteria);
-      // return $http({
-      //   method: 'GET',
-      //   url: '/api/search/advancedSearch/' + searchCriteria
-      // })
-      //   .then(function (data) {
-      //     return data;
-      //   })
+      // searchCriteria = JSON.stringify(searchCriteria)
+      return $http({
+        method: 'GET',
+        url: '/api/search/advancedSearch'
+        // params: {search_criteria: searchCriteria}
+      })
+        .then(function (data) {
+          return data;
+        })
     };
 
     return {

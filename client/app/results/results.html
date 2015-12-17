@@ -22,8 +22,6 @@
 
       <md-input-container md-no-float class="md-block">
         <label>Search Location</label>
-        <p>{{results.photos[0].title}}</p>
-        <p>{{results.photos}}</p>
         <input id="places-textbox"
                places-auto-complete
                ng-model="results.search.placeName"
@@ -62,6 +60,8 @@
 
       <div layout="row">
         <md-button class="md-raised"  ng-click="results.advancedSearch()">Search</md-button>
+        <!-- <md-button class="md-raised"  ng-click="results.getByTagOnly(results.search.keywords)">Search</md-button> -->
+
       </div>
     </div>
 
