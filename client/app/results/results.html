@@ -93,7 +93,11 @@
   <md-content flex id="map">
     <ng-map
       style="display:block;height:calc(100vh - 64px)"
-      styles="{{results.mapStyle}}">
+      styles="{{results.mapStyle}}"
+      scrollwheel="true"
+      zoom-to-include-markers="true"
+      center="current-location"
+      geo-fallback-center="37.09024, -95.71289100000001">
     </ng-map>
 
   </md-content>

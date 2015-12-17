@@ -76,13 +76,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var setMarkers = function () {
     NgMap.getMap({id:"largeMap"}).then(function (map) {
       results.map = map;
-
-      if (results.map.markers) {
-        for (var i = 0; i < results.map.markers.length; i++) {
-          results.map.markers[i].setMap(null);
-        }
-      }
-
       results.map.markers = [];
       var bounds = new google.maps.LatLngBounds ();
 
@@ -94,13 +87,10 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
-        results.map.markers.push(marker);
         bounds.extend(myLatlng);
       }
 
       results.map.fitBounds(bounds);
-
-      console.log("bounds", bounds)
     });
   };
 
