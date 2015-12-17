@@ -2,6 +2,7 @@ angular.module('ScoutIOApp')
   .controller('ResultsController', ResultsController);
 
 function ResultsController($state, $http, NgMap, Search, $rootScope) {
+  var results = this;
 
 
   results.place;
@@ -40,7 +41,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
           results.search.keywords = query;  //TODO: not setting form element text for some reason
           setMarkers();
       })
-    };
+  };
 
 
   results.advancedSearch = function () {
@@ -48,7 +49,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     $rootScope.photos = [];
     results.photos = [];
-  
+
 
     //check for location input
     if (results.place) {
@@ -59,41 +60,37 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     }
 
     if (!results.search.placeName) {
-
       results.search.geoCoordinates = null;
     }
-    
+
     Search.getAdvanced(results.search)
      .then(function (response) {
       $rootScope.photos = response.data.photos.photo;
       results.photos = response.data.photos.photo;
-    
+
        setMarkers();
      })
 
   };
 
   var setMarkers = function () {
-<<<<<<< 1e6b8a3ae0269198baa646310512d1dd13ebfec6
-    console.log(results.photos, 'inside setMarkers')
-    NgMap.getMap().then(function (map) {
-=======
     NgMap.getMap({id:"largeMap"}).then(function (map) {
-      var bounds = new google.maps.LatLngBounds();
->>>>>>> photo dialog map start
       results.map = map;
 
-      if (!results.map.markers) {
-        results.map.markers = [];
+      if (results.map.markers) {
+        for (var i = 0; i < results.map.markers.length; i++) {
+          results.map.markers[i].setMap(null);
+        }
       }
 
-      for (var m in results.map.markers) {
-        results.map.markers[m].setMap(null);
-      }
+      results.map.markers = [];
+      var bounds = new google.maps.LatLngBounds ();
 
       for (var i = 0; i < results.photos.length; i++) {
         var myLatlng = new google.maps.LatLng(results.photos[i].latitude, results.photos[i].longitude);
-        var marker = new google.maps.Marker({ position: myLatlng });
+        var marker = new google.maps.Marker({
+          position: myLatlng
+        });
 
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
@@ -102,6 +99,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       }
 
       results.map.fitBounds(bounds);
+
+      console.log("bounds", bounds)
     });
   };
 

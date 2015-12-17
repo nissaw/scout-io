@@ -7,7 +7,7 @@
     <div class="search-components">
       <md-input-container md-no-float class="md-block">
         <label>Keywords</label>
-        <input ng-model="search.keywords"/>
+        <input ng-model="results.search.keywords"/>
       </md-input-container>
 
     <label style="text-align:center">Search for Any or All Keywords?</label>
@@ -92,13 +92,10 @@
 
   <md-content flex id="map">
     <ng-map
-      id="largeMap"
       style="display:block;height:calc(100vh - 64px)"
-      styles="{{results.mapStyle}}"
-      center="current-location"
-      geo-fallback-center="45.523452, -122.676207"
-      zoom="6">
+      styles="{{results.mapStyle}}">
     </ng-map>
+
   </md-content>
 
 </div>
