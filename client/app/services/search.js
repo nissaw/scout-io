@@ -31,7 +31,7 @@ angular.module('ScoutIOApp')
       radius = radius || 2;
       return $http({
         method: 'GET',
-        url: '/api/search/geo' + geo
+        url: '/api/search/geo/' + geo
       })
         .then(function (data) {
           return data;
@@ -56,7 +56,7 @@ angular.module('ScoutIOApp')
       console.log(searchCriteria);
       return $http({
         method: 'GET',
-        url: '/api/search/advancedSearch' + searchCriteria
+        url: '/api/search/advancedSearch/' + searchCriteria
       })
         .then(function (data) {
           return data;
