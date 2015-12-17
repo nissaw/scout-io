@@ -9,9 +9,10 @@ module.exports = {
           'http://mighty-sea-6015.herokuapp.com',
 
   SESSION_SECRET:   process.env.SESSION_SECRET,
-  
-  flickr_api_key:   process.env.FLICKR_API_KEY,
 
+  flickr: {
+    apiKey:       process.env.FLICKR_API_KEY
+  },
    // Server IP       
   ip:     process.env.IP ||
           undefined,
