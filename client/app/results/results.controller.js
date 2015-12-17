@@ -4,6 +4,7 @@ angular.module('ScoutIOApp')
 function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var results = this;
 
+
   results.place;
   results.search = {};
   results.search.placeName;
@@ -22,6 +23,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.$http = $http;
   results.$state = $state;
   results.photos = [];
+  results.photos = $rootScope.photos;
+  // results.photos = Search.tagResults();
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
@@ -37,23 +40,26 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     };
 
 
-  results.advancedSearch = function (form) {
+  results.advancedSearch = function () {
+    var searchCriteria = {};
+    //check for location input
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
+      searchCriteria.lat = results.search.geoCoordinates.location.lat();
+      searchCriteria.lon = results.search.geoCoordinates.location.lng();
+      searchCriteria.radius = Number(results.search.radius) || 5;
     }
 
     if (!results.search.placeName) {
       results.search.geoCoordinates = null;
     }
-
-    Search.getByTagOnly(results.search.keywords)
-      .then(function (response) {
-        $('#photos').empty();
-        $rootScope = undefined;
-        console.log("THIS IS ROOTSCOPE: ", $rootScope);
-        results.photos = response.data.photos.photo;
-        setMarkers();
-      });
+    // check for start and end date input
+    if (results.search.startDate){
+      searchCriteria.start = results.search.startDate;
+    }
+    if (results.search.endDate){
+      searchCriteria.end = results.search.endDate;
+    }
 
     //Search.getAdvanced(results.search)
     //  .then(function (response) {
@@ -61,9 +67,36 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     //
     //    setMarkers();
     //  })
+
+    // check for keywords
+    if (results.search.keywords){
+      searchCriteria.keywords = results.search.keywords;
+    };
+
+    // check for indoor/outdoor
+    if (results.search.setting.outdoor && results.search.setting.indoor){
+      searchCriteria.geo_context= 0;
+    }
+    else if (results.search.setting.indoor){
+      searchCriteria.geo_context = 1;
+    }
+    else if (results.search.setting.outdoor){
+      searchCriteria.geo_context = 2;
+    }
+
+    console.log(searchCriteria);
+
+    Search.getAdvanced(searchCriteria)
+     .then(function (response) {
+       $scope.photos = response.data.photos.photo;
+    
+       setMarkers();
+     })
+
   };
 
   var setMarkers = function () {
+    console.log(results.photos, 'inside setMarkers')
     NgMap.getMap().then(function (map) {
       results.map = map;
       results.map.markers = [];

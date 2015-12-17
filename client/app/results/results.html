@@ -1,6 +1,6 @@
 <navbar></navbar>
 
-<div class="mapContainer" layout="row" ng-controller="ResultsController as results">
+<div class="mapContainer" layout="row">
   <!-- SIDE NAVIGATION -->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
@@ -22,6 +22,8 @@
 
       <md-input-container md-no-float class="md-block">
         <label>Search Location</label>
+        <p>{{results.photos[0].title}}</p>
+        <p>{{results.photos}}</p>
         <input id="places-textbox"
                places-auto-complete
                ng-model="results.search.placeName"
@@ -59,9 +61,10 @@
       </div>
 
       <div layout="row">
-        <md-button class="md-raised"  ng-click="results.advancedSearch(results.search)">Search</md-button>
+        <md-button class="md-raised"  ng-click="results.advancedSearch()">Search</md-button>
       </div>
     </div>
+
 
     <!-- RESULTS -->
     <!-- RENDERS PHOTOS FROM MAIN PAGE SEARCH -->
@@ -73,7 +76,10 @@
     </div>
 
     <!-- RENDERS PHOTOS FROM RESULTS PAGE SEARCH -->
-    <photo></photo>
+
+    <!--RESULTS-->
+
+   <!--  <photo></photo> -->
 
   </md-sidenav>
 
