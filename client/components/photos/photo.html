@@ -1,6 +1,6 @@
 <div ng-controller="PhotoDialogCtrl" layout="column" layout-align="center">
   <div class="thumbnail" ng-repeat="photo in results.photos" photo="photo" flex>
-    <p>{{photo['title']}}</p>
-    <img src={{photo['url_s']}} ng-click="showDialog($event, photo)">
+    <p>{{photo.title}}</p>
+    <img src={{photo.url_s}} ng-click="showDialog($event, photo)">
   </div>
 </div>

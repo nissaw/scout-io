@@ -1,7 +1,7 @@
 angular.module('ScoutIOApp')
   .controller('ResultsController', ResultsController);
 
-function ResultsController($state, $http, NgMap, Search) {
+function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var results = this;
 
   results.place;
@@ -25,14 +25,17 @@ function ResultsController($state, $http, NgMap, Search) {
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
-    results.search.keywords = query;
+    $('#photos').empty();
+
     Search.getByTagOnly(query)
       .then(function (response) {
-        results.photos = response.data.photos.photo;
-        results.search.keywords = query;  //TODO: not setting form element text for some reason
-        setMarkers();
+          $rootScope.photos = response.data.photos.photo;
+          results.photos = response.data.photos.photo;
+          results.search.keywords = query;  //TODO: not setting form element text for some reason
+          setMarkers();
       })
-  };
+    };
+
 
   results.advancedSearch = function (form) {
     if (results.place) {
@@ -45,8 +48,10 @@ function ResultsController($state, $http, NgMap, Search) {
 
     Search.getByTagOnly(results.search.keywords)
       .then(function (response) {
+        $('#photos').empty();
+        $rootScope = undefined;
+        console.log("THIS IS ROOTSCOPE: ", $rootScope);
         results.photos = response.data.photos.photo;
-
         setMarkers();
       });
 
