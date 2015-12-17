@@ -11,6 +11,7 @@ var flickrAPIKey = config.flickr.apiKey;
 
 var flickrURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + flickrAPIKey;
 var flickrEnd = "&tag_mode=all&has_geo=1&extras=geo%2Ctags%2C+date_taken%2Cpath_alias%2C+url_s%2C+url_m&format=json&nojsoncallback=1";
+// var flickrEnd = "&tag_mode=all&has_geo=1&extras=geo,tags,+date_taken,path_alias,+url_s,+url_m&format=json&nojsoncallback=1";
 
 // URL: https://api.flickr.com/services/rest/
 // ?method=flickr.photos.search
@@ -66,9 +67,8 @@ function handleEntityNotFound(res) {
 
 exports.tags = function(req, res) {
   console.log("in the tags func");
-  // console.log(req.params.data.tags);  
+ 
   var input = encodeURIComponent(req.params.query).replace(/'/g, "%27").replace(/%20/g, "+");
-  console.log('stringified', input);
   var query = flickrURL + "&tags=" + input + flickrEnd;
   var options = {
     url: query
@@ -78,9 +78,6 @@ exports.tags = function(req, res) {
     if (err) {
       console.log(err);
     }
-
-    console.log("data", data);
-
     res.send(data);
   });
 };
@@ -94,13 +91,86 @@ exports.geo = function (req, res) {
 // Gets photos that match all passed params / all params optional
 exports.searchCriteria = function (req, res) {
   console.log('here in searchCriteria');
-  console.log(req.params.searchCriteria);
-  // var searchCriteria = JSON.parse(req.params.searchCriteria);
-   // var bodyOBJ = JSON.parse(req.body);
-  console.log(searchCriteria, 'searchCriteria');
-  // console.log(bodyOBJ, 'bodyOBJ');
-  console.log(searchCriteria.lat);
-  console.log(searchCriteria.keywords);
+  console.log(req.body);
+
+  var obj = req.body;
+
+  var query = flickrURL;
+  //check for submitted keywords if they exist uri encode them 
+  if (obj.keywords){
+    var tags = encodeURIComponent(obj.keywords).replace(/'/g, "%27").replace(/%20/g, "+");
+    query += "&tags=" + tags;
+  }
+  // check for geo input
+  if (obj.placeName){
+    query+= "&lat=" + obj.lat + "&lon=" + obj.lon + "&radius=" + obj.radius + "&radius_units=mi"
+  }
+  //check for startDate
+  if (obj.startDate){
+    var startDate = Date.parse(obj.startDate);
+    // var startDate = encodeURIComponent(obj.startDate).replace(/'/g, "%27").replace(/%20/g, "+");
+    query+= "&min_taken_date=" + startDate
+    // &min_taken_date=Wed+Dec+02+2015+00%3A00%3A00+GMT-0800+%28PST%29
+  }
+  //check for endDate
+  if (obj.endDate){
+    // var endDate = encodeURIComponent(obj.endDate).replace(/'/g, "%27").replace(/%20/g, "+");
+    var endDate = Date.parse(obj.endDate);
+    query+= "&max_taken_date=" + endDate
+  }
+  // check for indoor/outdoor
+  if ( (obj.setting.outdoor && obj.setting.indoor) || (!obj.setting.outdoor && !obj.setting.indoor) ) {
+    obj.geo_context= 0;
+  }
+  else if (obj.setting.indoor){
+    obj.geo_context = 1;
+  }
+  else if (obj.setting.outdoor){
+    obj.geo_context = 2;
+  }
+  query+= "&geo_context=" + obj.geo_context;
+  query+= flickrEnd;
+  
+  var options = {
+    url: query
+  };
+
+  console.log(options.url);
+
+  request(options, function (err, response, data) {
+    if (err) {
+      console.log(err);
+    }
+
+    console.log("data", data);
+
+    res.send(data);
+  });
+
 
 
 };
+
+
+// here in searchCriteria
+// { setting: { indoor: false, outdoor: true },
+//   radius: 5,
+//   startDate: '2015-12-01T08:00:00.000Z',
+//   endDate: '',
+//   keywords: 'new orleans, cemetary',
+//   placeName: 'New Orleans, LA, United States',
+//   geoCoordinates: 
+//    { location: { lat: 29.95106579999999, lng: -90.0715323 },
+//      viewport: 
+//       { south: 29.8666609,
+//         west: -90.1400739,
+//         north: 30.1748625,
+//         east: -89.62693109999998 } },
+//   lat: 29.95106579999999,
+//   lon: -90.0715323 }
+
+
+
+
+
+

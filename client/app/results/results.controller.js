@@ -44,52 +44,21 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
 
   results.advancedSearch = function () {
-    var searchCriteria = {};
+    console.log(results.search, 'ResultsController');
+
     //check for location input
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
-      searchCriteria.lat = results.search.geoCoordinates.location.lat();
-      searchCriteria.lon = results.search.geoCoordinates.location.lng();
-      searchCriteria.radius = Number(results.search.radius) || 5;
+      results.search.lat = results.search.geoCoordinates.location.lat();
+      results.search.lon = results.search.geoCoordinates.location.lng();
+      results.search.radius = Number(results.search.radius) || 5;
     }
 
     if (!results.search.placeName) {
       results.search.geoCoordinates = null;
     }
-    // check for start and end date input
-    if (results.search.startDate){
-      searchCriteria.start = results.search.startDate;
-    }
-    if (results.search.endDate){
-      searchCriteria.end = results.search.endDate;
-    }
-
-    //Search.getAdvanced(results.search)
-    //  .then(function (response) {
-    //    results.photos = response.data.photos.photo;
-    //
-    //    setMarkers();
-    //  })
-
-    // check for keywords
-    if (results.search.keywords){
-      searchCriteria.keywords = results.search.keywords;
-    };
-
-    // check for indoor/outdoor
-    if (results.search.setting.outdoor && results.search.setting.indoor){
-      searchCriteria.geo_context= 0;
-    }
-    else if (results.search.setting.indoor){
-      searchCriteria.geo_context = 1;
-    }
-    else if (results.search.setting.outdoor){
-      searchCriteria.geo_context = 2;
-    }
-
-    console.log(searchCriteria);
-
-    Search.getAdvanced(searchCriteria)
+    
+    Search.getAdvanced(results.search)
      .then(function (response) {
        results.photos = response.data.photos.photo;
     

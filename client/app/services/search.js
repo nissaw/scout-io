@@ -56,11 +56,14 @@ angular.module('ScoutIOApp')
      */
     var getAdvanced = function (searchCriteria) {
       console.log(searchCriteria);
-      // searchCriteria = JSON.stringify(searchCriteria)
+      searchCriteria = JSON.stringify(searchCriteria);
       return $http({
-        method: 'GET',
-        url: '/api/search/advancedSearch'
-        // params: {search_criteria: searchCriteria}
+        method: 'POST',
+        url: '/api/search/advancedSearch',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: searchCriteria
       })
         .then(function (data) {
           return data;
