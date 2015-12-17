@@ -1,4 +1,4 @@
-<md-dialog aria-label="Photo Details dialog" flex="80">
+<md-dialog aria-label="Photo Details dialog" flex="80" id="photo-dialog-box">
 
   <!-- TOP OF DIALOG WITH EXIT ICON-->
   <md-toolbar>
@@ -53,18 +53,24 @@
 
     <!-- MINI MAP/ELEVATION/STARTING POINT INPUT FIELD/SAVE BUTTON -->
     <div flex="40">
-      <form>
-        <div id="smallmap" style="height:500px"></div>
-        <div>For Elevation</div>
-        <md-input-container>
-          <input type="text" placeholder="Enter Address" ng-model="address"></input>
-        </md-input-container>
-        <md-button id="save-btn">
-          Save
-        </md-button>
-      </form>
+      <div id="smallmap" style="height:350px"></div>
+
+      <div>For Elevation</div>
+      <md-input-container>
+        <input type="text" placeholder="Enter Address" ng-model="address"></input>
+      </md-input-container>
+      <md-button id="save-btn">
+        Save
+      </md-button>
     </div>
 
   </md-dialog-content>
 
 </md-dialog>
+
+<script>
+  var map = new google.maps.Map(document.getElementById('smallmap'), {
+    center: {lat: {{dialog.photo.latitude}}, lng: {{dialog.photo.longitude}}},
+    zoom: 8
+  });
+</script>

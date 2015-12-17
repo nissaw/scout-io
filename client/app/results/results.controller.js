@@ -59,6 +59,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     }
 
     if (!results.search.placeName) {
+
       results.search.geoCoordinates = null;
     }
     

@@ -1,4 +1,5 @@
 angular.module('ScoutIOApp')
+
 .controller('PhotoDialogCtrl', ['$mdDialog', '$scope', '$state', function ($mdDialog, $scope, $state) {
 	$scope.showDialog = function (e, photo) {
 		$scope.photo = photo;
@@ -14,6 +15,7 @@ angular.module('ScoutIOApp')
     });
 
 	};
+
 
     function DialogController($scope, $mdDialog) {
       $scope.hide = function () {
