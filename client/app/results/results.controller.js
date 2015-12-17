@@ -2,7 +2,6 @@ angular.module('ScoutIOApp')
   .controller('ResultsController', ResultsController);
 
 function ResultsController($state, $http, NgMap, Search, $rootScope) {
-  var results = this;
 
 
   results.place;
@@ -74,20 +73,30 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   };
 
   var setMarkers = function () {
+<<<<<<< 1e6b8a3ae0269198baa646310512d1dd13ebfec6
     console.log(results.photos, 'inside setMarkers')
     NgMap.getMap().then(function (map) {
+=======
+    NgMap.getMap({id:"largeMap"}).then(function (map) {
+      var bounds = new google.maps.LatLngBounds();
+>>>>>>> photo dialog map start
       results.map = map;
-      results.map.markers = [];
-      var bounds = new google.maps.LatLngBounds ();
+
+      if (!results.map.markers) {
+        results.map.markers = [];
+      }
+
+      for (var m in results.map.markers) {
+        results.map.markers[m].setMap(null);
+      }
 
       for (var i = 0; i < results.photos.length; i++) {
         var myLatlng = new google.maps.LatLng(results.photos[i].latitude, results.photos[i].longitude);
-        var marker = new google.maps.Marker({
-          position: myLatlng
-        });
+        var marker = new google.maps.Marker({ position: myLatlng });
 
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
+        results.map.markers.push(marker);
         bounds.extend(myLatlng);
       }
 
@@ -119,7 +128,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     //});
   };
 
-};
+}
 
 
 // photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array
