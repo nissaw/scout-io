@@ -10,7 +10,7 @@
 
   <!-- <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" ui-sref="signup">Sign up</md-button>
   <md-button ng-hide="nav.isLoggedIn()" ui-sref-active="active" ui-sref="login">Login</md-button> -->
-  <a aria-label="Login" ng-hide="nav.isLoggedIn()" ui-sref-active="active" login>
+  <a class="loginContainer" aria-label="Login" ng-hide="nav.isLoggedIn()" ui-sref-active="active" login>
     </a>
 
   <span ng-show="nav.isLoggedIn()" class="navbar-text">Hello! {{ nav.getCurrentUser().name }}</span>

@@ -8,7 +8,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
   .directive('login', [function() {
     return {
       restrict: 'EA',
-      template: '<a ng-hide="isLoggedIn" href="#" ng-click="openLogin()">Login</a>',
+      template: '<a class="loginButton" ng-hide="isLoggedIn" href="#" ng-click="openLogin()">Login</a>',
       controller: 'LoginDirectiveCtrl'
     };
   }])
