@@ -4,7 +4,6 @@ angular.module('ScoutIOApp', [
   'ScoutIOApp.auth',
   'ScoutIOApp.admin',
   'ScoutIOApp.constants',
-  'ScoutIOApp.login',
   'ngCookies',
   'ngResource',
   'ngSanitize',

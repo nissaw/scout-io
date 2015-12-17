@@ -6,7 +6,7 @@ angular.module('ScoutIOApp')
       .state('login', {
         url: '/login',
         templateUrl: 'app/account/login/login.html',
-        controller: 'LoginInstanceCtrl',
+        controller: 'LoginController',
         controllerAs: 'vm'
       })
       .state('logout', {
