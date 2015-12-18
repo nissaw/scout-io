@@ -36,6 +36,7 @@
 	font-size: 3em;
 	color: #FFA000;
 	text-align: center;
+	line-height: 55px;
 }
 
 #search-label {
@@ -51,7 +52,7 @@
 
 .splash-search {
 	color: #FFA000;
-  padding-left: 80px;
+  padding-left: 40px;
 }
 
 .splash-content-text {
