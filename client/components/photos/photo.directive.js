@@ -4,7 +4,9 @@ angular.module('ScoutIOApp')
 .directive('photo', function () {
 	return {
 		templateUrl: 'components/photos/photo.html',
-		restrict: 'E'
+		restrict: 'E', 
+    // controller: 'ResultsController',
+    // controllerAs: 'results'
 	}
 });
 

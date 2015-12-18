@@ -2,3 +2,9 @@
 	float:right;
 	margin-right:20px;
 }
+
+#comments-container {
+  width: 400px;
+  height: 100px;
+  margin-bottom: 10px;
+}

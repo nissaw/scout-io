@@ -4,6 +4,7 @@ angular.module('ScoutIOApp')
 function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var results = this;
 
+
   results.place;
   results.search = {};
   results.search.placeName;
@@ -14,6 +15,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.search.radius = 5;
   results.search.startDate = '';
   results.search.endDate = '';
+  results.search.tag = 'all keywords';
 
   results.name = "Scout IQ";
   results.map = null;
@@ -22,6 +24,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.$http = $http;
   results.$state = $state;
   results.photos = [];
+  results.photos = $rootScope.photos;
+  // results.photos = Search.tagResults();
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
@@ -29,6 +33,9 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getByTagOnly(query)
       .then(function (response) {
+
+          $rootScope.photos = [];
+          results.photos = [];
           $rootScope.photos = response.data.photos.photo;
           results.photos = response.data.photos.photo;
           results.search.keywords = query;  //TODO: not setting form element text for some reason
@@ -37,33 +44,37 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     };
 
 
-  results.advancedSearch = function (form) {
+  results.advancedSearch = function () {
+    console.log(results.search, 'ResultsController');
+
+    $rootScope.photos = [];
+    results.photos = [];
+  
+
+    //check for location input
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
+      results.search.lat = results.search.geoCoordinates.location.lat();
+      results.search.lon = results.search.geoCoordinates.location.lng();
+      results.search.radius = Number(results.search.radius) || 5;
     }
 
     if (!results.search.placeName) {
       results.search.geoCoordinates = null;
     }
+    
+    Search.getAdvanced(results.search)
+     .then(function (response) {
+      $rootScope.photos = response.data.photos.photo;
+      results.photos = response.data.photos.photo;
+    
+       setMarkers();
+     })
 
-    Search.getByTagOnly(results.search.keywords)
-      .then(function (response) {
-        $('#photos').empty();
-        $rootScope = undefined;
-        console.log("THIS IS ROOTSCOPE: ", $rootScope);
-        results.photos = response.data.photos.photo;
-        setMarkers();
-      });
-
-    //Search.getAdvanced(results.search)
-    //  .then(function (response) {
-    //    results.photos = response.data.photos.photo;
-    //
-    //    setMarkers();
-    //  })
   };
 
   var setMarkers = function () {
+    console.log(results.photos, 'inside setMarkers')
     NgMap.getMap().then(function (map) {
       results.map = map;
       results.map.markers = [];
