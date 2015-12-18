@@ -54,16 +54,27 @@
 .md-button.md-icon-button
   width 60px
 
-#toolbar
-  background-color rgba(0,0,0,0.26)
+#toolbar, .searchBG
+  background-color rgba(0,0,0,0.6)
 
 #searchLabel
-  size 10px
-  
-#cta
-  background-color rgba(0,0,0,0.15)
+  font-size 30px
 
-md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) .md-button
+.login-background
+  text-transform uppercase
+  align-items center
+  text-align center
+ 
+md-toolbar:not(.md-menu-toolbar), .md-button.md-raised:not([disabled])
+  background-color rgb(36, 46, 56)
+
+#cta
+  // background-color rgba(0,0,0,0.15)
+
+.search-text
+  line-height 55px
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar)
   color rgb(238, 239, 185)
 // Component styles are injected through grunt
 // injector
