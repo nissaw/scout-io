@@ -10,6 +10,13 @@
         <input ng-model="results.search.keywords"/>
       </md-input-container>
 
+    <label style="text-align:center">Search for Any or All Keywords?</label>
+    <md-input-container>
+      <md-switch ng-model="results.search.tag" aria-label="tag switch" ng-true-value="'any keywords'" ng-false-value="'all keywords'" class="md-warn">
+        {{ results.search.tag || 'all keywords' }}
+      </md-switch>
+    </md-input-container>
+
       <div layout="row">
         <md-checkbox ng-model="results.search.setting.indoor">
           Indoor

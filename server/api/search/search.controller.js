@@ -70,11 +70,12 @@ exports.tags = function(req, res) {
  
   var input = encodeURIComponent(req.params.query).replace(/'/g, "%27").replace(/%20/g, "+");
   var query = flickrURL + "&tags=" + input + flickrEnd;
-  var options = {
-    url: query
-  };
+  console.log(query);
+  // var options = {
+  //   url: query
+  // };
 
-  request(options, function (err, response, data) {
+  request(query, function (err, response, data) {
     if (err) {
       console.log(err);
     }
@@ -101,34 +102,34 @@ exports.searchCriteria = function (req, res) {
     var tags = encodeURIComponent(obj.keywords).replace(/'/g, "%27").replace(/%20/g, "+");
     query += "&tags=" + tags;
   }
+
+  //TODO ADD CHECK FOR ALL OR ANY TAGS
+
   // check for geo input
   if (obj.placeName){
     query+= "&lat=" + obj.lat + "&lon=" + obj.lon + "&radius=" + obj.radius + "&radius_units=mi"
   }
-  //check for startDate
+  //check for startDate // if it exists needs to be 10digit unix timestamp
   if (obj.startDate){
-    var startDate = Date.parse(obj.startDate);
-    // var startDate = encodeURIComponent(obj.startDate).replace(/'/g, "%27").replace(/%20/g, "+");
+    var startDate = Number((Date.parse(obj.startDate)).toString().slice(0,10));
     query+= "&min_taken_date=" + startDate
-    // &min_taken_date=Wed+Dec+02+2015+00%3A00%3A00+GMT-0800+%28PST%29
   }
-  //check for endDate
+  //check for endDate // if it exists needs to be 10digit unix timestamp
   if (obj.endDate){
-    // var endDate = encodeURIComponent(obj.endDate).replace(/'/g, "%27").replace(/%20/g, "+");
-    var endDate = Date.parse(obj.endDate);
+    var endDate = Number((Date.parse(obj.endDate)).toString().slice(0,10));
     query+= "&max_taken_date=" + endDate
   }
   // check for indoor/outdoor
-  if ( (obj.setting.outdoor && obj.setting.indoor) || (!obj.setting.outdoor && !obj.setting.indoor) ) {
-    obj.geo_context= 0;
-  }
-  else if (obj.setting.indoor){
-    obj.geo_context = 1;
-  }
-  else if (obj.setting.outdoor){
-    obj.geo_context = 2;
-  }
-  query+= "&geo_context=" + obj.geo_context;
+  // if ( (obj.setting.outdoor && obj.setting.indoor) || (!obj.setting.outdoor && !obj.setting.indoor) ) {
+  //   obj.geo_context= 0;
+  // }
+  // else if (obj.setting.indoor){
+  //   obj.geo_context = 1;
+  // }
+  // else if (obj.setting.outdoor){
+  //   obj.geo_context = 2;
+  // }
+  // query+= "&geo_context=" + obj.geo_context;
   query+= flickrEnd;
   
   var options = {

@@ -15,6 +15,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.search.radius = 5;
   results.search.startDate = '';
   results.search.endDate = '';
+  results.search.tag = 'all';
 
   results.name = "Scout IQ";
   results.map = null;
@@ -33,8 +34,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     Search.getByTagOnly(query)
       .then(function (response) {
 
-          // $rootScope.photos = [];
-          // results.photos = [];
+          $rootScope.photos = [];
+          results.photos = [];
           $rootScope.photos = response.data.photos.photo;
           results.photos = response.data.photos.photo;
           results.search.keywords = query;  //TODO: not setting form element text for some reason
@@ -45,6 +46,10 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.advancedSearch = function () {
     console.log(results.search, 'ResultsController');
+
+    $rootScope.photos = [];
+    results.photos = [];
+  
 
     //check for location input
     if (results.place) {
@@ -60,7 +65,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     
     Search.getAdvanced(results.search)
      .then(function (response) {
-       results.photos = response.data.photos.photo;
+      $rootScope.photos = response.data.photos.photo;
+      results.photos = response.data.photos.photo;
     
        setMarkers();
      })

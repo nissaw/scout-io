@@ -5,8 +5,8 @@ angular.module('ScoutIOApp')
 	return {
 		templateUrl: 'components/photos/photo.html',
 		restrict: 'E', 
-    controller: 'ResultsController',
-    controllerAs: 'results'
+    // controller: 'ResultsController',
+    // controllerAs: 'results'
 	}
 });
 
