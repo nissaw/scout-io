@@ -10,8 +10,7 @@ var flickrSearch = "flickr.photos.search";
 var flickrAPIKey = config.flickr.apiKey;
 
 var flickrURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + flickrAPIKey;
-var flickrEnd = "&tag_mode=all&has_geo=1&extras=geo%2Ctags%2C+date_taken%2Cpath_alias%2C+url_s%2C+url_m&format=json&nojsoncallback=1";
-// var flickrEnd = "&tag_mode=all&has_geo=1&extras=geo,tags,+date_taken,path_alias,+url_s,+url_m&format=json&nojsoncallback=1";
+var flickrEnd = "&has_geo=1&extras=geo%2Ctags%2C+date_taken%2Cpath_alias%2C+url_s%2C+url_m&format=json&nojsoncallback=1";
 
 // URL: https://api.flickr.com/services/rest/
 // ?method=flickr.photos.search
@@ -102,22 +101,27 @@ exports.searchCriteria = function (req, res) {
     var tags = encodeURIComponent(obj.keywords).replace(/'/g, "%27").replace(/%20/g, "+");
     query += "&tags=" + tags;
   }
-
-  //TODO ADD CHECK FOR ALL OR ANY TAGS
+  //check for any or all tags
+  if (obj.tag === "all keywords"){
+    query += "&tag_mode=all";
+  } 
+  if (obj.tag === "any keywords"){
+    query += "tag_mode=any";
+  }
 
   // check for geo input
   if (obj.placeName){
-    query+= "&lat=" + obj.lat + "&lon=" + obj.lon + "&radius=" + obj.radius + "&radius_units=mi"
+    query+= "&lat=" + obj.lat + "&lon=" + obj.lon + "&radius=" + obj.radius + "&radius_units=mi";
   }
   //check for startDate // if it exists needs to be 10digit unix timestamp
   if (obj.startDate){
     var startDate = Number((Date.parse(obj.startDate)).toString().slice(0,10));
-    query+= "&min_taken_date=" + startDate
+    query+= "&min_taken_date=" + startDate;
   }
   //check for endDate // if it exists needs to be 10digit unix timestamp
   if (obj.endDate){
     var endDate = Number((Date.parse(obj.endDate)).toString().slice(0,10));
-    query+= "&max_taken_date=" + endDate
+    query+= "&max_taken_date=" + endDate;
   }
   // check for indoor/outdoor
   // if ( (obj.setting.outdoor && obj.setting.indoor) || (!obj.setting.outdoor && !obj.setting.indoor) ) {
@@ -130,6 +134,15 @@ exports.searchCriteria = function (req, res) {
   //   obj.geo_context = 2;
   // }
   // query+= "&geo_context=" + obj.geo_context;
+
+  // limit to 100 per page
+  query+= "&per_page=" + 100;
+
+  // check for page requested
+  if (obj.pageRequested){
+    query+= "&page=" + Number(obj.pageRequested);
+  }
+
   query+= flickrEnd;
   
   var options = {

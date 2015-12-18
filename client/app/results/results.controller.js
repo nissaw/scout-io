@@ -15,7 +15,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.search.radius = 5;
   results.search.startDate = '';
   results.search.endDate = '';
-  results.search.tag = 'all';
+  results.search.tag = 'all keywords';
 
   results.name = "Scout IQ";
   results.map = null;
