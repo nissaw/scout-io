@@ -68,7 +68,7 @@ exports.tags = function(req, res) {
   console.log("in the tags func");
  
   var input = encodeURIComponent(req.params.query).replace(/'/g, "%27").replace(/%20/g, "+");
-  var query = flickrURL + "&tags=" + input + flickrEnd;
+  var query = flickrURL + "&tags=" + input + "&tag_mode=all" + flickrEnd;
   console.log(query);
   // var options = {
   //   url: query
