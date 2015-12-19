@@ -24,6 +24,9 @@
       <md-whiteframe class="md-whiteframe-4dp" id="comments-container" layout layout-align="center center">
         <span ng-hide="isSavedPhoto()"><ng-md-icon icon="comment" size="56"></ng-md-icon> Save this amazing photo to add comments!</span>
 
+
+
+
         <md-content class="photo-comments-private" ng-show="isSavedPhoto()">
           <div ng-repeat="comment in dialog.photo.comments">
             <p>{{comment.text}}{{comment.created_at}}{{comment.author}}</p>
