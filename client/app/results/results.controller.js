@@ -13,10 +13,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.search.setting = {};
   results.search.setting.indoor = false;
   results.search.setting.outdoor = false;
-  results.search.radius = 5;
+  results.search.radius = null;
   results.search.startDate = '';
   results.search.endDate = '';
   results.search.tag = 'all keywords';
+  results.showHide = 'Show Advanced Search';
+  results.advancedSearchOpen = false;
 
   results.name = "Scout IQ";
   results.map = null;
@@ -25,18 +27,14 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.$http = $http;
   results.$state = $state;
   results.photos = [];
-  results.photos = $rootScope.photos;
   // results.photos = Search.tagResults();
+  $rootScope.photos = [];
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
-    $('#photos').empty();
 
     Search.getByTagOnly(query)
       .then(function (response) {
-
-          $rootScope.photos = [];
-          results.photos = [];
           $rootScope.photos = response.data.photos.photo;
           results.photos = response.data.photos.photo;
           results.search.keywords = query;  //TODO: not setting form element text for some reason
@@ -45,26 +43,29 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   };
 
   results.advancedSearch = function (form) {
-    $rootScope.photos = [];
     results.photos = [];
+    $rootScope.photos = [];
+    $('#photos').empty();
 
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
       results.search.lat = results.search.geoCoordinates.location.lat();
       results.search.lon = results.search.geoCoordinates.location.lng();
-      results.search.radius = Number(results.search.radius) || 5;
     }
 
     if (!results.search.placeName) {
       results.search.geoCoordinates = null;
     }
 
+    if (results.search.radius === 0){
+      results.search.radius = null;
+    }
+
     Search.getAdvanced(results.search)
      .then(function (response) {
-      $rootScope.photos = response.data.photos.photo;
+      // $rootScope.photos = response.data.photos.photo;
       results.photos = response.data.photos.photo;
-
-       setMarkers();
+      setMarkers();
      })
 
   };
@@ -123,6 +124,16 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.placeChanged = function () {
     results.place = this.getPlace();
   };
+
+  results.toggleAdvancedSearchDiv = function (divStatus) {
+    results.advancedSearchOpen = results.advancedSearchOpen ? false : true;
+    if(!divStatus) {
+      results.showHide = 'Hide Advanced Search';
+    } else {
+      results.showHide = 'Show Advanced Search';
+    }
+  };
+
 }
 
 
