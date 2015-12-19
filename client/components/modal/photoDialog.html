@@ -11,12 +11,14 @@
 
   </md-toolbar>
 
-  <md-dialog-content layout="row" layout-align="center start">
+  <md-dialog-content class="photo-content" layout="row" layout-align="center start">
 
     <div id="div-photo" layout="column" layout-align="center start" flex="60">
       <img src={{dialog.photo.url_m}} width>
 
       <p id="date-taken">Date Taken: {{dialog.photo.datetaken}}</p>
+
+
 
       <!-- COMMENTS BOX -->
       <md-whiteframe class="md-whiteframe-4dp" id="comments-container" layout layout-align="center center">
@@ -47,6 +49,12 @@
 
       </md-whiteframe>
     </div>
+
+
+
+    <!--just trying to pump out changes to origin here to see if its working-->
+    <!--origin = {{dialog.origin}}-->
+
 
     <div id="div-info" layout-align="center start" flex="40">
       <div id="smallmapdiv">

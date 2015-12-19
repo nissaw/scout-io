@@ -6,18 +6,22 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var bounds;
 
   results.place;
-  results.search = {};
-  results.search.placeName;
-  results.search.keywords;
-  results.search.setting = {};
-  results.search.setting.indoor = false;
-  results.search.setting.outdoor = false;
-  results.search.radius = null;
-  results.search.startDate = '';
-  results.search.endDate = '';
-  results.search.tag = 'all keywords';
+
   results.showHide = 'Show Advanced Search';
   results.advancedSearchOpen = false;
+
+  results.search = {
+    placeName: '',
+    keywords: '',
+    setting: {
+      indoor: false,
+      outdoor: false   
+    },
+    radius: 5,
+    startDate: '',
+    endDate: '',
+    tag: 'all keywords'
+  };
 
   results.name = "Scout IQ";
   results.map = null;
@@ -26,6 +30,9 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.$http = $http;
   results.$state = $state;
   $rootScope.photos = [];
+
+  results.photos = $rootScope.photos;
+
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
@@ -40,18 +47,21 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   };
 
   results.advancedSearch = function () {
+  //clear any photos from previous searches
+    $rootScope.photos = [];
+    results.photos = [];
+
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
       results.search.lat = results.search.geoCoordinates.location.lat();
       results.search.lon = results.search.geoCoordinates.location.lng();
+      results.search.radius = results.search.radius || 5;
     } else {
       results.search.geoCoordinates = null;
     }
 
-    if (results.search.radius === 0){
-      results.search.radius = null;
-    }
-
+    
+    // call the factory function and assign the results onto the scope
     Search.getAdvanced(results.search)
      .then(function (response) {
        if (response.data.photos) {
