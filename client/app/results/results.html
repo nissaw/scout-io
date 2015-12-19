@@ -5,71 +5,63 @@
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
     <div class="search-components">
-      <md-input-container md-no-float class="md-block">
-        <label>Keywords</label>
-        <input ng-model="results.search.keywords"/>
-      </md-input-container>
+      <form ng-submit="results.advancedSearch(results.search)">
+        <md-input-container md-no-float class="md-block">
+          <label>Keywords</label>
+          <input ng-model="results.search.keywords"/>
+        </md-input-container>
 
-    <label style="text-align:center">Search for Any or All Keywords?</label>
-    <md-input-container>
-      <md-switch ng-model="results.search.tag" aria-label="tag switch" ng-true-value="'any keywords'" ng-false-value="'all keywords'" class="md-warn">
-        {{ results.search.tag }}
-      </md-switch>
-    </md-input-container>
-
-      <div layout="row">
-        <md-checkbox ng-model="results.search.setting.indoor">
-          Indoor
-        </md-checkbox>
-        <md-checkbox ng-model="results.search.setting.outdoor">
-          Outdoor
-        </md-checkbox>
-      </div>
-
-
-      <md-input-container md-no-float class="md-block">
-        <label>Search Location</label>
-        <input id="places-textbox"
-               places-auto-complete
-               ng-model="results.search.placeName"
-               on-place-changed="results.placeChanged()"
-        />
-      </md-input-container>
-
-      <div layout="row">
-        <div class="location" flex>
-          <md-input-container md-no-float class="md-block">
-            <label>Radius</label>
-            <md-select ng-model="results.search.radius">
-              <md-option>1</md-option>
-              <md-option>2</md-option>
-              <md-option>3</md-option>
-              <md-option>5</md-option>
-              <md-option>10</md-option>
-              <md-option>15</md-option>
-              <md-option>20</md-option>
-            </md-select>
-          </md-input-container>
+        <div layout="row">
+          <md-checkbox ng-model="results.search.setting.indoor">
+            Indoor
+          </md-checkbox>
+          <md-checkbox ng-model="results.search.setting.outdoor">
+            Outdoor
+          </md-checkbox>
         </div>
-      </div>
 
-      <!-- DATE RANGE to search for season-->
-      <div layout="row">
-        <div class="datepicker" flex>
-          <label>Start Date</label>
-          <md-datepicker class="datepickerBtn" ng-model="results.search.startDate"></md-datepicker>
+        <md-input-container md-no-float class="md-block">
+          <label>Search Location</label>
+          <input id="places-textbox"
+                 places-auto-complete
+                 ng-model="results.search.placeName"
+                 on-place-changed="results.placeChanged()"
+          />
+        </md-input-container>
+
+        <div layout="row">
+          <div class="location" flex>
+            <md-input-container md-no-float class="md-block">
+              <label>Radius</label>
+              <md-select ng-model="results.search.radius">
+                <md-option>1</md-option>
+                <md-option>2</md-option>
+                <md-option>3</md-option>
+                <md-option>5</md-option>
+                <md-option>10</md-option>
+                <md-option>15</md-option>
+                <md-option>20</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
         </div>
-        <div class="datepicker" flex>
-          <label>End Date</label>
-          <md-datepicker class="datepickerBtn" ng-model="results.search.endDate"></md-datepicker>
+
+        <!-- DATE RANGE to search for season-->
+        <div layout="row">
+          <div class="datepicker" flex>
+            <label>Start Date</label>
+            <md-datepicker class="datepickerBtn" ng-model="results.search.startDate"></md-datepicker>
+          </div>
+          <div class="datepicker" flex>
+            <label>End Date</label>
+            <md-datepicker class="datepickerBtn" ng-model="results.search.endDate"></md-datepicker>
+          </div>
         </div>
-      </div>
 
-      <div layout="row">
-        <md-button class="md-raised"  ng-click="results.advancedSearch()">Search</md-button>
-        <!-- <md-button class="md-raised"  ng-click="results.getByTagOnly(results.search.keywords)">Search</md-button> -->
-
-      </div>
+        <div layout="row">
+          <md-button class="md-raised" ng-click="results.advancedSearch(results.search)">Search</md-button>
+        </div>
+      </form>
     </div>
 
 
@@ -92,13 +84,14 @@
 
   <md-content flex id="map">
     <ng-map
+      id="resultsmap"
       style="display:block;height:calc(100vh - 64px)"
-      styles="{{results.mapStyle}}"
-      scrollwheel="true"
-      zoom-to-include-markers="true"
-      center="current-location"
-      geo-fallback-center="37.09024, -95.71289100000001">
+      styles="{{results.mapStyle}}">
     </ng-map>
+
+    <!--zoom-to-include-markers="true"-->
+    <!--center="current-location"-->
+    <!--geo-fallback-center="37.09024, -95.71289100000001"-->
 
   </md-content>
 

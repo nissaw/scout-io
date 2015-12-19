@@ -20,12 +20,12 @@
 }
 
 .navbar-text {
-	font-size: 16px;
+	font-size: 24px;
 	margin-left: 0px;
   width: 500px;
   text-align: right;
   margin-bottom: 8px;
-  margin-right: 8px;
+  margin-right: 50px;
 }
 
 .fa-camera-retro {
