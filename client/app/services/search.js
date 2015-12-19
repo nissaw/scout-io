@@ -5,18 +5,20 @@
 angular.module('ScoutIOApp')
   .factory('Search', function ($http) {
 
-
+    var tagResults;
     /*This is for a search done from the splash page or results page with tag input only
      Gets photos that match all tags supplied
      @param {string} tags  [user supplied comma deliniated tags] +tag_mode = all
      @return {array}       [array of photo objects]
      */
-    var getByTagOnly = function (query) { // alter string var tagArray = tags.split(" ")? how should it get passed to server?
+    var getByTagOnly = function (query) { 
       return $http({
         method: 'GET',
-        url: 'api/search/' + query
+        url: 'api/search/tag/' + query
       })
         .then(function (data) {
+          tagResults = data.data.photos.photo;
+          // console.log(tagResults);
           return data;
         })
     };
@@ -54,9 +56,14 @@ angular.module('ScoutIOApp')
      */
     var getAdvanced = function (searchCriteria) {
       console.log(searchCriteria);
+      searchCriteria = JSON.stringify(searchCriteria);
       return $http({
-        method: 'GET',
-        url: '/api/search/advancedSearch/' + searchCriteria
+        method: 'POST',
+        url: '/api/search/advancedSearch',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: searchCriteria
       })
         .then(function (data) {
           return data;
@@ -64,6 +71,7 @@ angular.module('ScoutIOApp')
     };
 
     return {
+      tagResults: function() { return tagResults; },
       getByTagOnly: getByTagOnly,
       getNearby: getNearby,
       getAdvanced: getAdvanced

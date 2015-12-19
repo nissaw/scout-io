@@ -1,6 +1,6 @@
 <navbar></navbar>
 
-<div class="mapContainer" layout="row" ng-controller="ResultsController as results">
+<div class="mapContainer" layout="row">
   <!-- SIDE NAVIGATION -->
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" id="results-sidebar-left" flex>
 
@@ -9,6 +9,13 @@
         <label>Keywords</label>
         <input ng-model="results.search.keywords"/>
       </md-input-container>
+
+    <label style="text-align:center">Search for Any or All Keywords?</label>
+    <md-input-container>
+      <md-switch ng-model="results.search.tag" aria-label="tag switch" ng-true-value="'any keywords'" ng-false-value="'all keywords'" class="md-warn">
+        {{ results.search.tag }}
+      </md-switch>
+    </md-input-container>
 
       <div layout="row">
         <md-checkbox ng-model="results.search.setting.indoor">
@@ -59,9 +66,12 @@
       </div>
 
       <div layout="row">
-        <md-button class="md-raised"  ng-click="results.advancedSearch(results.search)">Search</md-button>
+        <md-button class="md-raised"  ng-click="results.advancedSearch()">Search</md-button>
+        <!-- <md-button class="md-raised"  ng-click="results.getByTagOnly(results.search.keywords)">Search</md-button> -->
+
       </div>
     </div>
+
 
     <!-- RESULTS -->
     <!-- RENDERS PHOTOS FROM MAIN PAGE SEARCH -->
@@ -73,7 +83,10 @@
     </div>
 
     <!-- RENDERS PHOTOS FROM RESULTS PAGE SEARCH -->
-    <photo></photo>
+
+    <!--RESULTS-->
+
+   <!--  <photo></photo> -->
 
   </md-sidenav>
 

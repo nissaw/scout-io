@@ -12,7 +12,8 @@ angular.module('ScoutIOApp', [
   'ui.router',
   'validation.match',
   'ngMaterial',
-  'ngMap'
+  'ngMap',
+  'ngMdIcons'
   // 'SearchFactory'
 ])
   .config(function($mdThemingProvider) {

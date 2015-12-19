@@ -1,3 +1,6 @@
+// this is not currently in use - the splash page main.html uses results controller
+
+
 'use strict';
 
 

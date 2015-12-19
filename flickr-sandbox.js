@@ -1,3 +1,7 @@
+//advanced search minimizes dissapears on scroll down but immediatley appears instantly when scroll up
+// what feature would you add if this was due in one week?
+// map
+
 //   https://www.flickr.com/photo.gne?id=2293005459 url for photo based on id only
 
 
@@ -334,4 +338,19 @@ $(document).ready(function() {
 });
 
 
-
+///
+https://api.flickr.com/services/rest/
+?method=flickr.photos.search
+&api_key=blahblah
+&tags=mtwhitney%2C+sunrise
+&lat=36.6060444
+&lon=-118.06286540000002
+&radius=20
+&radius_units=mi
+&min_taken_date=1428994800000
+&geo_context=0
+&tag_mode=all
+&has_geo=1
+&extras=geo%2Ctags%2C+date_taken%2Cpath_alias%2C+url_s%2C+url_m
+&format=json
+&nojsoncallback=1
