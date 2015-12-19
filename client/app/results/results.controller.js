@@ -3,6 +3,7 @@ angular.module('ScoutIOApp')
 
 function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var results = this;
+  var bounds;
 
 
   results.place;
@@ -41,17 +42,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
           results.search.keywords = query;  //TODO: not setting form element text for some reason
           setMarkers();
       })
-    };
+  };
 
-
-  results.advancedSearch = function () {
-    console.log(results.search, 'ResultsController');
-
+  results.advancedSearch = function (form) {
     $rootScope.photos = [];
     results.photos = [];
-  
 
-    //check for location input
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
       results.search.lat = results.search.geoCoordinates.location.lat();
@@ -62,44 +58,61 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     if (!results.search.placeName) {
       results.search.geoCoordinates = null;
     }
-    
+
     Search.getAdvanced(results.search)
      .then(function (response) {
       $rootScope.photos = response.data.photos.photo;
       results.photos = response.data.photos.photo;
-    
+
        setMarkers();
      })
 
   };
 
   var setMarkers = function () {
-    console.log(results.photos, 'inside setMarkers')
-    NgMap.getMap().then(function (map) {
+    NgMap.getMap({id: 'resultsmap'}).then(function (map) {
       results.map = map;
+
+      if (results.map.markers) {
+        for (var i = 0; i < results.map.markers.length; i++) {
+          results.map.markers[i].setMap(null);
+        }
+      }
+
       results.map.markers = [];
-      var bounds = new google.maps.LatLngBounds ();
+      bounds = new google.maps.LatLngBounds();
+      //bounds.
+
+      console.log("bounds", bounds);
 
       for (var i = 0; i < results.photos.length; i++) {
         var myLatlng = new google.maps.LatLng(results.photos[i].latitude, results.photos[i].longitude);
-        var marker = new google.maps.Marker({
-          position: myLatlng
-        });
+        var marker = new google.maps.Marker({position: myLatlng});
+
+        //console.log(myLatlng.lat() + "  ," + myLatlng.lng() );
 
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
+        results.map.markers.push(marker);
         bounds.extend(myLatlng);
       }
 
+      //results.map.fitBounds(bounds);
+      results.map.setCenter(bounds.getCenter());
+      //google.maps.event.trigger(map, 'resize');
+
       results.map.fitBounds(bounds);
+      console.log("bounds", bounds);
     });
   };
 
-  results.toggleBounce = function() {
+  results.toggleBounce = function () {
     var marker = this;
 
     marker.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function(){ marker.setAnimation(null); }, 2100);
+    setTimeout(function () {
+      marker.setAnimation(null);
+    }, 2100);
   };
 
   results.showPhotoPin = function (evt, photoId) {
@@ -109,17 +122,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.placeChanged = function () {
     results.place = this.getPlace();
-
-    //results.advancedSearch();
-
-    //NgMap.getMap().then(function (map) {
-    //  results.map = map;
-    //  results.map.setCenter(results.place.geometry.location);
-    //  //results.map.setZoom(16);
-    //});
   };
-
-};
+}
 
 
 // photo.tag is a space separated string of tags so need to use .split(" ") to get a comma seperated array

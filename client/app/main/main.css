@@ -39,9 +39,9 @@
 	line-height: 55px;
 }
 
-#search-label {
-	vertical-align: middle;
-	text-align: center;
+.splash-search-label {
+  color:#FFA000;
+  margin-left: 20px;
 }
 
 .splash-input {
@@ -57,7 +57,7 @@
 
 .splash-content-text {
   padding: 0 60px 0 60px;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 
