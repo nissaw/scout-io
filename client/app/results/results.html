@@ -117,6 +117,8 @@
           <p class="thumbnail-description">{{photo.title}}</p>
           <img class="results-photo" src={{photo.url_s}}>
         </md-card>
+          <p>{{photo['title']}}</p>
+          <img src={{photo['url_s']}} ng-click="showDialog($event, photo)">
       </div>
     </div>
 
