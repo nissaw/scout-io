@@ -91,7 +91,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
       for (var i = 0; i < $rootScope.photos.length; i++) {
         var myLatlng = new google.maps.LatLng($rootScope.photos[i].latitude, $rootScope.photos[i].longitude);
-        var marker = new google.maps.Marker({position: myLatlng});
+        var marker = new google.maps.Marker({position: myLatlng, photoID: $rootScope.photos[i].id});
 
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
@@ -107,15 +107,25 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     });
   };
 
-  results.toggleBounce = function () {
-    var marker = this;
+  results.onMouseOver = function (e, img) {
+    var marks = results.map.markers;
+
+    marks.forEach(function(marker) {
+      if (marker.photoID === img.id) {
+        return results.toggleBounce(marker);
+      }
+    })
+  };
+
+  results.toggleBounce = function (mark) {
+    var marker = mark;
 
     marker.setAnimation(google.maps.Animation.BOUNCE);
     setTimeout(function () {
       marker.setAnimation(null);
-    }, 2100);
 
     $('#photos').animate({scrollTop:$('#photos')}, 'fast');
+    }, 2100);
   };
 
   results.showPhotoPin = function (evt, photoId) {

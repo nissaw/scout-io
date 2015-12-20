@@ -93,7 +93,7 @@
       <div class="thumbnail" ng-repeat="photo in $root.photos" photo="photo" flex>
         <md-card ng-click="showDialog($event, photo)">
           <p class="thumbnail-description">{{photo.title}}</p>
-          <img class="results-photo" src={{photo.url_s}}>
+          <img id="{{ 'photo' + $index }}" class="results-photo" src={{photo.url_s}} ng-click="showDialog($event, photo)" ng-mouseover="results.onMouseOver($event, photo)">
         </md-card>
       </div>
     </div>
