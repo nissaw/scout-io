@@ -184,4 +184,8 @@ p.thumbnail-description {
   margin: 20px;
 }
 
+img.results-photo {
+  cursor: pointer;
+}
+
 

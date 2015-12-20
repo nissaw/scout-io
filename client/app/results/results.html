@@ -68,13 +68,10 @@
     <!-- RENDERS PHOTOS FROM MAIN PAGE SEARCH -->
     <div id="photos" layout="column" layout-align="center" ng-controller="PhotoDialogCtrl" ng-cloak>
       <div class="thumbnail" ng-repeat="photo in $root.photos" photo="photo" flex>
-        <p>{{photo['title']}}</p>
-        <img src={{photo['url_s']}} ng-click="showDialog($event, photo)">
+        <p>{{photo.title}}</p>
+        <img class="results-photo" src={{photo.url_s}} ng-click="showDialog($event, photo)">
       </div>
     </div>
-
-    <!-- RENDERS PHOTOS FROM RESULTS PAGE SEARCH -->
-    <photo></photo>
 
   </md-sidenav>
 

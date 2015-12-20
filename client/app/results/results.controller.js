@@ -26,7 +26,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.$http = $http;
   results.$state = $state;
-  results.photos = [];
   // results.photos = Search.tagResults();
   $rootScope.photos = [];
 
@@ -36,16 +35,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     Search.getByTagOnly(query)
       .then(function (response) {
           $rootScope.photos = response.data.photos.photo;
-          results.photos = response.data.photos.photo;
           results.search.keywords = query;  //TODO: not setting form element text for some reason
           setMarkers();
       })
   };
 
   results.advancedSearch = function (form) {
-    results.photos = [];
-    $rootScope.photos = [];
-    $('#photos').empty();
 
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
@@ -63,8 +58,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getAdvanced(results.search)
      .then(function (response) {
-      // $rootScope.photos = response.data.photos.photo;
-      results.photos = response.data.photos.photo;
+      $rootScope.photos = response.data.photos.photo;
       setMarkers();
      })
 
@@ -86,8 +80,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
       console.log("bounds", bounds);
 
-      for (var i = 0; i < results.photos.length; i++) {
-        var myLatlng = new google.maps.LatLng(results.photos[i].latitude, results.photos[i].longitude);
+      for (var i = 0; i < $rootScope.photos.length; i++) {
+        var myLatlng = new google.maps.LatLng($rootScope.photos[i].latitude, $rootScope.photos[i].longitude);
         var marker = new google.maps.Marker({position: myLatlng});
 
         //console.log(myLatlng.lat() + "  ," + myLatlng.lng() );
@@ -117,7 +111,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   };
 
   results.showPhotoPin = function (evt, photoId) {
-    results.photo = results.photos[id];
+    results.photo = $rootScope.photos[id];
     results.map.showInfoWindow('photoInfo', this);
   };
 
