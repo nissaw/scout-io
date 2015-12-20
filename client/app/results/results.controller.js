@@ -36,6 +36,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       .then(function (response) {
           $rootScope.photos = response.data.photos.photo;
           results.search.keywords = query;  //TODO: not setting form element text for some reason
+
           setMarkers();
       })
   };
@@ -76,25 +77,23 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
       results.map.markers = [];
       bounds = new google.maps.LatLngBounds();
-      //bounds.
-
-      console.log("bounds", bounds);
 
       for (var i = 0; i < $rootScope.photos.length; i++) {
         var myLatlng = new google.maps.LatLng($rootScope.photos[i].latitude, $rootScope.photos[i].longitude);
         var marker = new google.maps.Marker({position: myLatlng});
 
-        //console.log(myLatlng.lat() + "  ," + myLatlng.lng() );
-
         marker.addListener('click', results.toggleBounce);
         marker.setMap(results.map);
         results.map.markers.push(marker);
-        bounds.extend(myLatlng);
+
+        console.log(results.photos[i].latitude > -68, results.photos[i].latitude);
+
+        if (results.photos[i].latitude > -68) {
+          bounds.extend(myLatlng);
+        }
       }
 
-      //results.map.fitBounds(bounds);
       results.map.setCenter(bounds.getCenter());
-      //google.maps.event.trigger(map, 'resize');
 
       results.map.fitBounds(bounds);
       console.log("bounds", bounds);

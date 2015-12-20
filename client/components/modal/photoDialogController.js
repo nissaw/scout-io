@@ -18,6 +18,7 @@ angular.module('ScoutIOApp')
   .controller('PhotoDialogCtrl', ['$mdDialog', '$scope', '$rootScope', '$state', function ($mdDialog, $rootScope, $scope, $state, NgMap) {
     $scope.showDialog = function (e, photo) {
       $scope.photo = photo;
+      $scope.photo.datetaken = new Date($scope.photo.datetaken).toLocaleString();
       $scope.photoDialogFlexWidth = "80";
       $scope.origin = '';
       //$rootScope.origin = "";
@@ -45,7 +46,6 @@ angular.module('ScoutIOApp')
           photoDialogFlexWidth: $scope.photoDialogFlexWidth,
           placeChanged: $scope.placeChanged,
           origin: $scope.origin
-          //origin: $rootScope.origin
         },
         controller: DialogController,
         controllerAs: 'dialog',

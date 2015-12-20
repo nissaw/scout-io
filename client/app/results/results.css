@@ -150,7 +150,7 @@ md-datepicker {
 }
 
 
-.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, 
+.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,
 .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
     background: rgb(33,150,243);
     color: rgb(255,255,255);
@@ -176,6 +176,7 @@ md-datepicker {
 
 div.thumbnail {
   text-align: center;
+  margin: 20px;
 }
 
 p.thumbnail-description {
@@ -187,5 +188,4 @@ p.thumbnail-description {
 img.results-photo {
   cursor: pointer;
 }
-
 
