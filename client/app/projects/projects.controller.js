@@ -1,10 +1,12 @@
 angular.module('ScoutIOApp')
     .controller('ProjectsController', ProjectsController);
 
-function ProjectsController($log, $http, $timeout) {
+
+function ProjectsController($log, $http, $timeout, $scope) {
     var vm = this;
 
     var newId = 1;
+    var folderId = 1;
     vm.ignoreChanges = false;
     vm.newNode = {};
     vm.originalData = [{
@@ -54,7 +56,7 @@ function ProjectsController($log, $http, $timeout) {
                 icon: 'glyphicon glyphicon-flash'
             },
             star: {
-                icon: 'glyphicon glyphicon-star'
+                icon: 'glyphicon glyphicon-cloud'
             },
             cloud: {
                 icon: 'glyphicon glyphicon-cloud'
@@ -83,23 +85,40 @@ function ProjectsController($log, $http, $timeout) {
 
     vm.getProjects = function() {
         $http.get('/api/projects/').then(function(response) {
-
-            //comes back as an array of object
-            //need to use append project's name as an object's text key
-            response.data.forEach(project => {
-                console.log(project, 'project name');
-                vm.treeData.push({
-                    id: (newId++).toString(),
-                    parent: '#',
-                    state: {
-                        opened: true
-                    },
-                    text: project.name
+                //comes back as an array of object
+                //need to use append project's name as an object's text key
+                response.data.forEach(project => {
+                    // console.log(project, 'project name');
+                    vm.treeData.push({
+                        id: (newId++).toString(),
+                        parent: '#',
+                        state: {
+                            opened: true
+                        },
+                        text: project.name
+                    });
                 });
-                console.log(vm.treeData);
-            });
-            vm.originalData = vm.treeData;
-        });
+                //then pull folders
+            })
+            .then($http.get('/api/folders/').then(function(response) {
+
+                response.data.forEach(folder => {
+                    console.log(folder, 'folder name');
+                    vm.treeData.push({
+                        id: (newId++).toString(),
+                        parent: folder.FolderId || folder.ProjectId || '#',
+                        state: {
+                            opened: true
+                        },
+                        text: folder.name
+                    });
+
+                });
+                vm.originalData = vm.treeData; 
+                return console.log(vm.treeData);
+                
+                //folder.FolderId || folder.ProjectId || 
+            }));
     };
 
     vm.addNewNode = function() {
