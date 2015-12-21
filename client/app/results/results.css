@@ -192,3 +192,8 @@ p.thumbnail-description {
 img.results-photo {
   cursor: pointer;
 }
+
+img.hovered {
+  border-style: solid;
+  border-color: lightblue;
+}

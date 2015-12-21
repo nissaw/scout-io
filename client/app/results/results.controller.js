@@ -109,12 +109,20 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.onMouseOver = function (e, img) {
     var marks = results.map.markers;
+    var el = e.target;
 
     marks.forEach(function(marker) {
       if (marker.photoID === img.id) {
-        return results.toggleBounce(marker);
+        el.classList.add("hovered");
+        results.toggleBounce(marker);
+        return;
       }
     })
+  };
+
+  results.onMouseLeave = function (e, img) {
+    var el = e.target;
+    el.className = "results-photo";
   };
 
   results.toggleBounce = function (mark) {
@@ -150,4 +158,13 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       results.showHide = 'Show Advanced Search';
     }
   };
+
+  results.minDate = function () {
+
+  };
+
+  results.maxDate = function () {
+
+  };
+
 }
