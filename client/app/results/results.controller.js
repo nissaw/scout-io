@@ -162,4 +162,5 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       results.showHide = 'Show Advanced Search';
     }
   };
-}
+
+};
