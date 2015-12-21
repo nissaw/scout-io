@@ -80,6 +80,7 @@ exports.geo = function (req, res) {
       console.log(err);
     }
     res.send(data);
+  });
 };
 
 // Gets photos that match all passed params / all params optional
