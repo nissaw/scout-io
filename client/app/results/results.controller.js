@@ -23,8 +23,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     tag: 'all keywords'
   };
 
-  results.photos = [];
-  results.photos = $rootScope.photos;
 
   results.query = Search.getLastQuery();
   results.name = "Scout IQ";
@@ -33,8 +31,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.$http = $http;
   results.$state = $state;
+ 
   $rootScope.photos = [];
-
   results.photos = $rootScope.photos;
 
  
@@ -42,8 +40,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
-    results.search.keywords = query;  //TODO: not setting form element text for some reason
-
+  //clear any photos from previous searches
     $rootScope.photos = [];
     results.photos = [];
 
@@ -78,17 +75,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     // call the factory function and get the result back
     Search.getAdvanced(results.search)
      .then(function (response) {
-       if (response.data.photos) {
+       // if (response.data.photos) {
          $rootScope.photos = response.data.photos.photo;
-       } else {
-         response.data.photos.photo = [];
-       }
-        setMarkers();
+         results.photos = response.data.photos.photo;
+       // } else {
+       //   response.data.photos.photo = [];
 
-
-
-      $rootScope.photos = response.data.photos.photo;
-      results.photos = response.data.photos.photo;
 
           // results.photos = Search.getPhotoResults();
           results.query = Search.getLastQuery();
