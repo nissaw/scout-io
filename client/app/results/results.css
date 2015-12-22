@@ -22,6 +22,15 @@ input#radius {
 	margin-left: 15px;
 }
 
+#radius-label {
+  margin-left: 4px;
+}
+
+md-slider {
+  margin-left: 15px;
+  margin-right: 23px;
+}
+
 #places-textbox::-webkit-input-placeholder { color:transparent; }
 #places-textbox:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
 #places-textbox:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
@@ -46,6 +55,18 @@ md-checkbox {
     line-height: 26px;
     min-width: 18px;
     min-height: 18px;
+}
+
+md-input-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 2px;
+    padding-bottom: 15px;
 }
 
 /*=========================================
@@ -120,6 +141,12 @@ md-datepicker {
     transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+#show-advanced-button {
+  color: rgb(255,179,0);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
 /*=========================================
             CALENDAR STYLES
 =========================================*/
@@ -129,7 +156,7 @@ md-datepicker {
 }
 
 
-.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, 
+.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,
 .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
     background: rgb(33,150,243);
     color: rgb(255,255,255);
@@ -155,12 +182,14 @@ md-datepicker {
 
 div.thumbnail {
   text-align: center;
+  margin: 0 10px 0 10px;
 }
 
 p.thumbnail-description {
-  text-align: left;
-  font-size: 12px;
-  margin: 20px;
+  margin: 10px;
 }
 
+img.results-photo {
+  cursor: pointer;
+}
 
