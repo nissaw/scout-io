@@ -13,7 +13,7 @@ angular.module('ScoutIOApp')
      @param {string} tags  [user supplied comma deliniated tags] +tag_mode = all
      @return {array}       [array of photo objects]
      */
-    var getByTagOnly = function (query) { 
+    var getByTagOnly = function (query) {
       lastQuery = query;
       return $http({
         method: 'GET',
