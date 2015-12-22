@@ -5,21 +5,19 @@
 angular.module('ScoutIOApp')
   .factory('Search', function ($http) {
 
-    var lastQuery = '';
-    var photoResults;
+    var tagResults;
     /*This is for a search done from the splash page or results page with tag input only
      Gets photos that match all tags supplied
      @param {string} tags  [user supplied comma deliniated tags] +tag_mode = all
      @return {array}       [array of photo objects]
      */
     var getByTagOnly = function (query) { 
-      lastQuery = query;
       return $http({
         method: 'GET',
         url: 'api/search/tag/' + query
       })
         .then(function (data) {
-          photoResults = data.data.photos.photo;
+          tagResults = data.data.photos.photo;
           // console.log(tagResults);
           return data;
         })
@@ -58,7 +56,6 @@ angular.module('ScoutIOApp')
      */
     var getAdvanced = function (searchCriteria) {
       console.log(searchCriteria);
-      lastQuery = searchCriteria.keywords;
       searchCriteria = JSON.stringify(searchCriteria);
       return $http({
         method: 'POST',
@@ -69,14 +66,12 @@ angular.module('ScoutIOApp')
         data: searchCriteria
       })
         .then(function (data) {
-          photoResults = data.data.photos.photo;
           return data;
         })
     };
 
     return {
-      getLastQuery: function() { return lastQuery; },
-      getPhotoResults: function() { return photoResults; },
+      tagResults: function() { return tagResults; },
       getByTagOnly: getByTagOnly,
       getNearby: getNearby,
       getAdvanced: getAdvanced
