@@ -29,7 +29,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   $rootScope.photos = [];
 
  
-  results.query = Search.getLastQuery(); 
+  results.query = '';
 
 
   results.getByTagOnly = function (query) {
