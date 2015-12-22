@@ -1,4 +1,5 @@
-
+angular.module('ScoutIOApp')
+  .controller('SaveDialogController', function(Auth, Save){
 //this is controller for the saveDialog 
 
 function DialogController($scope, $mdDialog) {
