@@ -1,0 +1,26 @@
+<!-- this is the template for the save photo dialog box -->
+<md-dialog ng-cloak>
+  <form>
+    <div layout="column" layout-align="center center">
+    <p>Start typing to search for a folder or create a new one</p> 
+    <!-- TO DO HOW CAN YOU SEE WHAT FOLDERS ARE AVAILABLE UNDER A PROJECT? CAN find children?-->
+      <md-select placeholder="Save to folder" ng-model="save.folder" md-on-open="loadFolders()">
+<!--         <md-option ng-value="save.create()"><input type="text" ng-model="save.folder.name" placeholder="Create New Folder"/></md-option> TO DO: HOW DO YOU SPECIFIY WHERE TO CREATE A NEW FOLDER-->
+        <md-option ng-value="save.folder" ng-repeat="folder in save.userFolders">{{folder.path}}</md-option>
+      </md-select>
+    <p class="md-caption">You are saving this photo to : {{save.folder ? save.folder.path : 'No place yet!' }}</p>
+    </div>
+  </form>
+</md-dialog>
+
+
+
+<!-- <div ng-controller="SelectAsyncController" layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+  <p>Select can call an arbitrary function on show. If this function returns a promise, it will display a loading indicator while it is being resolved:</p>
+  <div layout="column" layout-align="center center" style="height: 100px;">
+    <md-select placeholder="Assign to user" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
+      <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+    </md-select>
+    <p class="md-caption">You have assigned the task to: {{ user ? user.name : 'No one yet' }}</p>
+  </div>
+</div> -->

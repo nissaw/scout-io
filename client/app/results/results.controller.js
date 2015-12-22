@@ -6,60 +6,87 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var bounds;
 
   results.place;
-  results.search = {};
-  results.search.placeName;
-  results.search.keywords;
-  results.search.setting = {};
-  results.search.setting.indoor = false;
-  results.search.setting.outdoor = false;
-  results.search.radius = null;
-  results.search.startDate = '';
-  results.search.endDate = '';
-  results.search.tag = 'all keywords';
+
   results.showHide = 'Show Advanced Search';
   results.advancedSearchOpen = false;
 
+  results.search = {
+    placeName: '',
+    keywords: '',
+    setting: {
+      indoor: false,
+      outdoor: false   
+    },
+    radius: 5,
+    startDate: '',
+    endDate: '',
+    tag: 'all keywords'
+  };
+
+
+  results.query = Search.getLastQuery();
   results.name = "Scout IQ";
   results.map = null;
   results.mapStyle = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}];
 
   results.$http = $http;
   results.$state = $state;
+ 
   $rootScope.photos = [];
+  results.photos = $rootScope.photos;
+
+ 
+
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
-    results.search.keywords = query;  //TODO: not setting form element text for some reason
+  //clear any photos from previous searches
+    $rootScope.photos = [];
+    results.photos = [];
 
     Search.getByTagOnly(query)
       .then(function (response) {
           $rootScope.photos = response.data.photos.photo;
+          results.photos = response.data.photos.photo;
 
+          // results.photos = Search.getPhotoResults();
+          results.query = Search.getLastQuery();
           setMarkers();
       })
   };
 
   results.advancedSearch = function () {
+  //clear any photos from previous searches
+    $rootScope.photos = [];
+    results.photos = [];
+
+
+    //check for location input
     if (results.place) {
       results.search.geoCoordinates = results.place.geometry;
       results.search.lat = results.search.geoCoordinates.location.lat();
       results.search.lon = results.search.geoCoordinates.location.lng();
+      results.search.radius = results.search.radius || 5;
     } else {
       results.search.geoCoordinates = null;
     }
 
-    if (results.search.radius === 0){
-      results.search.radius = null;
-    }
-
+    
+    // call the factory function and get the result back
     Search.getAdvanced(results.search)
      .then(function (response) {
-       if (response.data.photos) {
+       // if (response.data.photos) {
          $rootScope.photos = response.data.photos.photo;
-       } else {
-         response.data.photos.photo = [];
-       }
-        setMarkers();
+         results.photos = response.data.photos.photo;
+       // } else {
+       //   response.data.photos.photo = [];
+
+
+          // results.photos = Search.getPhotoResults();
+          results.query = Search.getLastQuery();
+
+
+       setMarkers();
      })
   };
 
@@ -127,4 +154,5 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       results.showHide = 'Show Advanced Search';
     }
   };
-}
+
+};
