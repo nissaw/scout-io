@@ -21,6 +21,8 @@
             </a>
           </div>
 
+
+
           <div id="advanced-search" ng-show="results.advancedSearchOpen">
             <label id="any-all-label">Search for Any or All Keywords:</label>
 
@@ -35,6 +37,11 @@
                 <md-tooltip md-direction="bottom">Photos must contain at least one matching keyword</md-tooltip>
               </h5>
             </div>
+
+      <!-- <form ng-submit="results.advancedSearch(results.search)"> -->
+
+
+
 
             <div layout="row">
               <md-checkbox ng-model="results.search.setting.indoor">
@@ -83,7 +90,7 @@
           <div layout="row" layout-align="center center">
             <md-button class="md-raised md-primary">Search</md-button>
           </div>
-        </form>
+        <!-- </form> -->
       </md-card>
     </div>
 
