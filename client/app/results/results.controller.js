@@ -12,14 +12,14 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     keywords: '',
     setting: {
       indoor: false,
-      outdoor: false   
+      outdoor: false
     },
     radius: 5,
     startDate: '',
     endDate: '',
     tag: 'all keywords'
   };
- 
+
   results.name = "Scout IQ";
   results.map = null;
   results.mapStyle = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}];
@@ -28,7 +28,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.$state = $state;
   $rootScope.photos = [];
 
- 
+
   results.query = '';
 
 
@@ -37,12 +37,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getByTagOnly(query)
       .then(function (response) {
-          $rootScope.photos = response.data.photos.photo;
+        $rootScope.photos = response.data.photos.photo;
 
-          // results.photos = response.data.photos.photo;
-          // results.photos = Search.getPhotoResults();
-          results.query = Search.getLastQuery();
-          setMarkers();
+        // results.photos = response.data.photos.photo;
+        // results.photos = Search.getPhotoResults();
+        results.query = Search.getLastQuery();
+        setMarkers();
       })
   };
 
@@ -59,16 +59,16 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       results.search.radius = 2;
     }
 
-    
+
     // call the factory function and get the result back
     Search.getAdvanced(results.search)
       .then(function (response) {
-       if (response.data.photos) {
-         $rootScope.photos = response.data.photos.photo;
-         // results.photos = response.data.photos.photo;
-       } else {
-         response.data.photos.photo = [];
-       }
+        if (response.data.photos) {
+          $rootScope.photos = response.data.photos.photo;
+          // results.photos = response.data.photos.photo;
+        } else {
+          response.data.photos.photo = [];
+        }
         // results.photos = Search.getPhotoResults();
         results.query = Search.getLastQuery();
 
