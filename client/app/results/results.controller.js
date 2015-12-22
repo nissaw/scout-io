@@ -4,6 +4,7 @@ angular.module('ScoutIOApp')
 function ResultsController($state, $http, NgMap, Search, $rootScope) {
   var results = this;
 
+
   results.search = {
     placeName: '',
     keywords: '',
@@ -33,6 +34,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     results.currentDate.getMonth(),
     results.currentDate.getDate());
   results.minDate = results.search.startDate;
+
+
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
