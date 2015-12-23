@@ -30,6 +30,13 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.query = '';
 
+  results.currentDate = new Date();
+  results.maxDate = new Date(
+    results.currentDate.getFullYear(),
+    results.currentDate.getMonth(),
+    results.currentDate.getDate());
+
+  results.minDate = results.search.startDate;
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
@@ -107,17 +114,18 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   };
 
   results.onMouseOver = function (e, img) {
-    console.log("INSIDE ON MOUSEOVER: ", results.map.markers);
     var marks = results.map.markers;
-    var el = e.target;
 
     marks.forEach(function(marker) {
       if (marker.photoID === img.id) {
-        el.classList.add("hovered");
-        results.toggleBounce(marker);
-        return;
+        return results.toggleBounce(marker);
       }
     })
+  };
+
+  results.onMouseEnter = function (e) {
+    var el = e.target;
+    el.classList.add("hovered");
   };
 
   results.onMouseLeave = function (e, img) {
@@ -158,5 +166,4 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       results.showHide = 'Show Advanced Search';
     }
   };
-
 }
