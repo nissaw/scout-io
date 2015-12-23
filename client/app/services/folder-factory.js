@@ -6,7 +6,13 @@ angular.module('ScoutIOApp')
     var folderPaths = [];
     var projects = [];
 
-
+var buildPaths = function(array){
+  var paths = [];
+  _.each(array, function(folder){
+    // get parent of folder recursively concat onto current path
+  })
+  return paths;
+};
 
 //GET ALL USER FOLDERS
 // gets all projects then all folders from each project
@@ -44,7 +50,7 @@ angular.module('ScoutIOApp')
         });
     };
 
-//GET FOLDER LINKS
+//GET ALL FOLDER LINKS
     var getFolderLinks = function(folder) {
       return $http({
         method: 'GET',
@@ -58,7 +64,7 @@ angular.module('ScoutIOApp')
           console.log(error, "in catch: folder-factory")
         });
     };
-//GET FOLDER ASSETS
+//GET ALL FOLDER ASSETS
     var getFolderAssets = function(folder) {
       return $http({
         method: 'GET',
@@ -127,6 +133,7 @@ angular.module('ScoutIOApp')
 
 
     return {
+      buildPaths: buildPaths,
       getFolders: function(){return folders;},
       getFolderPaths: function(){return folderPaths;},
       getProjects: function(){return projects;},
