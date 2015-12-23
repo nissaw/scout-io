@@ -45,6 +45,7 @@
   <link rel="stylesheet" href="components/comments/comments.css">
   <link rel="stylesheet" href="components/modal/photoDialog.css">
   <link rel="stylesheet" href="components/navbar/navbar.css">
+  <link rel="stylesheet" href="components/save-dialog/save-dialog.css">
   <!-- endinjector -->
   <!-- endbuild -->
 </head>
@@ -104,10 +105,10 @@
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
+      <script src="app/admin/admin.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/auth/auth.service.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -119,11 +120,14 @@
       <script src="app/projects/projects2.controller.js"></script>
       <script src="app/results/results.controller.js"></script>
       <script src="app/results/results.js"></script>
+      <script src="app/services/asset-factory.js"></script>
       <script src="app/services/comment-factory.js"></script>
+      <script src="app/services/folder-factory.js"></script>
       <script src="app/services/link-factory.js"></script>
+      <script src="app/services/project-factory.js"></script>
       <script src="app/services/search-factory.js"></script>
-      <script src="app/account/settings/settings.controller.js"></script>
       <script src="app/account/login/login.controller.js"></script>
+      <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/auth2.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
@@ -141,7 +145,7 @@
       <script src="components/save-dialog/save-dialog.directive.js"></script>
       <script src="components/save-dialog/save-dialogController.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/account/settings/settings.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->

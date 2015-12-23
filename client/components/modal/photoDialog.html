@@ -13,10 +13,16 @@
             <p id="date-taken">Date Taken: {{dialog.photo.datetaken}}</p>
             <!-- COMMENTS BOX -->
 
+
+            <!-- TO REMOVE BELOW WHEN DIRECTIVE IS READY -->
+
             <md-whiteframe class="md-whiteframe-4dp" id="comments-container" layout layout-align="center center">
                 <!-- ng-controller="CommentsController as comment"> -->
                 <span ng-hide="comment.isSavedPhoto()"><ng-md-icon icon="comment" size="56"></ng-md-icon> Save this amazing photo to add comments!</span>
             </md-whiteframe>
+            <!-- TO REMOVE ABOVE WHEN DIRECTIVE IS READY -->
+
+
             <!-- <comment-box>FORTHCOMING</comment-box> -->
         </div>
         <div id="div-info" layout-align="center start" flex="40">
@@ -40,7 +46,7 @@
                 <label>Direction From</label>
                 <input id="photo-dialog-places-textbox" places-auto-complete on-place-changed="dialog.placeChanged()" />
             </md-input-container>
-            <md-button id="save-btn" class="md-primary md-raised">
+            <md-button id="save-btn" class="md-primary md-raised" ng-click="showSave($event)">
                 Save
             </md-button>
         </div>
