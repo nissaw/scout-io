@@ -6,11 +6,21 @@ angular.module('ScoutIOApp')
     var folderPaths = [];
     var projects = [];
 
-
+// experimental function to build an array of paths to iterate through in a dropdown menu for saving locations
 var buildPaths = function(array){
   var paths = [];
   _.each(array, function(folder){
-    // get parent of folder recursively concat onto current path
+    var currentPath = '';
+    var sub = function(folder){
+      if (folder.parent_id === null){
+        paths.push(currentPath)
+        return;
+      } else { // get parent of folder recursively and concat onto current path string seperated by '/'
+        currentPath = folder.name + '/' + currentPath
+        sub(getFolderById(folder.parent_id))
+      }
+    };
+
   })
   return paths;
 };
