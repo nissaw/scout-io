@@ -8,19 +8,29 @@ angular.module('ScoutIOApp')
     // DELETE A COMMENT
 
     // GET ALL OF A USERS COMMENTS
-    var getAllComments = function(){};
+    var getAllComments = function(user){
+
+    };
 
     // GET A COMMENT BY ID
-    var getCommentById = function(){};
+    var getCommentById = function(comment){
+
+    };
 
     // SAVE A COMMENT
-    var saveComment = function(){};
+    var saveComment = function(comment){
+
+    };
 
     // EDIT A COMMENT
-    var editComment = function(){};
+    var editComment = function(comment){
+
+    };
 
     // DELETE A COMMENT
-    var deleteComment = function(){};
+    var deleteComment = function(comment){
+      
+    };
 
     return {
       getAllComments: getAllComments,
