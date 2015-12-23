@@ -72,11 +72,11 @@
             <div layout="row">
               <div class="datepicker md-accent" flex>
                 <label>Start Date</label>
-                <md-datepicker class="datepickerBtn md-accent" ng-model="results.search.startDate"></md-datepicker>
+                <md-datepicker class="datepickerBtn md-accent" md-max-date="results.maxDate" ng-model="results.search.startDate"></md-datepicker>
               </div>
               <div class="datepicker md-accent" flex>
                 <label>End Date</label>
-                <md-datepicker class="datepickerBtn md-accent" ng-model="results.search.endDate"></md-datepicker>
+                <md-datepicker class="datepickerBtn md-accent" md-min-date="results.search.startDate" md-max-date="results.maxDate" ng-model="results.search.endDate"></md-datepicker>
               </div>
             </div>
           </div>
@@ -91,12 +91,12 @@
     <!-- RESULTS -->
     <div id="photos" layout="column" layout-align="center" ng-controller="PhotoDialogCtrl" ng-cloak>
       <div class="thumbnail" ng-repeat="photo in $root.photos" photo="photo" flex>
-        <md-card ng-click="showDialog($event, photo)">
+        <md-card class="results-photo" ng-click="showDialog($event, photo)" ng-mouseenter="results.onMouseEnter($event)" ng-mouseleave="results.onMouseLeave($event, photo)" flex>
           <p class="thumbnail-description">{{photo.title}}</p>
-          <img class="results-photo" src={{photo.url_s}}>
+          <img ng-mouseover="results.onMouseOver($event, photo)" src={{photo.url_s}}>
         </md-card>
       </div>
-    </div>
+    </div> 
 
   </md-sidenav>
 

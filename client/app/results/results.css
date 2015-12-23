@@ -189,6 +189,19 @@ p.thumbnail-description {
   margin: 10px;
 }
 
-img.results-photo {
+md-card.results-photo {
   cursor: pointer;
 }
+
+md-card.hovered {
+  border-style: solid;
+  border-color: lightblue;
+}
+
+md-card img {
+  align-self: center;
+  width: 90%;
+  height: 90%;
+  margin-bottom: 15px;
+}
+
