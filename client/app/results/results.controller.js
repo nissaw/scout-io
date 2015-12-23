@@ -30,6 +30,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.query = '';
 
+
   results.currentDate = new Date();
   results.maxDate = new Date(
     results.currentDate.getFullYear(),
