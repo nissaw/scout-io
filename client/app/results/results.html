@@ -91,9 +91,9 @@
     <!-- RESULTS -->
     <div id="photos" layout="column" layout-align="center" ng-controller="PhotoDialogCtrl" ng-cloak>
       <div class="thumbnail" ng-repeat="photo in $root.photos" photo="photo" flex>
-        <md-card ng-click="showDialog($event, photo)">
+        <md-card class="results-photo" ng-click="showDialog($event, photo)" ng-mouseover="results.onMouseOver($event, photo)" ng-mouseleave="results.onMouseLeave($event, photo)" flex>
           <p class="thumbnail-description">{{photo.title}}</p>
-          <img id="{{ 'photo' + $index }}" class="results-photo" src={{photo.url_s}} ng-click="showDialog($event, photo)" ng-mouseover="results.onMouseOver($event, photo)" ng-mouseleave="results.onMouseLeave($event, photo)">
+          <img src={{photo.url_s}}>
         </md-card>
       </div>
     </div>

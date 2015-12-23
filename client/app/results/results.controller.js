@@ -28,7 +28,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.$state = $state;
   $rootScope.photos = [];
 
-
   results.query = '';
 
 
@@ -108,6 +107,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   };
 
   results.onMouseOver = function (e, img) {
+    console.log("INSIDE ON MOUSEOVER: ", results.map.markers);
     var marks = results.map.markers;
     var el = e.target;
 
@@ -157,14 +157,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     } else {
       results.showHide = 'Show Advanced Search';
     }
-  };
-
-  results.minDate = function () {
-
-  };
-
-  results.maxDate = function () {
-
   };
 
 }
