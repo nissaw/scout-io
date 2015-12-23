@@ -17,7 +17,7 @@ angular.module('ScoutIOApp')
            });
       };
 
-      // GET A ASSET BY ID
+      // GET AN ASSET BY ID
       var getAssetById = function(asset){
          return $http({
            method: 'GET',
@@ -32,7 +32,7 @@ angular.module('ScoutIOApp')
            });
       };
 
-      //GET ALL COMMENTS FOR A ASSET
+      //GET ALL COMMENTS FOR AN ASSET
       var getAssetComments = function(asset){
          return $http({
            method: 'GET',
@@ -47,7 +47,7 @@ angular.module('ScoutIOApp')
            });
       };
 
-      // SAVE A ASSET
+      // SAVE AN ASSET
       var saveAsset = function(asset){
          return $http({
            method: 'POST',
@@ -64,7 +64,7 @@ angular.module('ScoutIOApp')
            });
       };
 
-      // EDIT A ASSET 
+      // EDIT AN ASSET 
       var editAsset = function(asset){
          return $http({
            method: 'PUT',
@@ -81,7 +81,7 @@ angular.module('ScoutIOApp')
            });
       };
 
-      // DELETE A ASSET
+      // DELETE AN ASSET
       var deleteAsset = function(asset){
          return $http({
            method: 'DELETE',
@@ -104,29 +104,4 @@ angular.module('ScoutIOApp')
          editAsset: editAsset,
          deleteAsset: deleteAsset
       };
-  
    });
-
-
-
-   // get all users assets
-     assetUser() {
-       this.Http.get('/api/assets/1/user')
-         .then((user) => {
-           console.log(user.data);
-         })
-         .catch(() => {
-           console.log("in catch")
-         });
-     }
-
-   // get an assetts comments
-     assetComments() {
-       this.Http.get('/api/assets/1/comments')
-         .then((comments) => {
-           console.log(comments.data);
-         })
-         .catch(() => {
-           console.log("in catch")
-         });
-     }
