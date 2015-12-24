@@ -46,7 +46,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
 
 
   }])
-  .controller('LoginInstanceCtrl', ['$scope', '$rootScope', '$window', '$mdUtil', '$mdBottomSheet', 'Auth', function($scope, $rootScope, $window, $mdUtil, $mdBottomSheet, Auth) {
+  .controller('LoginInstanceCtrl', ['$scope', '$rootScope', '$window', '$mdUtil', '$mdBottomSheet', '$mdDialog', 'Auth', function($scope, $rootScope, $window, $mdUtil, $mdBottomSheet, $mdDialog, Auth) {
 
     $scope.user = {};
     $scope.showLogin = true;
@@ -63,6 +63,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
         password: $scope.user.password
       })
         .then(function(resp) {
+          $mdDialog.hide();
           if (resp) {
             $mdUtil.nextTick($mdBottomSheet.cancel,true);
           } else {
@@ -75,6 +76,7 @@ angular.module('ScoutIOApp.login', ['ngMaterial'])
 
     $scope.signup = function() {
       Auth.createUser($scope.user);
+      $mdDialog.hide();
         // .then(function(resp) {
         //   if (resp.data) {
         //     $scope.close();
