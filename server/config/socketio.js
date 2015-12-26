@@ -25,7 +25,7 @@ function onConnect(socket) {
   require('../api/comment/comment.socket').register(socket);
   require('../api/folder/folder.socket').register(socket);
   require('../api/project/project.socket').register(socket);
-  // require('../api/search/search.socket').register(socket);
+  require('../api/search/search.socket').register(socket);
 
   //require('../api/user/user.socket').register(socket); //paul - wasn't here originally - wondering why
 }

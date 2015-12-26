@@ -6,7 +6,7 @@ function ProjectsController($log, $http, $timeout, $scope) {
     var vm = this;
 
     var newId = 1;
-    var folderId = 1;
+    // var folderId = 1;
     vm.ignoreChanges = false;
     vm.newNode = {};
     vm.originalData = [{
@@ -42,6 +42,10 @@ function ProjectsController($log, $http, $timeout, $scope) {
     vm.treeData = [];
     angular.copy(vm.originalData, vm.treeData);
     vm.treeConfig = {
+        changed: function(e, data) {
+            console.log(data.changed.selected); // newly selected
+            console.log(data.changed.deselected); // newly deselected
+        },
         core: {
             multiple: false,
             animation: true,
@@ -51,21 +55,21 @@ function ProjectsController($log, $http, $timeout, $scope) {
             check_callback: true,
             worker: true
         },
-        types: {
-            default: {
-                icon: 'glyphicon glyphicon-flash'
-            },
-            star: {
-                icon: 'glyphicon glyphicon-cloud'
-            },
-            cloud: {
-                icon: 'glyphicon glyphicon-cloud'
-            }
-        },
         version: 1,
-        plugins: ['types', 'checkbox']
+        plugins: ['changed']
     };
-
+    // 'types', 'checkbox'
+    // types: {
+    //       default: {
+    //           icon: 'glyphicon glyphicon-flash'
+    //       },
+    //       star: {
+    //           icon: 'glyphicon glyphicon-cloud'
+    //       },
+    //       cloud: {
+    //           icon: 'glyphicon glyphicon-cloud'
+    //       }
+    //   },
 
     vm.reCreateTree = function() {
         vm.ignoreChanges = true;
@@ -95,6 +99,7 @@ function ProjectsController($log, $http, $timeout, $scope) {
                         state: {
                             opened: true
                         },
+                        orgId: project._id,
                         text: project.name
                     });
                 });
@@ -110,23 +115,41 @@ function ProjectsController($log, $http, $timeout, $scope) {
                         state: {
                             opened: true
                         },
+                        orgId: folder._id,
                         text: folder.name
                     });
 
                 });
-                vm.originalData = vm.treeData; 
+                vm.originalData = vm.treeData;
                 return console.log(vm.treeData);
-                
+
                 //folder.FolderId || folder.ProjectId || 
             }));
     };
 
+    //Uses the ID assigned from SQL to ensure folders get added to the right folder
     vm.addNewNode = function() {
-        vm.treeData.push({
+        console.log(vm.newNode);
+        var index = parseInt(vm.newNode.parent, 10) + 3;
+        var originalId = vm.originalData[index].orgId;
+        var node = {
             id: (newId++).toString(),
             parent: vm.newNode.parent,
+            orgId: originalId || null,
             text: vm.newNode.text
+        };
+        vm.treeData.push(node);
+        return $http.post('/api/folders', {
+            name: node.text,
+            info: 'this is a test',
+            active: 1,
+            FolderId: originalId || null
+        }).then(function(res) {
+            return console.log(res);
         });
+
+        // Folder.create()
+
     };
 
     this.setNodeType = function() {
