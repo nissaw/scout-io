@@ -1,9 +1,9 @@
 angular.module('ScoutIOApp')
-  .directive('saveDialog', [function(){
+  .directive('saveForm', [function(){
     return {
-      restrict: 'EA',
-      templateUrl: '/save-dialog.html',
-      controlller: 'SaveDialogController',
+      restrict: 'E',
+      templateUrl: '/save.html',
+      controlller: 'SaveFormController',
       scope: {
         // needs access to ... photo currently in the dialog
       },

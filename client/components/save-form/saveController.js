@@ -1,5 +1,5 @@
 angular.module('ScoutIOApp')
-  .controller('SaveDialogController', function(Auth, Save){
+  .controller('SaveController', function(Auth, Save){
 
     function DialogController($scope, $mdDialog) {
       $scope.hide = function() {

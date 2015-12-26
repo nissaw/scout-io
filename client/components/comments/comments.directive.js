@@ -4,8 +4,10 @@ angular.module('ScoutIOApp')
       restrict: 'E',
       templateUrl: '/comments.html',
       controlller: 'CommentsController',
-      scope: {},
-      link: function($scope, element, attrs){
+      scope: {
+        photo: '=' 
+      },
+      link: function(scope, element, attrs){
 
       }
     };
