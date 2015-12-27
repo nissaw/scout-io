@@ -1,8 +1,3 @@
-
-/*=========================================
-            BACKGROUND MAP
-=========================================*/
-
 #map {
   height: 100%;
   width: 100%;
@@ -22,7 +17,7 @@ input#radius {
   margin-left: 15px;
 }
 
-#radius-label {
+#radius-label, #any-all-label {
   margin-left: 4px;
 }
 
@@ -191,6 +186,8 @@ p.thumbnail-description {
 
 md-card.results-photo {
   cursor: pointer;
+  border-style: solid;
+  border-color: white;
 }
 
 md-card.hovered {

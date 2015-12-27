@@ -34,8 +34,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.maxDate = new Date(
     results.currentDate.getFullYear(),
     results.currentDate.getMonth(),
-    results.currentDate.getDate());
-
+    results.currentDate.getDate());  //can't we just use 'new Date();' for this?
   results.minDate = results.search.startDate;
 
   results.getByTagOnly = function (query) {
@@ -43,10 +42,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
     Search.getByTagOnly(query)
       .then(function (response) {
-        $rootScope.photos = response.data.photos.photo;
+        if (response.data.photos) {
+          $rootScope.photos = response.data.photos.photo;
+        } else {
+          $rootScope.photos = [];
+        }
 
-        // results.photos = response.data.photos.photo;
-        // results.photos = Search.getPhotoResults();
         results.query = Search.getLastQuery();
         setMarkers();
       })
@@ -65,17 +66,15 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
       results.search.radius = 2;
     }
 
-
     // call the factory function and get the result back
     Search.getAdvanced(results.search)
       .then(function (response) {
         if (response.data.photos) {
           $rootScope.photos = response.data.photos.photo;
-          // results.photos = response.data.photos.photo;
         } else {
-          response.data.photos.photo = [];
+          $rootScope.photos = [];
         }
-        // results.photos = Search.getPhotoResults();
+
         results.query = Search.getLastQuery();
 
         setMarkers();
@@ -99,9 +98,12 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
         var myLatlng = new google.maps.LatLng($rootScope.photos[i].latitude, $rootScope.photos[i].longitude);
         var marker = new google.maps.Marker({position: myLatlng, photoID: $rootScope.photos[i].id});
 
-        marker.addListener('click', results.toggleBounce);
+        marker.addListener('click', results.toggleBounceClick);
         marker.setMap(results.map);
         results.map.markers.push(marker);
+
+        $rootScope.photos[i].marker = marker;
+        marker.photoId = $rootScope.photos[i].id;
 
         if ($rootScope.photos[i].latitude > -68) {
           bounds.extend(myLatlng);
@@ -113,48 +115,48 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
     });
   };
 
-  results.onMouseOver = function (e, img) {
-    var marks = results.map.markers;
-
-    marks.forEach(function(marker) {
-      if (marker.photoID === img.id) {
-        return results.toggleBounce(marker);
-      }
-    })
-  };
-
-  results.onMouseEnter = function (e) {
+  results.onMouseEnter = function (e, img) {
+    $(".results-photo").removeClass("hovered");
     var el = e.target;
     el.classList.add("hovered");
+
+    results.toggleBounce(img.marker);
   };
 
   results.onMouseLeave = function (e, img) {
-    var el = e.target;
-    el.className = "results-photo";
+    $(".results-photo").removeClass("hovered");
   };
 
-  results.toggleBounce = function (mark) {
-    var marker = mark;
+  results.toggleBounceClick = function () {
+    var marker = this;
+    var $card = $("#photo-card-" + marker.photoId);
+    var $sidebar = $("#results-sidebar-left");
+
+    $(".results-photo").removeClass("hovered");
+    $card.addClass("hovered");
+    $sidebar.animate ({scrollTop:$sidebar.scrollTop() + $card.offset().top - 200}, "fast");
 
     marker.setAnimation(google.maps.Animation.BOUNCE);
+
     setTimeout(function () {
       marker.setAnimation(null);
-
-    $('#photos').animate({scrollTop:$('#photos')}, 'fast');
     }, 2100);
   };
 
-  results.showPhotoPin = function (evt, photoId) {
-    results.photo = $rootScope.photos[id];
-    results.map.showInfoWindow('photoInfo', this);
+  results.toggleBounce = function (marker) {
+    if (results.map.getZoom() < 10) {
+      results.map.setZoom(10);
+    }
+    results.map.panTo(marker.getPosition());
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+
+    setTimeout(function () {
+      marker.setAnimation(null);
+    }, 2100);
   };
 
   results.placeChanged = function () {
     results.place = this.getPlace();
-
-    if (results.place && !results.search.radius) {
-      results.search.radius = 15;
-    }
   };
 
   results.toggleAdvancedSearchDiv = function (divStatus) {

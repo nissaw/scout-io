@@ -15,7 +15,7 @@
             </md-menu-content>
         </md-menu>
     </div>
-    
+
     <i class="fa fa-camera-retro fa-2x fa-border" hide show-gt-md></i>
     <h2 class="md-toolbar-tools">
     <a href="/" class="navbar-brand">Scout.IO</a>
@@ -32,7 +32,7 @@
         Hello! {{ nav.getCurrentUser().name }}
     </div> -->
     <span hide show-gt-md ng-show="nav.isLoggedIn()" class="navbar-text">Hello! {{ nav.getCurrentUser().name }}</span>
-    <div hide show-gt-sm layout="row"> 
+    <div hide show-gt-sm layout="row">
         <md-button class="md-icon-button" aria-label="Search" ng-show="nav.isLoggedIn()" ui-sref-active="active" ui-sref="results">
             <i class="fa fa-search fa-2x"></i>
             <md-tooltip md-direction="bottom">Search</md-tooltip>
