@@ -80,7 +80,23 @@ exports.show = function(req, res) {
 
 // Creates a new Link in the DB
 exports.create = function(req, res) {
-  Link.create(req.body)
+  console.log(req, 'here in link create func');
+  var newLink = Link.create({
+    // name: req.body.name,
+    // url: req.body.url,
+    // apiID: req.body.photo.id,
+    // apiName: req.body.photo.api,
+    // active: 1 
+  })
+    // .then(function (link) {
+    //   newLink = link;
+    //   Comment.create({
+    //     text: req.body.comment.text,
+    //     UserId: req.body.user.id
+    //     active: 
+    //     LinkId:  
+    //   })
+    // })
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 };

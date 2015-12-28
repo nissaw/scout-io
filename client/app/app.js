@@ -14,9 +14,9 @@ angular.module('ScoutIOApp', [
   'ngMaterial',
   'ngMap',
   'ngMdIcons',
-  'ngJsTree',
-  'ngAnimate',
-  'ngFx'
+  'ngJsTree'
+  // 'ngAnimate',
+  // 'ngFx'
   // 'SearchFactory'
 ])
   .config(function($mdThemingProvider) {

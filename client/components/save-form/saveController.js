@@ -1,15 +1,12 @@
 angular.module('ScoutIOApp')
-  .controller('SaveController', function(Auth, Save){
+  .controller('SaveFormController', function($scope, Link){
 
-    function DialogController($scope, $mdDialog) {
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-      };
+    $scope.saveLink = function(link){
+      Link.saveLink(link)
+      .then(function(data){
+        console.log(data, 'data was saved')
+      })
     };
+
+   
   });

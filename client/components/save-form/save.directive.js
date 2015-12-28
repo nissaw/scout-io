@@ -4,9 +4,9 @@ angular.module('ScoutIOApp')
       restrict: 'E',
       templateUrl: '/save.html',
       controlller: 'SaveFormController',
-      scope: {
-        // needs access to ... photo currently in the dialog
-      },
+      // scope: {
+      //   // needs access to ... photo currently in the dialog
+      // },
       link: function($scope, element, attrs){
         // when saved is successfull close dialog and show header across photoDialog
       }
