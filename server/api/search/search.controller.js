@@ -63,6 +63,19 @@ exports.tags = function(req, res) {
 };
 
 
+exports.byID = function(req, res) {
+  console.log('in the id func', req.params);
+
+  var query = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + flickrAPIKey + "&photo_id=" + req.params.photoid + "&format=json&nojsoncallback=1"; 
+
+  request(query, function (err, response, data) {
+    if (err) {
+      console.log(err);
+    }
+    res.send(data);
+  });
+};
+
  // Gets photos within a radius without filtering by tag
  exports.geo = function (req, res) {
   console.log("in the geo func");
@@ -86,7 +99,6 @@ exports.tags = function(req, res) {
 // Gets photos that match all passed params / all params optional
 exports.searchCriteria = function (req, res) {
   console.log('here in searchCriteria');
-  console.log(req.body);
 
   var obj = req.body;
 

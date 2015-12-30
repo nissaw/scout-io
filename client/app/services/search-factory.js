@@ -25,6 +25,17 @@ angular.module('ScoutIOApp')
         })
     };
 
+//pass in a photo id
+    var getByID = function(photoid){
+      return $http({
+        method: 'GET',
+        url: 'api/search/' + photoid
+      })
+      .then(function(data){
+        photoResults = data.data.photos.photo;
+        return data;
+      })
+    };
 
     /*This is for a search done from the photo-page by lat/lon only
      Gets photos regardless of tag that were taken within a given or default 2mile radius)
@@ -79,7 +90,8 @@ angular.module('ScoutIOApp')
       getPhotoResults: function() { return photoResults; },
       getByTagOnly: getByTagOnly,
       getNearby: getNearby,
-      getAdvanced: getAdvanced
+      getAdvanced: getAdvanced,
+      getByID: getByID
     };
 
   });

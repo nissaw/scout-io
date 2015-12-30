@@ -46,13 +46,9 @@
                 <label>Directions From</label>
                 <input id="photo-dialog-places-textbox" places-auto-complete on-place-changed="dialog.placeChanged()" />
             </md-input-container>
-            <save-form></save-form>
-            <!-- <div ng-controller="SaveController"> -->
-                    <!-- i copied the syntax for ng-click from results.html not sure about passing in dialog.photo  -->
-                <md-button id="save-btn" class="md-primary md-raised" ng-click="">
-                    Save
-                </md-button>
-            <!-- </div> -->
+     
+            <save></save>
+            
         </div>
     </md-dialog-content>
 </md-dialog>

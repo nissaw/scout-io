@@ -12,6 +12,9 @@
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
 var Link = sqldb.Link;
+var Folder = sqldb.Folder;
+var Comment = sqldb.Comment;
+var Project = sqldb.Project;
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -80,24 +83,41 @@ exports.show = function(req, res) {
 
 // Creates a new Link in the DB
 exports.create = function(req, res) {
-  console.log(req, 'here in link create func');
-  var newLink = Link.create({
-    // name: req.body.name,
-    // url: req.body.url,
-    // apiID: req.body.photo.id,
-    // apiName: req.body.photo.api,
-    // active: 1 
+  console.log(req.body, 'here in link create func');
+  var newLink; 
+  Link.create({
+    name: req.body.name,
+    url: req.body.url,
+    apiID: Number(req.body.apiID),
+    apiName: req.body.apiName,
+    active: 1,
   })
-    // .then(function (link) {
-    //   newLink = link;
-    //   Comment.create({
-    //     text: req.body.comment.text,
-    //     UserId: req.body.user.id
-    //     active: 
-    //     LinkId:  
-    //   })
-    // })
-    .then(responseWithResult(res, 201))
+    .then(function(link){
+      newLink = link;
+      link.setUser(req.user);    
+      Folder.find({
+        where: {
+          _id: req.body.folder._id
+        }
+      })
+      .then(function(folder){
+        newLink.setFolder(folder)        
+      })
+    })
+    .then(function(link){
+      newLink = link;
+      Comment.create({
+        text: req.body.comment.text
+      })
+      .then(function(comment){
+        comment.setUser(req.user);
+        // this sets the users but not working for the link
+        comment.setLink(link);
+      })
+    })
+    .then(function(link){
+      res.status(200).json(link);
+    })
     .catch(handleError(res));
 };
 
@@ -130,7 +150,7 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Get link commnets
+ * Get link comments
  */
 
 exports.comments = function(req, res) {

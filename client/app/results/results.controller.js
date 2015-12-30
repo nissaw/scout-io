@@ -41,6 +41,8 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.getByTagOnly = function (query) {
     results.$state.go('results');
 
+
+    // Search.getByID(23852925755)
     Search.getByTagOnly(query)
       .then(function (response) {
         if (response.data.photos) {

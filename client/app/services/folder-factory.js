@@ -28,24 +28,26 @@ var buildPaths = function(array){
 
 //GET ALL USER FOLDERS
 // gets all projects then all folders from each project
-  var getUserFolders = function(){
-    Project.getUserProjects()
-      .then(function(response){
-        projects = response.projects;
-        _.each(projects, function(project){
-          Project.getProjectFolders(project.id)
-            .then(function(response){
-              folders.push(response)
-            })
-            .catch(function(error){
-              console.log(error, "in getProjectFolders")
-            })
-        });
-      })
-      .catch(function(error){
-        console.log(error, "in getUserProjects")
-      })
-  };
+  // var getUserFolders = function(){
+  //   Project.getUserProjects()
+  //     .then(function(response){
+  //       console.log('repsonse from project.getUserProjects', response)
+  //       projects = response;
+  //       _.each(projects, function(project){
+  //         Project.getProjectFolders(project._id)
+  //           .then(function(response){
+  //             console.log(response.data, 'getUserfolders rtn f getProjectfolders');
+  //             folders.push(response.data);
+  //           })
+  //           .catch(function(error){
+  //             console.log(error, "in getProjectFolders")
+  //           })
+  //       });
+  //     })
+  //     .catch(function(error){
+  //       console.log(error, "in getUserProjects")
+  //     })
+  // };
 
 // GET FOLDER BY ID
   var getFolderById = function(folder){
@@ -151,7 +153,7 @@ var buildPaths = function(array){
       getFolders: function(){return folders;},
       getFolderPaths: function(){return folderPaths;},
       getProjects: function(){return projects;},
-      getUserFolders: getUserFolders,
+      // getUserFolders: getUserFolders,
       getFolderById: getFolderById,
       getFolderLinks: getFolderLinks,
       getFolderAssets: getFolderAssets,

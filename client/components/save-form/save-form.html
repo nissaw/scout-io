@@ -1,59 +1,52 @@
 
-<h1>save directive</h1>
+
+
+
+<!-- needs folder picker and comment box -->
+
 <!-- this is the template for the save photo dialog box -->
- <md-dialog ng-cloak>
-   <form>
+   <form name='saveForm' ng-submit="saveLink(dialog.photo, save)" ng-cloak>
      <div layout="column" layout-align="center center">
-     <p>Start typing to search for a folder or create a new one</p> 
-     <!-- TO DO HOW CAN YOU SEE WHAT FOLDERS ARE AVAILABLE UNDER A PROJECT? CAN find children?-->
-       <md-select placeholder="Save to folder" ng-model="save.folder" md-on-open="loadFolders()">
- <!--         <md-option ng-value="save.create()"><input type="text" ng-model="save.folder.name" placeholder="Create New Folder"/></md-option> TO DO: HOW DO YOU SPECIFIY WHERE TO CREATE A NEW FOLDER-->
-         <md-option ng-value="save.folder" ng-repeat="folder in save.userFolders">{{folder.path}}</md-option>
+       <md-select placeholder="Save to folder" ng-model="save.folder" md-on-open="getFolders()">
+         <md-option ng-value="folder" ng-repeat="folder in folders">{{folder.name}}</md-option>
        </md-select>
-     <p class="md-caption">You are saving this photo to : {{save.folder ? save.folder.path : 'No place yet!' }}</p>
+
+       <md-input-container class="md-block">
+         <label>Add Comments</label>
+         <input type="textarea" ng-model="save.comment.text">
+       </md-input-container>
+
+     <p class="md-caption">You are saving this photo to : {{save.folder ? save.folder.name : 'No place yet!' }}</p>
      </div>
    </form>
-   <div layout="row" layout-align="center">
-     <md-button>save</md-button>
-     <md-button>new folder</md-button>
-    </div>
- </md-dialog>
+
+     <md-button id="save-btn" class="md-primary md-raised" ng-click="saveLink(dialog.photo)">
+         Save
+     </md-button>
+     <br>
+     <p>Go To <a ng-href='/projects'>Projects</a> to Create a New Folder</p>
+ 
 
 
 
 <!-- Save button -->
- <section layout="row" layout-sm="column" layout-align="end center" ng-show='showSaveButton'>
+<!--  <section layout="row" layout-sm="column" layout-align="end center" ng-show='showSaveButton'>
    <md-button 
      class="md-raised md-primary" 
      ng-click="showSaveForm=true; showSaveButton=false">
      Save
    </md-button>
- </section>
+ </section> -->
 
 
 <!-- Save Form -->
 
-<md-content layout-padding ng-show='showTaskForm' class="fx-zoom-normal fx-speed-500">
-  <ng-md-icon 
-    id="clear" 
-    size="56"
-    ng-click="resetFormDetails()" 
-    aria-label="Close" 
-  </ng-md-icon> 
-  <br>
-  <form name="saveForm" ng-submit="saveLink(link);  resetFormDetails();">
-    <md-input-container class="md-block">
-      <label>Save here:</label>
-      <md-select required ng-model="save.project">
-        <!-- <md-option value="">Create New Project</md-option> -->
-        <md-option ng-repeat="project in projects">
-          {{project.name}}
-        </md-option>
-      </md-select>
+
 <!--       <div ng-messages="saveForm.description.$error">
         <div ng-message="required">This is required.</div>
       </div> -->
-    </md-input-container>
+
+<!--     </md-input-container>
     <section layout="row" layout-align="center center">
       <md-button
         class="button md-raised md-primary" 
@@ -61,7 +54,7 @@
         Submit
       </md-button>
     </section>
-  </form>
+  </form> -->
 
 
 
