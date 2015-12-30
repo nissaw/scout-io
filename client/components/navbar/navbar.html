@@ -31,7 +31,7 @@
     <!--  <div ng-show="nav.isLoggedIn()" layout="column" flex="20" flex-sm="10" flex-xs="5">
         Hello! {{ nav.getCurrentUser().name }}
     </div> -->
-    <span hide show-gt-md ng-show="nav.isLoggedIn()" class="navbar-text">Hello! {{ nav.getCurrentUser().name }}</span>
+    <span hide show-gt-md ng-show="nav.isLoggedIn()" class="navbar-text">{{ nav.getCurrentUser().name }}</span>
     <div hide show-gt-sm layout="row">
         <md-button class="md-icon-button" aria-label="Search" ng-show="nav.isLoggedIn()" ui-sref-active="active" ui-sref="results">
             <i class="fa fa-search fa-2x"></i>
