@@ -8,5 +8,6 @@ angular.module('ScoutIOApp')
         templateUrl: 'app/projects/projects.html',
         controller: 'ProjectsController',
         controllerAs: 'projects'
+        // authenticate: true
       });
   });
