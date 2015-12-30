@@ -4,6 +4,7 @@
   "main": "server/app.js",
   "dependencies": {
     "angular-material-icons": "^0.6.0",
+    "angular-messages": "^1.4.8",
     "babel-runtime": "^5.8.20",
     "body-parser": "^1.13.3",
     "composable-middleware": "^0.3.0",
