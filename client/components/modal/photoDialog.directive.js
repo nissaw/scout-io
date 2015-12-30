@@ -3,7 +3,7 @@
 angular.module('ScoutIOApp')
   .directive('photoDialog', ['NgMap', function (NgMap) {
     return {
-      restring: 'EA',
+      restrict: 'EA',
       controller: 'PhotoDialogCtrl',
       scope: {
         photo: '='

@@ -7,6 +7,7 @@ var router = express.Router();
 
 // base route is '/api/search/',
 // router.get('/', controller.tags);
+router.get('/:photoid', controller.byID);
 router.get('/tag/:query', controller.tags);
 router.get('/geo/:geo', controller.geo);
 router.post('/advancedSearch', controller.searchCriteria);

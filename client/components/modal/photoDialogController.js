@@ -101,11 +101,13 @@ angular.module('ScoutIOApp')
       });
     };
 
+
+
     function DialogController($scope, $rootScope, $mdDialog, NgMap) {
       $scope.hide = function () {
         $mdDialog.hide();
       };
-
+        
       $scope.cancel = function () {
         $mdDialog.cancel();
       };

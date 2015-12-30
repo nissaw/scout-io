@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 angular.module('ScoutIOApp', [
   'ScoutIOApp.auth',
@@ -15,6 +15,8 @@ angular.module('ScoutIOApp', [
   'ngMap',
   'ngMdIcons',
   'ngJsTree'
+  // 'ngAnimate',
+  // 'ngFx'
   // 'SearchFactory'
 ])
   .config(function($mdThemingProvider) {

@@ -1,0 +1,22 @@
+
+   <form name='saveForm' ng-submit="saveLink(dialog.photo, save)" ng-cloak>
+     <div layout="column" layout-align="center center">
+       <md-select placeholder="Save to folder" ng-model="save.folder" md-on-open="getFolders()">
+         <md-option ng-value="folder" ng-repeat="folder in folders">{{folder.name}}</md-option>
+       </md-select>
+
+       <md-input-container class="md-block">
+         <label>Add Comments</label>
+         <input type="textarea" ng-model="save.comment.text">
+       </md-input-container>
+
+     <p class="md-caption">You are saving this photo to : {{save.folder ? save.folder.name : 'No place yet!' }}</p>
+     </div>
+   </form>
+
+     <md-button id="save-btn" class="md-primary md-raised" ng-click="saveLink(dialog.photo)">
+         Save
+     </md-button>
+     <br>
+     <p>Go To <a ng-href='/projects'>Projects</a> to Create a New Folder</p>
+ 

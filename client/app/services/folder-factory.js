@@ -3,49 +3,8 @@ angular.module('ScoutIOApp')
   .factory('Folder', function ($http, Project) {
   
     var folders = [];
-    var folderPaths = [];
     var projects = [];
 
-// experimental function to build an array of paths to iterate through in a dropdown menu for saving locations
-var buildPaths = function(array){
-  var paths = [];
-  _.each(array, function(folder){
-    var currentPath = '';
-    var sub = function(folder){
-      if (folder.parent_id === null){
-        paths.push(currentPath)
-        return;
-      } else { // get parent of folder recursively and concat onto current path string seperated by '/'
-        currentPath = folder.name + '/' + currentPath
-        sub(getFolderById(folder.parent_id))
-      }
-    };
-
-  })
-  return paths;
-};
-
-
-//GET ALL USER FOLDERS
-// gets all projects then all folders from each project
-  var getUserFolders = function(){
-    Project.getUserProjects()
-      .then(function(response){
-        projects = response.projects;
-        _.each(projects, function(project){
-          Project.getProjectFolders(project.id)
-            .then(function(response){
-              folders.push(response)
-            })
-            .catch(function(error){
-              console.log(error, "in getProjectFolders")
-            })
-        });
-      })
-      .catch(function(error){
-        console.log(error, "in getUserProjects")
-      })
-  };
 
 // GET FOLDER BY ID
   var getFolderById = function(folder){
@@ -147,11 +106,8 @@ var buildPaths = function(array){
 
 
     return {
-      buildPaths: buildPaths,
       getFolders: function(){return folders;},
-      getFolderPaths: function(){return folderPaths;},
       getProjects: function(){return projects;},
-      getUserFolders: getUserFolders,
       getFolderById: getFolderById,
       getFolderLinks: getFolderLinks,
       getFolderAssets: getFolderAssets,

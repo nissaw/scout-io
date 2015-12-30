@@ -30,6 +30,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.query = '';
 
+
   results.currentDate = new Date();
   results.maxDate = new Date(
     results.currentDate.getFullYear(),
@@ -39,7 +40,7 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.getByTagOnly = function (query) {
     results.$state.go('results');
-
+  
     Search.getByTagOnly(query)
       .then(function (response) {
         if (response.data.photos) {

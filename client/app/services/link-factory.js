@@ -61,7 +61,6 @@ angular.module('ScoutIOApp')
         data: link
       })
       .then(function(response){
-        console.log('link was saved');
         var message = 'Location Has Been Successfully Saved';
         return message;
       })

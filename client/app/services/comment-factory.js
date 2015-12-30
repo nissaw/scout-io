@@ -1,12 +1,6 @@
 angular.module('ScoutIOApp')
    .factory('Comment', function ($http) {
-    
-    // GET ALL USER COMMENTS
-    // GET A COMMENT BY ID
-    // CREATE/SAVE A COMMENT
-    // EDIT A COMMENT
-    // DELETE A COMMENT
-
+  
     // GET ALL OF A USERS COMMENTS
     var getAllComments = function(user){
       return $http({
@@ -39,6 +33,7 @@ angular.module('ScoutIOApp')
 
 
     // SAVE A COMMENT
+    // need to pass in id for link or asset, author, will add created_at, updated_at
     var saveComment = function(comment){
       return $http({
         method: 'POST',
