@@ -1,10 +1,10 @@
 <md-whiteframe class="md-whiteframe-4dp" id="comments-container" layout layout-align="center center">
-    <!-- ng-controller="CommentsController as comment"> -->
-    <span ng-hide="comment.isSavedPhoto()"><ng-md-icon icon="comment" size="56"></ng-md-icon> Save this amazing photo to add comments!</span>
-    <md-content class="photo-comments-private" ng-show="isSavedPhoto()">
-        <div ng-repeat="comment in dialog.photo.comments">
-            <p>{{comment.text}}{{comment.created_at}}{{comment.author}}</p>
-            <md-button class="md-icon-button" aria-label="Edit" ng-show="isAuthor()" ng-click="comment.edit()">
+    <span ng-hide="commentCtrl.isSavedPhoto(dialog.photo)"><ng-md-icon icon="comment" size="56"></ng-md-icon> Save this amazing photo to add comments!</span>
+
+    <md-content class="photo-comments-private" ng-show="isSavedPhoto(dialog.photo)">
+        <div ng-repeat="comment in commentCtrl.comments">
+            <p>{{comment.text}}{{comment.updated_at}}{{comment.author}}</p>
+            <md-button class="md-icon-button" aria-label="Edit" ng-show="isAuthor(comment)" ng-click="commentCtrl.edit(comment)">
                 <!-- IF YOU CLICK ICON EDIT/DELETE FORM SHOWS IN COMMENT BOX -->
                 <ng-md-icon icon="create"></ng-md-icon>
                 <md-tooltip md-direction="bottom">Edit Comment</md-tooltip>

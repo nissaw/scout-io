@@ -2,7 +2,7 @@ angular.module('ScoutIOApp')
     .controller('ProjectsController', ProjectsController);
 
 
-function ProjectsController($log, $http, $timeout, $scope) {
+function ProjectsController($log, $http, $timeout, $scope, Auth) {
     var vm = this;
 
     var newId = 1;

@@ -7,7 +7,7 @@ angular.module('ScoutIOApp')
         url: '/projects',
         templateUrl: 'app/projects/projects.html',
         controller: 'ProjectsController',
-        controllerAs: 'projects'
-        // authenticate: true
+        controllerAs: 'projects',
+        authenticate: true
       });
   });

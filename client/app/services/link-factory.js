@@ -42,7 +42,7 @@ angular.module('ScoutIOApp')
     var getLinkComments = function(link){
       return $http({
         method: 'GET',
-        url: '/api/links/' + asset.id + '/comments'
+        url: '/api/links/' + link.id + '/comments'
       })
         .then(function(response){
           console.log(response);
