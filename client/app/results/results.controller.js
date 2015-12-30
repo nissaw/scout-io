@@ -7,7 +7,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
   results.place;
 
-
   results.search = {
     placeName: '',
     keywords: '',
@@ -40,7 +39,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
   results.minDate = results.search.startDate;
 
 
-
   results.getByTagOnly = function (query) {
     results.$state.go('results');
 
@@ -54,7 +52,6 @@ function ResultsController($state, $http, NgMap, Search, $rootScope) {
 
         results.query = Search.getLastQuery();
         setMarkers();
-
       })
   };
 
