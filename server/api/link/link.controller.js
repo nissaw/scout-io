@@ -83,7 +83,6 @@ exports.show = function(req, res) {
 
 // Creates a new Link in the DB
 exports.create = function(req, res) {
-  console.log(req.body, 'here in link create func');
   var newLink; 
   Link.create({
     name: req.body.name,
@@ -106,14 +105,16 @@ exports.create = function(req, res) {
     })
     .then(function(link){
       newLink = link;
-      Comment.create({
-        text: req.body.comment.text
-      })
-      .then(function(comment){
-        comment.setUser(req.user);
-        // this sets the users but not working for the link
-        comment.setLink(link);
-      })
+      if (req.body.comment !== null){
+        Comment.create({
+          text: req.body.comment.text
+        })
+        .then(function(comment){
+          comment.setUser(req.user);
+          // this sets the users but not working for the link
+          comment.setLink(newLink);
+        })
+      };
     })
     .then(function(link){
       res.status(200).json(link);

@@ -5,13 +5,11 @@ angular.module('ScoutIOApp')
 // GET ALL USER PROJECTS
     var getUserProjects = function() {
       projects = [];
-      // var user = Auth.getCurrentUser(); un-neccesary? user data automatically part of the req object? 
       return $http({
         method: 'GET',
         url: '/api/users/projects'
       })
         .then(function(response){
-          console.log(response, 'returned from projectFActory');
           projects = response.data;
           return response.data;
         })
@@ -42,7 +40,6 @@ angular.module('ScoutIOApp')
       url: '/api/projects/' + project._id + '/folders'
     })
       .then(function(response){
-        console.log(response);
         return response.data;
       })
       .catch(function(error){

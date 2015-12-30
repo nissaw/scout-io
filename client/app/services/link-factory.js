@@ -55,15 +55,12 @@ angular.module('ScoutIOApp')
 
     // SAVE A LINK
     var saveLink = function(link){
-      console.log('in link factory');
       return $http({
         method: 'POST',
         url: '/api/links',
         data: link
       })
       .then(function(response){
-        console.log('link was saved');
-        console.log(response);
         var message = 'Location Has Been Successfully Saved';
         return message;
       })

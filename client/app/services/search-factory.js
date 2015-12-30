@@ -25,15 +25,26 @@ angular.module('ScoutIOApp')
         })
     };
 
-//pass in a photo id
+//pass in a photo id. The returned modPhoto has same object format as photos returned from other API calls. 
     var getByID = function(photoid){
       return $http({
         method: 'GET',
         url: 'api/search/' + photoid
       })
       .then(function(data){
-        photoResults = data.data.photos.photo;
-        return data;
+        console.log(data);
+        var photo = data.data.photo;
+        var modPhoto = {
+          title: photo.title._content,
+          latitude: photo.location.latitude,
+          longitude: photo.location.longitude,
+          datetaken: photo.dates.taken, // format "2014-08-09 22:56:01"
+          id: photo.id,
+          url_m: "https//farm"+photo.farm+"staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg",
+          url_s: "https//farm"+photo.farm+"staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg"
+        }; 
+        console.log(modPhoto);
+        return modPhoto;
       })
     };
 
@@ -42,6 +53,7 @@ angular.module('ScoutIOApp')
      @param {array}  geo   [lat, lon, radius] + radius_units=mi
      @return {array}       [array of matching photo objects]
      */
+     //currently not used
     var getNearby = function (geo) {
       radius = radius || 2;
       return $http({
@@ -68,7 +80,6 @@ angular.module('ScoutIOApp')
      @return {array} [array of matching photo objects]
      */
     var getAdvanced = function (searchCriteria) {
-      console.log(searchCriteria);
       searchCriteria = JSON.stringify(searchCriteria);
       lastQuery = searchCriteria.keywords;
       return $http({

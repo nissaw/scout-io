@@ -1,7 +1,6 @@
 angular.module('ScoutIOApp')
-  .controller('SaveFormController', function($scope, Link, Folder, Project){
+  .controller('SaveFormController', function($scope, Link, Folder, Project, Comment){
 
-//calling these 2 factory functions populates these arrays that are used for auto-complete/dropdown save input
     $scope.folders = [];
     $scope.projects = [];
     
@@ -12,28 +11,23 @@ angular.module('ScoutIOApp')
       }
     };
 
+//Populates the folders and projects arrays that are used for auto-complete/dropdown for save input
     $scope.getFolders = function(){ 
       $scope.folders = [];     
       Project.getUserProjects()
         .then(function(response){
           $scope.projects = response;
-          console.log('available projects: ', $scope.projects); 
           _.each($scope.projects, function(project){
             Project.getProjectFolders(project)
-            // console.log(project)
               .then(function(response){
-                console.log(response);
                 $scope.folders.push(response[0]);
-                console.log('available folders: ', $scope.folders); 
               })    
           })
         })
     };
 
+//Saves a link(photo) to a specified folder. may or may not include a comment
     $scope.saveLink = function(photo){
-      console.log('available folders: ', $scope.folders)
-      console.log('saveLink clicked controller', photo);
-      
         $scope.save.apiID = photo.id;
         $scope.save.name = photo.title;
         $scope.save.url = photo.url_s;
@@ -42,9 +36,7 @@ angular.module('ScoutIOApp')
       Link.saveLink($scope.save)
         .then(function(data){
           $scope.save = {};
-          console.log(data, 'data from backend')
         })
     };
 
-   
-  });
+});
