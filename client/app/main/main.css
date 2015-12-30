@@ -3,7 +3,7 @@
 =========================================*/
 
 #img2 {
-  background-image: url("/../assets/nevada.jpeg");
+  background-image: url("/../assets/nevada-min.jpeg");
   width:auto;
   height:705px;
 }
@@ -153,6 +153,10 @@ p.profile-name {
 p.profile-role {
   font-size: 16px;
   font-weight: 300;
+}
+
+.fa-github-square {
+	color: black;
 }
 
 p.md-headline {
